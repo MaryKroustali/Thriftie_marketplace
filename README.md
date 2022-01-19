@@ -17,7 +17,7 @@
 
 - [ ] home page (retrieve data from db)
 - [ ] sign up (connect to db)
-- [ ] login (reetrieve from db)
+- [ ] login (retrieve from db)
 - [ ] logout (check logged in/retrieve)
 - [ ] user profile (select from db/call?)
 - [ ] product page (add to cart)

@@ -353,7 +353,6 @@ button:hover, button:focus {
     margin: 20px;
     font-size: 18px;
 }
-
 #information {
 	width: 89%;
 	margin: 0 0 50px 10%;
@@ -521,6 +520,33 @@ button:hover, button:focus {
     font-weight: bold;
     font-size: 18px;
     color: #5c142c;
+}
+#sell {
+    width: 89%;
+    margin: 0 0 50px 10%;
+}
+#sell h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    width: 90%;
+    float: left;
+}
+#sell p, #sell a{
+    font-size: 15px;
+    color: #5c142c;
+}
+#sell input[type="radio"] { /*do not show checkboxes in toggle checkbox buttons size/fit/material*/
+    position: fixed;
+    opacity: 0;
+}
+#sell input:checked + label { /*on select toggle checkbox light button*/
+    background-color: #e9c1e2;
+    color: black;
+    border: none;
 }
 /*RESPONSIVE*/
 /*tablet view*/

@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>Thriftie Marketplace</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--favicon-->
+		<link rel="shortcut icon" href="favicon.png"/>
+        <!--cart/user login signs-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--import css file-->
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <!--import bootstrap file-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <!--navigation bar, header-->
+            <div class="navbar-header">
+                <a href="Home.html"> <!--when click on logo/caption redirect to home-->
+                    <img src="logo.png" id="logo"> <!--logo-->
+                    <br>
+                    <span>Next Generation of Thrifting</span> <!--caption-->
+                </a>
+            </div>
+            <div class="nav">
+                <!--navigation bar, links-->
+                <ul class="nav justify-content-center"> <!--align items in center-->
+                    <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
+                        <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">All products</a>
+                            <a class="dropdown-header">Shop by category...</a>
+                            <a class="dropdown-item" href="#">Clothes</a>
+                            <a class="dropdown-item" href="#">Shoes</a>
+                            <a class="dropdown-item" href="#">Accessories</a>
+                            <a class="dropdown-item" href="#">Bags</a>
+                            <a class="dropdown-item" href="#">Gifts</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sell.html">Sell</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About Us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Help Center.html">Help Center</a>
+                    </li>
+                    <form  class="form-inline my-2" action="#">  <!--search bar-->
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <button class="btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+       <section id="sell">
+            <h1>Sell a product</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Before you sell a product at Thriftie, make sure you have read our <a href="help center.html">policies</a>.</p>
+                    </div>
+                    <!--TO DO add product to db-->
+                    <form action="#" method="POST" class="col-md-12">
+                        <div class="col-md-5 form-outline">
+                            <label for="file" class="form-label">Upload images</label>
+                            <input type="file" class="form-control" name="file" id="file" required/>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-outline">
+                                <label for="name" class="form-label">Name your product</label>
+                                <input class="form-control" type="text" name="Name" id="name"required/>
+                            </div>
+                            <div class="form-outline">
+                                <label for="descr" class="form-label">Add a description</label>
+                                <textarea class="form-control" id="descr" name="descr" required></textarea>
+                            </div>
+                            <div class="form-outline">
+                                <label for="price" class="form-label">Define your price</label>
+                                <input class="form-control" type="number" name="price" id="price"required/>
+                            </div>
+                            <div>
+                                <label for="price" class="form-label">Select size</label>
+                                <fieldset>
+                                    <input type="radio" class="btn-check" name="size" id="xxxs" autocomplete="off">
+                                    <label class="btn btn-secondary" for="xxxs">X Small</label>
+                                    <input type="radio" class="btn-check" name="size" id="s" autocomplete="off">
+                                    <label class="btn btn-secondary" for="s">Small</label>
+                                    <input type="radio" class="btn-check" name="size" id="m" autocomplete="off">
+                                    <label class="btn btn-secondary" for="m">Medium</label>
+                                    <input type="radio" class="btn-check" name="size" id="l" autocomplete="off">
+                                    <label class="btn btn-secondary" for="l">Large</label>
+                                    <input type="radio" class="btn-check" name="size" id="xl" autocomplete="off">
+                                    <label class="btn btn-secondary" for="xl">X Large</label>
+                                    <input type="radio" class="btn-check" name="size" id="xxl" autocomplete="off">
+                                    <label class="btn btn-secondary" for="xxl">XX Large</label>
+                                    <input type="radio" class="btn-check" name="size" id="one" autocomplete="off">
+                                    <label class="btn btn-secondary" for="one">One Size</label>
+                                </fieldset>
+                            </div>
+                            <div>
+                                <label for="price" class="form-label">Describe Fit</label>
+                                <fieldset>
+                                    <input type="radio" class="btn-check" name="fit" id="none" autocomplete="off">
+                                    <label class="btn btn-secondary" for="none">-</label>
+                                    <input type="radio" class="btn-check" name="fit" id="over" autocomplete="off">
+                                    <label class="btn btn-secondary" for="over">Oversized</label>
+                                    <input type="radio" class="btn-check" name="fit" id="skin" autocomplete="off">
+                                    <label class="btn btn-secondary" for="skin">Skinny</label>
+                                    <input type="radio" class="btn-check" name="fit" id="slim" autocomplete="off">
+                                    <label class="btn btn-secondary" for="slim">Slim</label>
+                                    <input type="radio" class="btn-check" name="fit" id="regular" autocomplete="off">
+                                    <label class="btn btn-secondary" for="regular">regular</label>
+                                </fieldset>
+                            </div>
+                            <div>
+                                <label for="price" class="form-label">Material</label>
+                                <input class="form-control" type="number" name="price" id="price"required/>
+                            </div>
+                            <button type="submit" class="btn btn-block">Sell it!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+       </section>
+        <!--footer-->
+        <footer class="text-right"> <!--align text to the right-->
+            <br><br>
+            <button type="button" class="btn btn-outline-dark">Download the app</button>
+            <span>&copy; 2021 Thriftie, Second Hand Marketplace</span>
+        </footer>
+    </body>
+</html>
