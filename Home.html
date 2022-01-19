@@ -31,6 +31,7 @@
                     <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
                         <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
                             <a class="dropdown-item" href="#">Clothes</a>
                             <a class="dropdown-item" href="#">Shoes</a>
@@ -58,10 +59,10 @@
         <section id="presection">
             <p>Recommended for you</p>
             <div class="dropdown"> <!--shopping cart/ login butttons-->
-                <button class="btn"><i class="fa fa-shopping-cart"></i>Cart</button>
-                <button class="btn"><i class="fa fa-user"></i>Login</button>
+                <button class="btn"><i class="fa fa-shopping-bag"></i> Cart</button>
+                <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign in</button>
                 <br><br> <!--sort by dropdown list-->
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                <!--<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
                     Sort by:
                 </button> <!--sort by options-->
                 <div class="dropdown-menu">
@@ -392,7 +393,8 @@
                                     <span>Suitable for people with sensitive skin. 
                                         Linen can be used in all life situations, sports, leisure and official events.
                                          You can always get advice or size adjustments by contacting me. <br>
-                                         Thank you, Andris and Sandor.</span>
+                                         Thank you, Andris and Sandor.
+                                    </span>
                                 </div>
                                 <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
                             </div>
@@ -599,14 +601,95 @@
                 </div>
             </div>
         </section>
-        <!--Pagination-->
+        <section>
+            <div class="modal" id="login_modal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center ">
+                                <div class="col-md-8 ">
+                                    <div class="card-body text-center">
+                                        <h3>Sign in</h3>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="login_email">Email</label>
+                                            <input type="email" class="form-control" id="login_email"/>
+                                        </div>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="login_pass">Password</label>
+                                            <input type="password" class="form-control" id="login_pass"/>
+                                        </div>
+                                        <!-- Checkbox -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"/>
+                                            <label class="form-check-label">Remember me</label>
+                                        </div>
+                                        <button class="btn btn-block">Login</button>
+                                        <button class="btn btn-block" style="background-color: #dd4b39;"><i class="fa fa-google"></i> Sign in with google</button>
+                                        <button class="btn btn-block" style="background-color: #3b5998;"><i class="fa fa-facebook-f"></i> Sign in with facebook</button>
+                                        <span>You don't have an account?</span><a data-target="#signup_modal" data-toggle="modal" href="#signup_modal"> Sign Up</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="modal" id="signup_modal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center ">
+                                <div class="col-md-8 ">
+                                    <div class="card-body text-center">
+                                        <h3>Sign Up</h3>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="sign_email">Email</label>
+                                            <input type="email" class="form-control" id="sign_email"/>
+                                        </div>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="sign_pass">Password</label>
+                                            <input type="password" class="form-control" id="sign_pass"/>
+                                        </div>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="confirm_pass">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirm_pass"/>
+                                        </div>
+                                        <!-- Checkbox -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"/>
+                                            <label class="form-check-label">I accept <a target="_blank" href="help center.html#information">policy conditions</a></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"/>
+                                            <label class="form-check-label">I would like to receive exclusive emails about product offers</label>
+                                        </div>
+                                        <button class="btn btn-block">Sign Up</button>
+                                        <button class="btn btn-block" style="background-color: #dd4b39;"><i class="fa fa-google"></i> Sign up with google</button>
+                                        <button class="btn btn-block" style="background-color: #3b5998;"><i class="fa fa-facebook-f"></i> Sign up with facebook</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Pagination
         <ul class="pagination justify-content-center">
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li> <!--ig in page 1, disable prev button-->
+            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li> 
             <li class="page-item active"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
+        </ul>-->
         <!--sell a product, promotion button-->
         <button type="button" class="btn" id="promo">+ Sell a Product</button>
         <!--footer-->

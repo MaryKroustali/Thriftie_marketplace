@@ -163,12 +163,15 @@ footer .btn {
 .col-sm-3 .card .btn { /*cards*/
     width: 100%;
     height: 310px;
-    border-color: #5c142c;
+    /*border-color: #5c142c;*/
     padding: 0; /*images should it perfectly*/
 }
 button:hover, button:focus {
     outline: none !important; /*do not show borders on click*/
     box-shadow: none !important;
+}
+.card .btn:hover {
+    box-shadow: 2px 2px 4px #5c142c !important;
 }
 .card-text { /*short product description*/
     color: black;
@@ -182,7 +185,7 @@ button:hover, button:focus {
     font-weight: bold;
     font-size: 17px;
 }
-/*modals' styling*/
+/*modals' styling products*/
 .modal .close { /*modal close buttons*/
     font-size: 20px;
     color: black;
@@ -238,6 +241,233 @@ button:hover, button:focus {
     width: 80%;
     margin-left: 30px;
 }
+/*about us page*/
+#about {
+    float: left;
+	width: 89%;
+	margin: 0 0 50px 10%;
+}
+#about h1 {
+	color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    float: left;
+    width: 70%;
+}
+#about .col {
+    width: 31%;
+    float: left;
+}
+#about .col h4 {
+    font-weight: bold;
+    width: 230px;
+    border-bottom: solid; /*underline*/
+    color: #5c142c;
+    font-size: 20px;
+}
+#about .col p {
+    padding: 20px;
+    margin-right: 10%;
+    margin-top: -6px;
+    box-shadow: 1px 1px 3px black;
+    font-size: 15px;
+    background-color: #e2d6da;
+}
+#newsletter {
+    width: 89%;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    margin: 0 0 50px 10%;
+}
+#newsletter h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    float: left;
+    width: 70%;
+}
+#newsletter .btn {
+    outline: none;
+	width: 10%;
+	padding: 10px;
+	background-color: #5c142c;
+	border: none;
+    font-size: 15px;
+}
+#newsletter p {
+    width: 82%;
+    font-size: 17px;
+    padding: 30px;
+    font-weight: bold;
+}
+#newsletter input {
+    width: 20%;
+    padding: 21px;
+    font-size: 15px;
+}
+/*Help center*/
+#contact h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    width: 70%;
+    float: left;
+}
+#contact {
+    width: 89%;
+    margin: 0 0 50px 10%;
+}
+#contact form {
+    width: 300px;
+    margin-left: 33%;
+    margin-right: auto;
+}
+#contact .form-label {
+    font-size: 14px;
+}
+#contact .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#contact .btn {
+    margin: 10px 0px !important;
+    background-color: #5c142c;
+    color: #e2d6da;
+    float: right;
+    margin: 20px;
+    font-size: 18px;
+}
+
+#information {
+	width: 89%;
+	margin: 0 0 50px 10%;
+}
+#information h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    float: left;
+    width: 70%;
+}
+#information .col {
+    width: 97%;
+}
+#information .col h4 {
+    font-weight: bold;
+    width: 500px;
+    border-bottom: solid; /*underline*/
+    color: #5c142c;
+    font-size: 20px;
+}
+#information .col p {
+    padding: 20px;
+    margin-right: 10%;
+    margin-top: -6px;
+    box-shadow: 1px 1px 3px black;
+    font-size: 15px;
+    background-color: #e2d6da;
+}
+/*sign up modal*/
+#signup_modal .modal-content{
+    width: 100%;
+}
+#signup_modal .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#signup_modal .modal-body .form-label {
+    font-size: 14px;
+}
+#signup_modal .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#signup_modal .modal-body .form-check {
+    font-size: 14px !important;
+    text-align: left;
+}
+#signup_modal .modal-body .form-check .form-check-label{
+    margin-right: 40% !important;
+    margin-bottom: 10px;
+    width: 100%;
+}
+#signup_modal .modal-body .form-check .form-check-input{
+    margin-left: -5% !important;
+    margin-top: 6px !important;
+}
+#signup_modal .btn {
+    margin: 10px 0px !important;
+}
+#signup_modal a {
+    font-size: 14px;
+    color: #5c142c;
+}
+/*sign in modal*/
+#login_modal .modal-content{
+    width: 100%;
+}
+#login_modal .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#login_modal .modal-body .form-label {
+    font-size: 14px;
+}
+#login_modal .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#login_modal .modal-body .form-check {
+    font-size: 15px !important;
+    text-align: left;
+}
+#login_modal .modal-body .form-check .form-check-label{
+    margin-right: 40% !important;
+}
+#login_modal .modal-body .form-check .form-check-input{
+    margin-left: -5% !important;
+    margin-top: 6px !important;
+}
+#login_modal .btn {
+    margin: 10px 0px !important;
+}
+#login_modal span, a {
+    font-size: 16px;
+}
+#login_modal a {
+    color: #5c142c;
+}
 
 /*RESPONSIVE*/
 /*tablet view*/
@@ -275,6 +505,36 @@ button:hover, button:focus {
     }
     .modal-body #info {
         width: 40%;
+    }
+    #about .col {
+        width: 95%;
+        margin-top: 10px;
+    }
+    #newsletter .btn {
+       width: 100px;
+    }
+    #newsletter .form-control {
+        width: 200px;
+    }
+    #login_modal .modal-content{
+        height: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 75%;
+    }
+    #login_modal .modal-body {
+        margin: -70px 0 20px 0;
+    }
+    #signup_modal .modal-body {
+        margin: -70px 0 20px 0;
+    }
+    #signup_modal .modal-content {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #contact form {
+        margin-left: auto;
     }
 }
 /*mobile view*/
@@ -320,5 +580,24 @@ button:hover, button:focus {
     }
     footer span {  /*style text*/
         font-size: 12px;
+    }
+    #about .col {
+        width: 95%;
+        margin-top: 10px;
+    }
+    #newsletter .btn {
+        width: 100px;
+    }
+    #newsletter .form-control {
+        width: 200px;
+    }
+    #information .col h4 {
+        width: 300px;
+    }
+    #contact form {
+        margin-left: auto;
+    }
+    #login_modal .modal-content{
+        height: 75%;
     }
 }
