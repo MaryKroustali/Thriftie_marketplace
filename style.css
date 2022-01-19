@@ -135,18 +135,20 @@ footer .btn {
     font-size: 15px !important;
 }
 /* promo button "sell a product"*/
-#promo {
+#promo a {
     position: fixed;  /*do not move when on scroll*/
     bottom: 8%;  /*fix absolute positioning*/
     right: 3%;
     background-color: #5c142c;
     color: #e2d6da;
     font-size: 20px;
-    padding: 0.5% 1%;
+    width: 180px;
+    padding: 0.5% 10px;
     border-color: white;
 }
-#promo:hover {
+#promo a:hover {
     font-weight: bold;
+    text-decoration: none;
 }
 /*products catalog*/
 .bg-1 .row:first-child { /*apply only to 4 first products - first row*/
@@ -388,6 +390,9 @@ button:hover, button:focus {
 #signup_modal .modal-content{
     width: 100%;
 }
+#signup_modal .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
 #signup_modal .modal-body h3 {
     font-weight: bold;
     padding: 0px 0 20px 0;
@@ -422,6 +427,14 @@ button:hover, button:focus {
 #signup_modal .btn {
     margin: 10px 0px !important;
 }
+#signup_modal .btn a { /*signup with google,facebook buttons*/
+    color: #e2d6da;
+    font-size: 18px;
+}
+#signup_modal .btn a:hover { /*signup with google,facebook buttons*/
+    text-decoration: none;
+    color: #e9c1e2;
+}
 #signup_modal a {
     font-size: 14px;
     color: #5c142c;
@@ -429,6 +442,9 @@ button:hover, button:focus {
 /*sign in modal*/
 #login_modal .modal-content{
     width: 100%;
+}
+#login_modal .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
 }
 #login_modal .modal-body h3 {
     font-weight: bold;
@@ -462,13 +478,50 @@ button:hover, button:focus {
 #login_modal .btn {
     margin: 10px 0px !important;
 }
+#login_modal .btn a { /*login with google,facebook buttons*/
+    color: #e2d6da;
+    font-size: 18px;
+}
+#login_modal .btn a:hover { /*login with google,facebook buttons*/
+    text-decoration: none;
+    color: #e9c1e2;
+}
 #login_modal span, a {
     font-size: 16px;
 }
 #login_modal a {
     color: #5c142c;
 }
-
+/*cart modal*/
+#cart_modal .modal-dialog{
+    display: table; /* This is important */
+    min-width: 40%;
+}
+#cart_modal .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#cart_modal .modal-body h3 {
+    padding: 0px 0 20px 0;
+    font-weight: bold;
+    font-size: 25px;
+    color: #5c142c;
+}
+#cart_modal img {
+    width: 100px;
+    height: 100px !important;
+}
+#cart_modal .btn {
+    margin: 10px 0px !important;
+}
+#cart_modal td button {
+    background: transparent; /*make button transparent*/
+    border: none !important;
+}
+#cart_modal p, #cart_modal span{
+    font-weight: bold;
+    font-size: 18px;
+    color: #5c142c;
+}
 /*RESPONSIVE*/
 /*tablet view*/
 @media (max-width: 1023px) and (min-width: 767px) {

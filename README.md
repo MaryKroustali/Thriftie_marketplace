@@ -1,20 +1,31 @@
 # Thriftie_marketplace# thriftie
 
 ## User
-- [x] home page
-- [ ] sign up (back)
-- [ ] login (back)
-- [ ] logout
-- [ ] user profile
+- [x] home page (front)
+- [x] sign up (front)
+- [x] login (front)
+- [ ] logout (access through user profile)
+- [ ] user profile (front/access)
 - [x] product page
 - [ ] product review (?)
-- [ ] search products
 - [x] about us
-- [ ] checkout Cart
-- [ ] checkout payment form
-- [ ] order history
-- [ ] fav products
+- [x] checkout Cart (front)
+- [ ] checkout payment form (front)
+- [ ] order history (access through user profile)
+- [ ] fav products (access through user profile)
 - [ ] sell product form (front)
+
+- [ ] home page (retrieve data from db)
+- [ ] sign up (connect to db)
+- [ ] login (reetrieve from db)
+- [ ] logout (check logged in/retrieve)
+- [ ] user profile (select from db/call?)
+- [ ] product page (add to cart)
+- [ ] product review (?)
+- [ ] search products (select in db)
+- [ ] checkout Cart (remove products/remove after 24h/retrieve from db)
+- [ ] order history (retrieve from db)
+- [ ] fav products (retrieve from db/add to db?)
 
 ## Admin
 - [ ] home page admin
@@ -32,3 +43,7 @@
 - [x] report part 4
 - [x] report part 5
 - [ ] report part 6
+
+# Struggles
+- [ ] how to check if a user is signed in
+- [ ] login/signup modals overflow
