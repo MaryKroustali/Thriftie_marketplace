@@ -14,6 +14,7 @@
 - [ ] checkout payment form
 - [ ] order history
 - [ ] fav products
+- [ ] sell product form (front)
 
 ## Admin
 - [ ] home page admin
