@@ -1,0 +1,324 @@
+/*Css file to style Home.html document*/
+
+/* apply to all items*/
+* {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#logo { /*favicon*/
+    width: 13%;
+}
+
+/*navigation bar*/
+.navbar {
+    background-color: #5c142c;
+}
+.navbar a:hover {  /*on mouse hover..*/
+    text-decoration: none; /*do not underline link*/
+}
+.navbar li a, span { /*link styling*/
+    color: #e2d6da;
+    font-size: 15px;
+}
+.navbar li {
+    width: 17%;
+    text-align: center;
+}
+.navbar li a:hover {
+    color: #5c142c;
+}
+/*header, logo + caption*/
+.navbar-header {
+    width: 100%;
+    text-align: center; /*centralize items*/
+}
+/*navigation bar links*/
+.nav {
+    margin-top: 0.5%;
+    width: 100%;  /*bar apply to full width*/
+}
+.nav ul li a:hover {
+    background-color: #5c142c;
+    color: #e2d6da;
+}
+.nav ul li a:focus {
+    background-color: #e2d6da !important; /*on link selected*/
+    color: #5c142c !important;
+}
+/*dropdown menu with categories, nav>link shop*/
+.nav .dropdown-item {
+    color: #5c142c !important;  /*overwrite color of link*/
+    font-size: 150% !important;
+}
+.nav .dropdown-header {
+    font-weight: bold;
+    color: #5c142c !important;
+    font-size: 150% !important;
+}
+.nav .dropdown-item:hover{
+    background-color: inherit !important; /*overwrite background color on links*/
+    text-decoration: underline !important;
+}
+.nav .dropdown-header:hover {
+    background-color: inherit !important; /*overwrite background color on links*/
+}
+/*search field*/
+.form-inline .btn {
+    font-size: 15px; /*search button*/
+    color: #e2d6da;
+}
+.form-inline input {
+    font-size: 15px;
+}
+/*footer*/
+footer {
+    background-color: #e9c1e2;
+    padding-bottom: 20px;
+    padding-right: 10px;
+}
+footer span {  /*style text*/
+    font-size: 20px;
+    color: #5c142c;
+    padding-right: 7px;
+}
+footer .btn {
+    font-size: 17px;
+    background-color: #5c142c;
+    color: #e2d6da;
+    margin-bottom: 6px;
+}
+/*pagination*/
+.pagination {
+    font-size: 17px;
+}
+.pagination li a {
+    background-color: #5c142c !important;
+    color: #e2d6da !important;
+}
+.pagination li a:focus { /*on click do not show outline and borders*/
+    outline: none !important;
+    box-shadow: none !important;
+}
+.pagination > .active > a { /*change active page border and color*/
+    background-color: #e9c1e2 !important;
+    border: none;
+    color: #5c142c !important;
+}
+#presection p {  /*recommended for you*/
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    float: left;
+    width: 40%;
+}
+#presection .dropdown { /*buttons + sort by*/
+    width: 20%;
+    float: right;
+}
+#presection .btn { /*login/cart buttons*/
+    text-align: right;
+    font-size: 17px !important;
+    background-color: #e9c1e2 !important;
+    color: #5c142c;
+    outline: none;
+    font-weight: bold;
+    margin-right: 25px; /*distance between buttons*/
+}
+#presection .dropdown-item { /*sort-by list*/
+    color: #5c142c !important;  /*overwrite color of link*/
+    font-size: 150% !important;
+}
+#presection .dropdown-toggle {
+    background-color: white !important;
+    font-size: 15px !important;
+}
+/* promo button "sell a product"*/
+#promo {
+    position: fixed;  /*do not move when on scroll*/
+    bottom: 8%;  /*fix absolute positioning*/
+    right: 3%;
+    background-color: #5c142c;
+    color: #e2d6da;
+    font-size: 20px;
+    padding: 0.5% 1%;
+    border-color: white;
+}
+#promo:hover {
+    font-weight: bold;
+}
+/*products catalog*/
+.bg-1 .row:first-child { /*apply only to 4 first products - first row*/
+    margin-top: 100px;
+}
+.bg-1 .row {  /*define in each row*/
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.bg-1 img { /*product images*/
+    width: 100%;
+    height: 201px;
+}
+.col-sm-3 .card .btn { /*cards*/
+    width: 100%;
+    height: 310px;
+    border-color: #5c142c;
+    padding: 0; /*images should it perfectly*/
+}
+button:hover, button:focus {
+    outline: none !important; /*do not show borders on click*/
+    box-shadow: none !important;
+}
+.card-text { /*short product description*/
+    color: black;
+    font-size: 170%;
+    text-align: left;
+    overflow: hidden !important;   /* boundaries of card should get title end in ...*/
+    text-overflow: ellipsis;
+}
+.card-body .text-right { /*product price on card*/
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+}
+/*modals' styling*/
+.modal .close { /*modal close buttons*/
+    font-size: 20px;
+    color: black;
+    font-family: arial,sans-serif;
+}
+.modal .btn {  /* add to cart, button*/
+    background-color: #5c142c;
+    color: #e2d6da;
+    float: right;
+    margin: 20px;
+    font-size: 18px;
+}
+.modal .btn:hover {
+    color: #e9c1e2;
+}
+.modal-header h2 {
+    font-weight: bold;
+    color: #5c142c;
+}
+.modal-body img {
+    width: 400px;
+    height: 350px !important;
+}
+.carousel-inner, .slide { /*carousel width*/
+    width: 400px !important;
+    float: left;
+}
+.modal-body #info {
+    width: 45%;
+    margin: 0px !important;
+    float: right !important; /*align next to slides*/
+}
+.modal-body #info h3 {
+    color: #5c142c;
+    margin-top: 10px;
+}
+.modal-body .badge { /*badges*/
+    background-color:#e9c1e2;
+}
+.modal-body #seller_info h2 {
+    margin-top: 400px;
+    color: #5c142c;
+    font-weight: bold;
+}
+.modal-body span{
+    color: black;
+    font-size: 15px;
+}
+.modal-body .checked { /*seller rating*/
+    color: #5c142c;
+}
+.modal-body #seller_info{
+    width: 80%;
+    margin-left: 30px;
+}
+
+/*RESPONSIVE*/
+/*tablet view*/
+@media (max-width: 1023px) and (min-width: 767px) {
+    #presection .dropdown { /*buttons + sort by*/
+        width: 30%;
+    }
+    .col-sm-3 {
+        max-width: 25% !important;
+        min-width: 25% !important;
+        margin: 0 !important;
+        padding: 5px !important;
+    }
+    .row {
+       margin: 0px;
+    }
+    .bg-1 img { /*product images*/
+        height: 150px;
+    }
+    .card-body {
+        height: 107px;
+    }
+    .col-sm-3 .card .btn {
+        height: 260px;
+    }
+    .row {
+        margin-top: 60px;
+    }
+    .modal-dialog {  /*resize modal*/
+        max-width: 80% !important;
+    }
+    .carousel-inner, .slide { /*carousel width*/
+        width: 340px !important;
+        height: 300px !important;
+    }
+    .modal-body #info {
+        width: 40%;
+    }
+}
+/*mobile view*/
+@media (max-width: 766px) {
+    .navbar li {
+        width: 25%;
+    }
+    .navbar li a {
+        padding: 0 !important;
+    }
+    .form-inline input {
+        width: 85%;
+    }
+    #presection .dropdown { /*buttons + sort by*/
+        width: 42%;
+    }
+    #presection .dropdown .btn {
+        font-size: 15px !important;
+    }
+    #presection p {  /*recommended for you*/
+        margin-left: 10px;
+        font-size: 17px;
+        margin-top: 10px;
+        width: 45%;
+    }
+    .col-sm-3 {
+        max-width: 47% !important;
+        min-width: 40% !important;
+        margin: 5px !important;
+        padding: 5px !important;
+    }
+    .bg-1 img { /*product images*/
+        height: 150px;
+    }
+    .card-body {
+        height: 107px;
+    }
+    .card-text { /*short product description*/
+        font-size: 150%;
+    }
+    .col-sm-3 .card .btn {
+        height: 260px;
+    }
+    footer span {  /*style text*/
+        font-size: 12px;
+    }
+}

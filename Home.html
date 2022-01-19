@@ -1,127 +1,619 @@
 <html>
     <head>
         <title>Thriftie Marketplace</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--favicon-->
 		<link rel="shortcut icon" href="favicon.png"/>
+        <!--cart/user login signs-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--import css file-->
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <!--import bootstrap file-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <header>
-            <table bgcolor="#5c142c" align="center" width="100%">
-                <tr align="center">
-                    <td>
-                        <a href="Home.html"><img src="logo.png" width="12%"></a>
-                        <br>
-                        <font color="#e2d6da" size="4%">Next Generation of Thrifting</font>
-                    </td>
-                </tr>
-            </table>
-        </header>
-        <nav>
-            <table bgcolor="#5c142c" width="100%" height="7%">
-                <tr align="center">
-                    <td width="20%"><a href="Home.html"><font color="#e9c1e2" size="3%">Shop</font></a></td>
-                    <td width="20%"><a href="Sell.html"><font color="#e9c1e2" size="3%">Sell</font></a></td>
-                    <td width="20%"><a href="About Us.html"><font color="#e9c1e2" size="3%">About Us</font></a></td>
-                    <td width="20%"><a href="Help Center.html"><font color="#e9c1e2" size="3%">Help Center</font></a></td>
-                    <td align="right">
-                        <input type="text" placeholder="Search...">
-                        <button><i class="fa fa-search"></i></button>
-                    </td>
-                </tr>
-            </table>
+        <nav class="navbar">
+            <!--navigation bar, header-->
+            <div class="navbar-header">
+                <a href="Home.html"> <!--when click on logo/caption redirect to home-->
+                    <img src="logo.png" id="logo"> <!--logo-->
+                    <br>
+                    <span>Next Generation of Thrifting</span> <!--caption-->
+                </a>
+            </div>
+            <div class="nav">
+                <!--navigation bar, links-->
+                <ul class="nav justify-content-center"> <!--align items in center-->
+                    <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
+                        <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-header">Shop by category...</a>
+                            <a class="dropdown-item" href="#">Clothes</a>
+                            <a class="dropdown-item" href="#">Shoes</a>
+                            <a class="dropdown-item" href="#">Accessories</a>
+                            <a class="dropdown-item" href="#">Bags</a>
+                            <a class="dropdown-item" href="#">Gifts</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sell.html">Sell</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About Us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Help Center.html">Help Center</a>
+                    </li>
+                    <form  class="form-inline my-2" action="#">  <!--search bar-->
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <button class="btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </ul>
+            </div>
         </nav>
-        <section>
-            <br>
-            <table align="center" width="90%">
-                <tr>
-                    <td>
-                        <font color="#5c142c" size="5%"><strong>Recommended for you</strong></font>
-                    </td>
-                    <td align="right">
-                        <button><i class="fa fa-shopping-cart"></i></button>
-                        <button><i class="fa fa-user"></i></button>
-                        <br><br><br>
-                        <font color="#5c142c" size="4%"><strong>Sort by:</strong></font>
-                        <select>
-                            <option>Relevancy</option>
-                            <option>Most Recent</option>
-                            <option>Highest price</option>
-                            <option>Lowest price</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <table align="center" width="90%">
-                <tr align="center">
-                    <td><img src="items/item2.jpg" width="300px"></td>
-                    <td><img src="items/item1.jpg" width="300px"></td>
-                    <td><img src="items/item7.jpg" width="300px"></td>
-                    <td><img src="items/item9.jpg" width="300px"></td>
-                </tr>
-                <tr align="center">
-                    <td><font size="3px">Leather Shoulder bag</font></td>
-                    <td><font size="3px">Organic Handmade Striped Dress</font></td>
-                    <td><font size="3px">Beaded Silver Necklace</font></td>
-                    <td><font size="3px">Vintage 90s Unisex Long Sleeve Shirt</font></td>
-                </tr>
-                <tr align="right">
-                    <td width="20%"><font size="4px">23.00$</font></td>
-                    <td><font size="4px">14.60$</font></td>
-                    <td><font size="4px">13.00$</font></td>
-                    <td><font size="4px">23.50$</font></td>
-                </tr>
-            </table>
-            <br><br>
-            <table align="center" width="90%">
-                <tr align="center">
-                    <td><img src="items/item8.jpg" width="300px"></td>
-                    <td><img src="items/item6.jpg" width="300px"></td>
-                    <td><img src="items/item5.jpg" width="300px"></td>
-                    <td><img src="items/item3.jpg" width="300px"></td>
-                </tr>
-                <tr align="center">
-                    <td><font size="3px">Anime Unisex Sweater - anime is life</font></td>
-                    <td><font size="3px">Gold Carnelian necklace</font></td>
-                    <td><font size="3px">Leather minimalist Wallet</font></td>
-                    <td><font size="3px">Plants are friends - Shirt Tee</font></td>
-                </tr>
-                <tr align="right">
-                    <td><font size="4px">17.80$</font></td>
-                    <td><font size="4px">7.60$</font></td>
-                    <td><font size="4px">5.00$</font></td>
-                    <td><font size="4px">13.40$</font></td>
-                </tr>
-            </table>
-            <br><br>
-            <table align="center" width="90%">
-                <!--Pagination-->
-                <tr>
-                    <td align="right">
-                        <a href="#"><font size="4px">&laquo;</font></a>
-                        <a href="#"><font size="4px">1</font></a>
-                        <a href="#"><font size="4px">2</font></a>
-                        <a href="#"><font size="4px">3</font></a>
-                        <a href="#"><font size="4px">4</font></a>
-                        <a href="#"><font size="4px">5</font></a>
-                        <a href="#"><font size="4px">6</font></a>
-                        <a href="#"><font size="4px">&raquo;</font></a>
-                    </td>
-                    <td align="right" width="47%"><button>Sell a Product</button></td>
-                </tr>
-            </table>
-
+        <section id="presection">
+            <p>Recommended for you</p>
+            <div class="dropdown"> <!--shopping cart/ login butttons-->
+                <button class="btn"><i class="fa fa-shopping-cart"></i>Cart</button>
+                <button class="btn"><i class="fa fa-user"></i>Login</button>
+                <br><br> <!--sort by dropdown list-->
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    Sort by:
+                </button> <!--sort by options-->
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Relevancy</a>
+                    <a class="dropdown-item" href="#">Most Recent</a>
+                    <a class="dropdown-item" href="#">Highest Price</a>
+                    <a class="dropdown-item" href="#">Lowest Price</a>
+                </div>
+            </div>
         </section>
-        <footer>
+        <section>
+            <div class="bg-1">
+                <div class="container">
+                    <!--first 4 products-->
+                    <div class="row">
+                        <div class="col-sm-3"> <!--first product, each product in card-->
+                            <div class="card">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product1"> <!--on click on card get modal-->
+                                    <img src="items/item2.jpg"> <!--product pic-->
+                                    <div class="card-body">
+                                        <p class="card-text">Leather Shoulder bag</p> <!-- product short description-->
+                                        <br><br>
+                                        <p class="text-right">23.00$</p> <!-- product price-->
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"> <!-- second product-->
+                            <div class="card">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product2">
+                                    <img src="items/item1.jpg">
+                                    <div class="card-body">
+                                        <p class="card-text">Organic Handmade Striped Dress</p>
+                                        <br><br>
+                                        <p class="text-right">14.60$</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="card"> <!-- third product-->
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product3">
+                                    <img src="items/item7.jpg">
+                                    <div class="card-body">
+                                        <p class="card-text">Beaded Silver Necklace</p>
+                                        <br><br>
+                                        <p class="text-right">13.00$</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"> <!-- fourth product-->
+                            <div class="card">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product4">
+                                    <img src="items/item9.jpg">
+                                    <div class="card-body">
+                                        <p class="card-text">Vintage 90s Unisex Long Sleeve Shirt</p>
+                                        <br><br>
+                                        <p class="text-right">23.50$</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--next four products-->
+                    <div class="row">
+                        <div class="col-sm-3"> <!-- fifth product-->
+                            <div class="card">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product5">
+                                    <img src="items/item8.jpg">
+                                    <div class="card-body">
+                                        <p class="card-text">Anime Unisex Sweater - anime is life</p>
+                                        <br><br>
+                                        <p class="text-right">17.80$</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"> <!-- sixth product-->
+                            <div class="card">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product6">
+                                    <img src="items/item6.jpg">
+                                    <div class="card-body">
+                                        <p class="card-text">Gold Carnelian necklace</p>
+                                        <br><br>
+                                        <p class="text-right">7.60$</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"> <!-- seventh product-->
+                            <div class="card">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product7">
+                                    <img src="items/item5.jpg">
+                                    <div class="card-body">
+                                        <p class="card-text">Leather minimalist Wallet</p>
+                                        <br><br>
+                                        <p class="text-right">5.00$</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"> <!-- eighth product-->
+                            <div class="card">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#product8">
+                                    <img src="items/item3.jpg">
+                                    <div class="card-body">
+                                        <p class="card-text">Plants are friends - Shirt Tee</p>
+                                        <br><br>
+                                        <p class="text-right">13.40$</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--modals-->
+                <div class="modal" id="product1" role="dialog"> <!--modal for product 1-->
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Leather Shoulder bag</h2> <!--modal header-->
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel, multiple product images-->
+                                <div id="carousel-one" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item2.jpg"></div>
+                                        <div class="item"><img src="items/item2a.jpg"></div>
+                                        <div class="item"><img src="items/item2b.jpg"></div>
+                                    </div>
+                                    <!-- carousel navigation buttons-->
+                                    <a class="left carousel-control" href="#carousel-one" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-one" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div id="info"> <!--info text about product-->
+                                    <h3>Description:</h3>
+                                    <span>The leather bag is ideal for school, university, work or just to go shopping. You can put a DIN A4 folder in it.<br>
+                                        Size of the leather bag:<br>
+                                        Width top: 15.8"<br>
+                                        Width bottom: 13"<br>
+                                        Height: 13.78"<br>
+                                        Depth: 5.12"<br>
+                                        Shoulder straps: 25,60 inch<br>
+                                        Crossbody strap: 33,46 - 41,34 inch adjustable<br>
+                                        Frontpockets: width: 5,51 inch, height: 6,69 inch</span>
+                                    <h3>Size:<span class="badge badge-secondary">One size</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
+                                    <h3>Material:<span class="badge badge-secondary">100% Leather</span></h3>
+                                    <h3>Price:<span><strong>23.00$</strong></span></h3>
+                                </div>
+                                <div id="seller_info"> <!-- info text about seller-->
+                                    <h2>Athina Tsilikou</h2>
+                                    <hr>
+                                    <h4>Athens, Greece</h4>
+                                    <span>54 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--seller rating-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <br> <!-- seller note-->
+                                    <span>If you are not satisfied with the product, it is no problem! You easily send it back to my address and after receiving the product in a good condition you will immediately get your money back!</span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="product2" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Organic Handmade Striped Dress</h2>
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel-->
+                                <div id="carousel-two" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item1.jpg"></div>
+                                        <div class="item"><img src="items/item1a.jpg"></div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-two" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-two" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div id="info">
+                                    <h3>Description:</h3>
+                                    <span>Handmade striped linen dress. Dress with short folded sleeves and buttons opening at the front
+                                        side of the dress is perfect as a maternity dress too and friendly for breastfeeding.
+                                        Made from locally manufactured pre-washed linen fabric and is perfect for all seasons.<br>
+                                        ----------------------------------------------<br>
+                                        - loose fit bodice<br>
+                                        - with buttons opening at the front side<br>
+                                        - short sleeves<br>
+                                        - hidden pockets in side seams of the skirt<br>
+                                        - body length 39,3"/100 cm</span>
+                                    <h3>Size:<span class="badge badge-secondary">Small</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">Skinny</span></h3>
+                                    <h3>Material:<span class="badge badge-secondary">100% Linen</span></h3>
+                                    <h3>Price:<span><strong>14.60$</strong></span></h3>
+                                </div>
+                                <div id="seller_info">
+                                    <h2>Tyler Scott</h2>
+                                    <hr>
+                                    <h4>Harrisburg, Pennsylvania</h4>
+                                    <span>101 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--rate seller-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <br>
+                                    <span>WE TRY TO OFFER OUR TAILORS AS BEST WORKING CONDITIONS AS POSSIBLE.</span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="product3" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Beaded Silver Necklace</h2>
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel-->
+                                <div id="carousel-three" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item7.jpg"></div>
+                                        <div class="item"><img src="items/item7a.jpg"></div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-three" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-three" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div id="info">
+                                    <h3>Description:</h3>
+                                    <span>Pretty faceted and iridescent opalite drop feature design.<br>
+                                        ~ Dainty, silver plated beaded chain, approx 15" shortest length.<br>
+                                        ~ Lobster clasp and 2" extender to close.<br>
+                                        ~ Perfect for layering with both chokers and long pendants.<br></span>
+                                    <h3>Size:<span class="badge badge-secondary">One Size</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
+                                    <h3>Material:<span class="badge badge-secondary">20% Silver</span><span> </span><span class="badge badge-secondary">80% Opalite</span></h3>
+                                    <h3>Price:<span><strong>13.00$</strong></span></h3>
+                                </div>
+                                <div id="seller_info">
+                                    <h2>Philippa Harman</h2>
+                                    <hr>
+                                    <h4>England, United Kingdom</h4>
+                                    <span>191 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--rate seller-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <br>
+                                    <span> Due to the ever changing situation amidst the COVID-19 pandemic, I kindly ask all customers to expect orders to take longer than usual to arrive. Estimated, but not guaranteed delivery times for standard shipping are as follows<br>
+                                        UK orders - Approx 2-4 working days after dispatch.<br>
+                                        INTERNATIONAL orders - 2-6 weeks after dispatch.<br></span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="product4" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Vintage 90's Unisex Long Sleeve Shirt</h2>
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel-->
+                                <div id="carousel-four" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item9.jpg"></div>
+                                        <div class="item"><img src="items/item9a.jpg"></div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-four" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-four" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div id="info">
+                                    <h3>Description:</h3>
+                                    <span>Material: 100% Linen.<br>
+                                        Style: AnSanLinen<br>
+                                        Sample Color: Natural, Black</span>
+                                    <h3>Size:<span class="badge badge-secondary">Large</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">Oversized</span></h3>
+                                    <h3>Material:<span class="badge badge-secondary">100% Linen</span></h3>
+                                    <h3>Price:<span><strong>23.50$</strong></span></h3>
+                                </div>
+                                <div id="seller_info">
+                                    <h2>Andris and Sandor Strelnieki</h2>
+                                    <hr>
+                                    <h4>Riga, Latvia</h4>
+                                    <span>17 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--rate seller-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <br>
+                                    <span>Suitable for people with sensitive skin. 
+                                        Linen can be used in all life situations, sports, leisure and official events.
+                                         You can always get advice or size adjustments by contacting me. <br>
+                                         Thank you, Andris and Sandor.</span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="product5" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Anime Unisex Sweater - anime is life</h2>
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel-->
+                                <div id="carousel-five" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item8.jpg"></div>
+                                    </div>
+                                </div>
+                                <div id="info">
+                                    <h3>Description:</h3>
+                                    <span>A classic styled unisex sweater with a crew neckline. <br>
+                                        Soft & smooth inside fabric for the ultimate comfort feel. <br>
+                                        Machine Wash (30°- 40°max Inside out).</span>
+                                    <h3>Size:<span class="badge badge-secondary">X Large</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">Oversized</span></h3>
+                                    <h3>Material:<span class="badge badge-secondary">80% Cotton</span><span> </span><span class="badge badge-secondary">20% Polyester</span></h3>
+                                    <h3>Price:<span><strong>17.80$</strong></span></h3>
+                                </div>
+                                <div id="seller_info">
+                                    <h2>Fergie Warya</h2>
+                                    <hr>
+                                    <h4>London, United Kingdom</h4>
+                                    <span>32 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--rate seller-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <br>
+                                    <span>Providing Unisex t-shirts for birthday gifts and casual wear. The shirts are High Premium Quality 100% Cotton.</span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="product6" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Gold Carnelian Necklace</h2>
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel-->
+                                <div id="carousel-six" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item6.jpg"></div>
+                                        <div class="item"><img src="items/item6a.jpg"></div>
+                                        <div class="item"><img src="items/item6b.jpg"></div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-six" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-six" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div id="info">
+                                    <h3>Description:</h3>
+                                    <span>This Necklace is crafted with a genuine Carnelian stone.<br>
+                                        * Gift for her/gift for him/gift for mom<br>
+                                        * Perfect for daily use or for any occasions<br>
+                                        * Perfect match with other necklaces</span>
+                                    <h3>Size:<span class="badge badge-secondary">One Size</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
+                                    <h3>Material:<span>Not Available</span></h3>
+                                    <h3>Price:<span><strong>17.80$</strong></span></h3>
+                                </div>
+                                <div id="seller_info">
+                                    <h2>Matt Hoop</h2>
+                                    <hr>
+                                    <h4>Toronto, Canada</h4>
+                                    <span>197 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--rate seller-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <br>
+                                    <span></span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="product7" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Leather minimalist Wallet</h2>
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel-->
+                                <div id="carousel-seven" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item5.jpg"></div>
+                                        <div class="item"><img src="items/item5a.jpg"></div>
+                                        <div class="item"><img src="items/item5b.jpg"></div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-seven" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-seven" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div id="info">
+                                    <h3>Description:</h3>
+                                    <span>• Fits up to 16 credit cards.<br>
+                                        • 2 inner pockets for cards plus a money pocket.<br>
+                                        • Its designed to hold US bills or other currencies with similar bill dimensions. <br>
+                                        • Practical elastic band.<br>
+                                        The wallet measures folded (approx): 4 "(W) x3"(H) 10,5 cm(W) x 7,5 cm(H)</span>
+                                    <h3>Size:<span class="badge badge-secondary">One Size</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
+                                    <h3>Material:<span class="badge badge-secondary">100% vegetable tanned leather</span></h3>
+                                    <h3>Price:<span><strong>5.00$</strong></span></h3>
+                                </div>
+                                <div id="seller_info">
+                                    <h2>Mimoun Karl</h2>
+                                    <hr>
+                                    <h4>Málaga, Spain</h4>
+                                    <span>102 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--rate seller-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star ckecked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <br>
+                                    <span>Welcome! Here you will find leather accessories.<br>
+                                        Thanks for visiting.</span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="product8" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Plants are friends - Shirt Tee</h2>
+                                <!--exit button-->
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <!--carousel-->
+                                <div id="carousel-eight" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active"><img src="items/item3.jpg"></div>
+                                        <div class="item"><img src="items/item3a.jpg"></div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-eight" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-eight" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div id="info">
+                                    <h3>Description:</h3>
+                                    <span>PROFESSIONALLY PRINTED USING ECO FRIENDLY WATER BASED INKS FOR A SUPERIOR RETAIL QUALITY FINISH onto a VERY HIGH QUALITY SWEATSHIRT</span>
+                                    <h3>Size:<span class="badge badge-secondary">Medium</span></h3>
+                                    <h3>Fit:<span class="badge badge-secondary">Oversized</span></h3>
+                                    <h3>Material:<span class="badge badge-secondary">10% water based print</span><span> </span><span class="badge badge-secondary">80% Cotton</span><span> </span><span class="badge badge-secondary">10% Fleece</span></spam></span></h3>
+                                    <h3>Price:<span><strong>13.40$</strong></span></h3>
+                                </div>
+                                <div id="seller_info">
+                                    <h2>James Fryer</h2>
+                                    <hr>
+                                    <h4>Paignton, United Kingdom</h4>
+                                    <span>2 sales</span>
+                                    <span class="fa fa-star checked"></span> <!--rate seller-->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <br>
+                                    <span>I am that confident you will be happy with your purchase that I offer all of mine customers a full **30 DAY MONEY BACK GUARANTEE.**
+                                        Thank you for looking at my products!</span>
+                                </div>
+                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Pagination-->
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li> <!--ig in page 1, disable prev button-->
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+        <!--sell a product, promotion button-->
+        <button type="button" class="btn" id="promo">+ Sell a Product</button>
+        <!--footer-->
+        <footer class="text-right"> <!--align text to the right-->
             <br><br>
-            <table bgcolor="#e9c1e2" width="100%" height="10%">
-                <tr align="right">
-                    <td>
-                        <font color="#5c142c" size="4%">&copy 2021 Thriftie, Second Hand Marketplace</font>
-                        <button>Download the app</button>
-                    </td>
-                </tr>
-            </table>
+            <button type="button" class="btn btn-outline-dark">Download the app</button>
+            <span>&copy; 2021 Thriftie, Second Hand Marketplace</span>
         </footer>
     </body>
 </html>
