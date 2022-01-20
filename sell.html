@@ -66,24 +66,24 @@
                     <!--TO DO add product to db-->
                     <form action="#" method="POST" class="col-md-12">
                         <div class="col-md-5 form-outline">
-                            <label for="file" class="form-label">Upload images</label>
-                            <input type="file" class="form-control" name="file" id="file" required/>
+                            <label for="file" class="form-label">Upload one or more images</label>
+                            <input type="file" class="form-control" name="file" id="file" required multiple accept="image/*"/>
                         </div>
                         <div class="col-md-7">
                             <div class="form-outline">
                                 <label for="name" class="form-label">Name your product</label>
-                                <input class="form-control" type="text" name="Name" id="name"required/>
+                                <input class="form-control" type="text" name="Name" id="name" required/>
                             </div>
                             <div class="form-outline">
                                 <label for="descr" class="form-label">Add a description</label>
-                                <textarea class="form-control" id="descr" name="descr" required></textarea>
+                                <textarea class="form-control" id="descr" name="descr" rows="7" required></textarea>
                             </div>
                             <div class="form-outline">
                                 <label for="price" class="form-label">Define your price</label>
                                 <input class="form-control" type="number" name="price" id="price"required/>
                             </div>
                             <div>
-                                <label for="price" class="form-label">Select size</label>
+                                <label for="size" class="form-label">Select size</label>
                                 <fieldset>
                                     <input type="radio" class="btn-check" name="size" id="xxxs" autocomplete="off">
                                     <label class="btn btn-secondary" for="xxxs">X Small</label>
@@ -102,10 +102,8 @@
                                 </fieldset>
                             </div>
                             <div>
-                                <label for="price" class="form-label">Describe Fit</label>
+                                <label for="fit" class="form-label">Describe Fit</label>
                                 <fieldset>
-                                    <input type="radio" class="btn-check" name="fit" id="none" autocomplete="off">
-                                    <label class="btn btn-secondary" for="none">-</label>
                                     <input type="radio" class="btn-check" name="fit" id="over" autocomplete="off">
                                     <label class="btn btn-secondary" for="over">Oversized</label>
                                     <input type="radio" class="btn-check" name="fit" id="skin" autocomplete="off">
@@ -117,11 +115,28 @@
                                 </fieldset>
                             </div>
                             <div>
-                                <label for="price" class="form-label">Material</label>
-                                <input class="form-control" type="number" name="price" id="price"required/>
+                                <label for="material" class="form-label">Material</label>
+                                <fieldset>
+                                    <input type="checkbox" class="btn-check" name="material" id="linen" autocomplete="off">
+                                    <label class="btn btn-secondary" for="linen">Linen</label>
+                                    <input type="checkbox" class="btn-check" name="material" id="cotton" autocomplete="off">
+                                    <label class="btn btn-secondary" for="cotton">Cotton</label>
+                                    <input type="checkbox" class="btn-check" name="material" id="leather" autocomplete="off">
+                                    <label class="btn btn-secondary" for="leather">Leather</label>
+                                    <input type="checkbox" class="btn-check" name="material" id="poly" autocomplete="off">
+                                    <label class="btn btn-secondary" for="poly">Polyester</label>
+                                    <input type="checkbox" class="btn-check" name="material" id="fleece" autocomplete="off">
+                                    <label class="btn btn-secondary" for="fleece">Fleece</label>
+                                    <input type="checkbox" class="btn-check" name="material" id="plastic" autocomplete="off">
+                                    <label class="btn btn-secondary" for="plastic">Plastic</label>
+                                    <input type="checkbox" class="btn-check" name="material" id="silver" autocomplete="off">
+                                    <label class="btn btn-secondary" for="silver">Silver</label>
+                                    <input type="checkbox" class="btn-check" name="material" id="gold" autocomplete="off">
+                                    <label class="btn btn-secondary" for="gold">Gold</label>
+                                </fieldset>
                             </div>
-                            <button type="submit" class="btn btn-block">Sell it!</button>
                         </div>
+                        <button type="submit" class="btn btn-block">Sell it!</button>
                     </form>
                 </div>
             </div>
