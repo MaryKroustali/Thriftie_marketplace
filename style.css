@@ -650,6 +650,23 @@ button:hover, button:focus {
     #contact form {
         margin-left: auto;
     }
+    #sell h1 {
+        width: 84%;
+    }
+    #sell .col-md-12 {
+        max-width: 100%;
+    }
+    #sell .btn-block { /*sell product button*/
+        width: 20%;
+        margin-left: 200px;
+        margin-top: 50px;
+    }
+    #sell .form-control {
+        width: 500px;
+    }
+    #sell input[type="file"] { /*make image input field invisible*/
+        width: 420px;
+    }
 }
 /*mobile view*/
 @media (max-width: 766px) {
@@ -715,10 +732,10 @@ button:hover, button:focus {
         height: 75%;
     }
     #sell h1 {
-        width: 80%;
+        width: 79%;
     }
     #sell .form-control {
-        width: 100%;
+        width: 420px;
     }
     #sell .btn { /*on select toggle checkbox light button*/
         margin-bottom: 5px;
@@ -728,7 +745,7 @@ button:hover, button:focus {
         margin: 0 0 50px 0%;
     }
     #sell input[type="file"] { /*make image input field invisible*/
-        width: 100%;
+        width: 420px;
     }
     #sell .btn-block { /*sell product button*/
         margin-top: 40px;
