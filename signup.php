@@ -8,24 +8,23 @@
     $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
     $db = $m->Thriftie_DB; //database
     $collection = $db->Users; //collection
-    //get values from html input fields
-    $username = $_POST['login_email'];
-    $password = $_POST['login_pass'];
-    //create document to insert
-    $document = array(
-        "email" => $username,
-        "password" => $password,
-    );
-    //execute query
-    $result = $collection->findOne($document);
+    //get user data
+    $username = $_POST["sign_email"];
+    $password = $_POST["sign_pass"];
 
-    //check if query got any results, execute js code to redirect
-    if ($result != null) {
+    $document = array(
+            "email" => $username,
+            "password" => $password,
+        );
+    //search if user already exists
+    $result = $collection->findOne($document);
+    if ($result == null) {
+        $collection->InsertOne($document); //create user and redirect
         echo '
         <script type="text/javascript">
             window.location = "home.html";
         </script>';
-    } else { //if no data returned, notify user
+    } else { //if user already exists, notify user
         echo '
         <script type="text/javascript">
         </script>

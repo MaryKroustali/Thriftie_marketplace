@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
         <link rel="stylesheet" href="style.css" type="text/css">
+        <!--import JavaScript functions-->
+        <script src="functions.js" type="text/javascript"></script>
         <!--import bootstrap file-->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -614,13 +616,14 @@
                                     <div class="card-body text-center">
                                         <h3>Sign in</h3>
                                             <form method="post" action="login.php">
+                                                <span id="error_handling"></span>
                                                 <div class="form-outline">
                                                     <label class="form-label" for="login_email">Email</label>
-                                                    <input type="email" class="form-control" id="login_email" required/>
+                                                    <input type="email" class="form-control" id="login_email" name="login_email" required/>
                                                 </div>
                                                 <div class="form-outline">
                                                     <label class="form-label" for="login_pass">Password</label>
-                                                    <input type="password" class="form-control" id="login_pass" required/>
+                                                    <input type="password" class="form-control" id="login_pass" name="login_pass" required minlength="6"/>
                                                 </div>
                                                 <!-- Checkbox -->
                                                 <div class="form-check">
@@ -652,24 +655,21 @@
                                 <div class="col-md-8">
                                     <div class="card-body text-center">
                                         <h3>Sign Up</h3>
-                                            <form method="post" action="signup.php">
+                                            <!--send data to php file, check validity of password and confirm password-->
+                                            <form method="post" action="signup.php" oninput='confirm_pass.setCustomValidity(confirm_pass.value != sign_pass.value ? "Passwords do not match." : "")'>
                                                 <div class="form-outline">
                                                     <label class="form-label" for="sign_email">Email</label>
-                                                    <input type="email" class="form-control" id="sign_email" required/>
+                                                    <input type="email" class="form-control" id="sign_email" name="sign_email" required/>
                                                 </div>
                                                 <div class="form-outline">
                                                     <label class="form-label" for="sign_pass">Password</label>
-                                                    <input type="password" class="form-control" id="sign_pass" required/>
+                                                    <input type="password" class="form-control" id="sign_pass" name="sign_pass" required minlength="6"/>
                                                 </div>
                                                 <div class="form-outline">
                                                     <label class="form-label" for="confirm_pass">Confirm Password</label>
-                                                    <input type="password" class="form-control" id="confirm_pass" required/>
+                                                    <input type="password" class="form-control" id="confirm_pass" name="confirm_pass" required/>
                                                 </div>
                                                 <!-- Checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox"/>
-                                                    <label class="form-check-label">I accept <a target="_blank" href="help center.html#information">policy conditions</a></label>
-                                                </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox"/>
                                                     <label class="form-check-label">I would like to receive exclusive emails about product offers</label>
