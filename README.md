@@ -13,7 +13,7 @@
 - [ ] checkout payment form (front)
 - [ ] order history (access through user profile)
 - [ ] fav products (access through user profile)
-- [ ] sell product form (front)
+- [x] sell product form (tablet not responsive!)
 
 - [ ] home page (retrieve data from db)
 - [ ] sign up (connect to db)
