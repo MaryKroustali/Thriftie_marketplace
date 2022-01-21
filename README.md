@@ -13,7 +13,7 @@
 - [ ] checkout payment form (front)
 - [ ] order history (access through user profile)
 - [ ] fav products (access through user profile)
-- [x] sell product form (tablet not responsive!)
+- [x] sell product form (front)
 
 - [ ] home page (retrieve data from db)
 - [ ] sign up (connect to db)
@@ -47,3 +47,4 @@
 # Struggles
 - [ ] how to check if a user is signed in
 - [ ] login/signup modals overflow
+- [ ] modals on tablet view close button disabled

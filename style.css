@@ -512,6 +512,13 @@ button:hover, button:focus {
 #cart_modal .btn {
     margin: 10px 0px !important;
 }
+#cart_modal a {
+    color: white;
+    font-size: 16px;
+}
+#cart_modal a:hover {
+    text-decoration: none;
+}
 #cart_modal td button {
     background: transparent; /*make button transparent*/
     border: none !important;
@@ -520,6 +527,66 @@ button:hover, button:focus {
     font-weight: bold;
     font-size: 18px;
     color: #5c142c;
+}
+/*checkout form modal*/
+#checkout_modal .modal-body h3 {
+    padding: 0px 0 20px 0;
+    font-weight: bold;
+    font-size: 25px;
+    color: #5c142c;
+}
+#checkout_modal .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#checkout_modal .modal-body .form-label {
+    font-size: 14px;
+}
+#checkout_modal .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#checkout_modal .modal-body .form-select {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 100%;
+}
+#checkout_modal .btn {
+    margin: 10px 0px !important;
+    font-size: 16px;
+}
+#checkout_modal span {
+    color: white;
+    font-size: 16px;
+}
+#checkout_modal .btn:hover {
+    color: white;
+}
+#checkout_modal input:checked + .btn-secondary{ /*on select toggle radio light button*/
+    background-color: #5c142c;
+    color: white
+}
+#checkout_modal input[type="radio"] { /*do not show radio toggle buttons*/
+    position: fixed;
+    opacity: 0;
+}
+#checkout_modal .btn-secondary { /*alternative payment ways*/
+    background-color: grey;
+    border: none;
+    color: white;
+    width: 110px;
+}
+#checkout_modal {
+    margin-left: 10px;
 }
 #sell {
     width: 89%;
@@ -667,6 +734,12 @@ button:hover, button:focus {
     #sell input[type="file"] { /*make image input field invisible*/
         width: 420px;
     }
+    #checkout_modal .modal-dialog {
+        width: 500px;
+    }
+    #checkout_modal .row {
+        margin: 0;
+    }
 }
 /*mobile view*/
 @media (max-width: 766px) {
@@ -752,5 +825,8 @@ button:hover, button:focus {
         width: 20%;
         margin-left: auto;
         margin-right: auto;
+    }
+    #checkout_modal .col-md-4 {
+        width: 130px;
     }
 }
