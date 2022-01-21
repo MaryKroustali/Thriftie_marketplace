@@ -15,11 +15,9 @@
 - [ ] fav products (access through user profile)
 - [x] sell product form (front)
 
-- [ ] home page (retrieve data from db)
-- [ ] sign up (connect to db)
-- [ ] login (retrieve from db)
+- [x] sign up (notification when user already exists)
+- [x] login (notification when user doesn't exist)
 - [ ] logout (check logged in/retrieve)
-- [ ] user profile (select from db/call?)
 - [ ] product page (add to cart)
 - [ ] product review (?)
 - [ ] search products (select in db)
@@ -48,3 +46,4 @@
 - [ ] how to check if a user is signed in
 - [ ] login/signup modals overflow
 - [ ] modals on tablet view close button disabled
+- [ ] notification in signup/login errors
