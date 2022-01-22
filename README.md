@@ -20,8 +20,8 @@
 
 - [x] sign up (notification when user already exists)
 - [x] login (notification when user doesn't exist)
-- [ ] logout (check logged in/retrieve)
-- [ ] update user data
+- [x] logout (check logged in/retrieve)
+- [x] update user data (error handling)
 - [ ] remove product from favorites
 - [ ] add product to cart
 - [ ] load favorites from db
