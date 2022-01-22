@@ -124,6 +124,12 @@ footer .btn {
     font-weight: bold;
     margin-right: 25px; /*distance between buttons*/
 }
+#presection button > a {
+    color: #5c142c;
+}
+#presection button > a:hover{
+    text-decoration: none;
+}
 #presection .dropdown-item { /*sort-by list*/
     color: #5c142c !important;  /*overwrite color of link*/
     font-size: 150% !important;
@@ -241,15 +247,15 @@ button:hover, button:focus {
     width: 80%;
     margin-left: 30px;
 }
-.modal .modal-body i { /*add to favorites icon*/
-    position: absolute;
+.modal .modal-body .fa-heart { /*add to favorites icon*/
+    position: absolute !important;
     top: 5;
     font-size: 25px;
     color: #5c142c;
     z-index: 10;
     padding: 5px;
 }
-.modal .modal-body i:hover {
+.modal .modal-body .fa-heart:hover {
     background-color: #e9c1e2;
 }
 .modal button {
@@ -730,7 +736,7 @@ button:hover, button:focus {
     outline: none !important;
     box-shadow: none !important;
 }
-#pass_update .btn {
+#email_update .btn {
     margin: 10px 0px !important;
 }
 /*update password modal*/

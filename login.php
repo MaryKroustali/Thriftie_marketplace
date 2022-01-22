@@ -1,4 +1,5 @@
 <?php
+
     //start xampp/apache
     //start mongo -> (adm) net start mongodb
     //start mongo shell -> (adm) mongo
@@ -21,15 +22,17 @@
 
     //check if query got any results, execute js code to redirect
     if ($result != null) {
+        global $json; //define global to pass variables in other file
+        $json = $result->JsonSerialize(); //get data in string format
+        include 'user.php';
         echo '
-        <script type="text/javascript">
-            window.location = "home.html";
-        </script>';
-    } else { //if no data returned, notify user
-        echo '
-        <script type="text/javascript">
+        <script type="text/javascript">  //redirect to user profile
+            window.location("user.php");
         </script>
         ';
+    } else {
+        header("location: home.html");
     }
 
 ?>
+

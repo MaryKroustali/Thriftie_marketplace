@@ -9,21 +9,25 @@
     $db = $m->Thriftie_DB; //database
     $collection = $db->Users; //collection
     //get user data
+    $name = $_POST["sign_name"];
     $username = $_POST["sign_email"];
     $password = $_POST["sign_pass"];
 
     $document = array(
+            "name" => $name,
             "email" => $username,
             "password" => $password,
         );
     //search if user already exists
     $result = $collection->findOne($document);
+
     if ($result == null) {
-        $collection->InsertOne($document); //create user and redirect
-        echo '
-        <script type="text/javascript">
-            window.location = "home.html";
-        </script>';
+        $search = $collection->InsertOne($document); //create user and redirect
+        $search = $collection->findOne($document);
+        global $json; //define global to pass variables in other file
+        $json = $search->JsonSerialize(); //get data in string format
+        include 'user.php';
+        header("location: user.php");
     } else { //if user already exists, notify user
         echo '
         <script type="text/javascript">
