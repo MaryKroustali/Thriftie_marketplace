@@ -14,7 +14,7 @@
 - [x] order history (sell/buy)
 - [x] fav products (front)
 - [x] sell product form (front)
-- [ ] add product to favorite
+- [x] add product to favorite (front)
 - [ ] search results (front)
 - [ ] notifications on errors
 
