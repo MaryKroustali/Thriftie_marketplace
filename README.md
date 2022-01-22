@@ -18,6 +18,7 @@
 - [x] sign up (notification when user already exists)
 - [x] login (notification when user doesn't exist)
 - [ ] logout (check logged in/retrieve)
+- [ ] update user data
 - [ ] product page (add to cart)
 - [ ] product review (?)
 - [ ] search products (select in db)
