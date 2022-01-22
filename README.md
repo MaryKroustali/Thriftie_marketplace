@@ -4,16 +4,19 @@
 - [x] home page (front)
 - [x] sign up (front)
 - [x] login (front)
-- [ ] logout (access through user profile)
-- [ ] user profile (front/access)
+- [x] logout (front button)
+- [x] user profile (front/access)
 - [x] product page
 - [ ] product review (?)
 - [x] about us
 - [x] checkout Cart (front)
-- [ ] checkout payment form (front)
-- [ ] order history (access through user profile)
-- [ ] fav products (access through user profile)
+- [x] checkout payment form (front)
+- [x] order history (sell/buy)
+- [x] fav products (front)
 - [x] sell product form (front)
+- [ ] add product to favorite
+- [ ] search results (front)
+- [ ] notifications on errors
 
 - [x] sign up (notification when user already exists)
 - [x] login (notification when user doesn't exist)
@@ -26,9 +29,8 @@
 - [ ] product page (add to cart)
 - [ ] product review (?)
 - [ ] search products (select in db)
+- [ ] sort products by
 - [ ] checkout Cart (remove products/remove after 24h/retrieve from db)
-- [ ] order history (retrieve from db)
-- [ ] fav products (retrieve from db/add to db?)
 
 ## Admin
 - [ ] home page admin
