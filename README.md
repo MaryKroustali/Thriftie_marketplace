@@ -2,25 +2,24 @@
 
 ## User
 - [x] home page (front)
-- [x] sign up (front)
-- [x] login (front)
-- [x] logout (front button)
-- [x] user profile (front/access)
+- [x] sign up (session)
+- [x] login (session)
+- [x] logout
+- [x] user profile
 - [x] product page
 - [ ] product review (?)
 - [x] about us
-- [x] checkout Cart (front)
-- [x] checkout payment form (front)
-- [x] order history (sell/buy)
-- [x] fav products (front)
-- [x] sell product form (front)
-- [x] add product to favorite (front)
-- [ ] search results (front)
-- [ ] notifications on errors
+- [x] checkout Cart
+- [x] checkout payment form
+- [x] order history
+- [x] fav products
+- [x] sell product form
+- [x] add product to favorite
+- [ ] notifications on errors!
 
 - [x] sign up (notification when user already exists)
 - [x] login (notification when user doesn't exist)
-- [x] logout (check logged in/retrieve)
+- [x] logout (session test)
 - [x] update user data (error handling)
 - [ ] remove product from favorites
 - [ ] add product to cart
