@@ -19,6 +19,10 @@
 - [x] login (notification when user doesn't exist)
 - [ ] logout (check logged in/retrieve)
 - [ ] update user data
+- [ ] remove product from favorites
+- [ ] add product to cart
+- [ ] load favorites from db
+- [ ] load history from db
 - [ ] product page (add to cart)
 - [ ] product review (?)
 - [ ] search products (select in db)
