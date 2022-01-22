@@ -185,13 +185,13 @@ button:hover, button:focus {
     font-weight: bold;
     font-size: 17px;
 }
-/*modals' styling products*/
+/*basic modal styling*/
 .modal .close { /*modal close buttons*/
     font-size: 20px;
     color: black;
     font-family: arial,sans-serif;
 }
-.modal .btn {  /* add to cart, button*/
+.modal .btn {  /*button*/
     background-color: #5c142c;
     color: #e2d6da;
     float: right;
@@ -240,6 +240,21 @@ button:hover, button:focus {
 .modal-body #seller_info{
     width: 80%;
     margin-left: 30px;
+}
+.modal .modal-body i { /*add to favorites icon*/
+    position: absolute;
+    top: 5;
+    font-size: 25px;
+    color: #5c142c;
+    z-index: 10;
+    padding: 5px;
+}
+.modal .modal-body i:hover {
+    background-color: #e9c1e2;
+}
+.modal button {
+    background: transparent; /*make button transparent*/
+    border: none !important;
 }
 /*about us page*/
 #about {
@@ -647,6 +662,198 @@ button:hover, button:focus {
 }
 #sell .btn-block:hover { 
     color: #e9c1e2;
+}
+/*user profile page*/
+#user {
+    width: 60%;
+    margin: 0 0 50px 10%;
+    font-size: 15px;
+}
+#user .row {
+    margin-left: 300px;;
+}
+#user h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 90%;
+}
+#user img {
+    width: 200px;
+}
+#user .card-title {
+    color: #5c142c;
+    font-weight: bold;
+}
+#user .card-body {
+    margin-left: 130px;
+}
+#user .card-text {
+    font-size: 17px;
+    color:#5c142c;
+}
+#user .card-text span {
+    font-size: 17px;
+    color:black;
+}
+#user .card-text a {
+    margin-left: 10px;
+    font-size: 17px;
+    color:#5c142c;
+}
+#user a, p > a{
+    color:#5c142c;
+    font-size: 17px;
+}
+/*update email modal*/
+#email_update .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#email_update .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#email_update .modal-body .form-label {
+    font-size: 14px;
+}
+#email_update .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#pass_update .btn {
+    margin: 10px 0px !important;
+}
+/*update password modal*/
+#pass_update .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#pass_update .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#pass_update .modal-body .form-label {
+    font-size: 14px;
+}
+#pass_update .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#pass_update .btn {
+    margin: 10px 0px !important;
+}
+#user > p { /*link for contact form*/
+    margin-top: 50px;
+    margin-left: 250px;;
+    font-size: 17px;
+}
+/*user profile favorite product section*/
+#favorites {
+    width: 60%;
+    margin: 0 0 50px 10%;
+    font-size: 15px;
+}
+#favorites table {
+    margin-left: 160px;
+}
+#favorites h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 90%;
+}
+#favorites img {
+    width: 100px;
+}
+#favorites a,td {
+    color: #5c142c;
+    font-size: 16px;
+}
+#favorites a:hover {
+    text-decoration: none;
+}
+#favorites td button {
+    background: transparent; /*make button transparent*/
+    border: none !important;
+    color: #5c142c;
+}
+#favorites td button:hover {
+    color: #e9c1e2;
+}
+/*order and selling history*/
+#history {
+    width: 60%;
+    margin: 0 0 50px 10%;
+    font-size: 15px;
+}
+#history h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 90%;
+}
+#history h2 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 90%;
+}
+#history img {
+    width: 100px;
+}
+#history table {
+    margin-left: 100px;
+}
+#history a,td,span {
+    color: #5c142c;
+    font-size: 16px;
+}
+#history a:hover {
+    text-decoration: none;
+}
+/*view order modal*/
+#order_modal .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#order_modal .modal-body h3 {
+    padding: 0px 0 20px 0;
+    font-weight: bold;
+    font-size: 25px;
+    color: #5c142c;
+}
+#order_modal img {
+    width: 100px;
+    height: 90px !important;
+}
+#order_modal p, #order_modal span{
+    font-weight: bold;
+    font-size: 18px;
+    color: #5c142c;
 }
 /*RESPONSIVE*/
 /*tablet view*/
