@@ -123,7 +123,15 @@
                         <div class="card-body">
                             <h2 class="card-title"><?php echo $json->name; ?></h2>
                             <p class="card-text">Email: <span><?php echo $json->email; ?></span><a href="#email_update" data-target="#email_update" data-toggle="modal"><i class="fa fa-edit"></i></a></p>
-                            <a class="card-text" href="#pass_update" data-target="#pass_update" data-toggle="modal">Change my password</a>
+                            <p class="card-text">Location: <span><?php echo $json->location; ?></span><a href="#location_update" data-target="#location_update" data-toggle="modal"><i class="fa fa-edit"></i></a></p>
+                            <p><a class="card-text" href="#pass_update" data-target="#pass_update" data-toggle="modal">Change my password</a></p>
+                            <label style="font-weight:10" class="card-text">
+                                Describe yourself as a seller:
+                                <a href="update_user.php?action=description">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </label>
+                            <textarea cols="34" rows="4" id="descr_sign" name="sign_descr">Description for a seller</textarea>
                         </div>
                     </div>
                 </div>
@@ -196,6 +204,48 @@
                                             <div class="form-outline">
                                                 <label class="form-label" for="confirm_new">Confirm New Password</label>
                                                 <input type="password" class="form-control" id="confirm_new" name="confirm_new" minlength="6" required/>
+                                            </div>
+                                            <button class="btn btn-block">Update</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--update location modal-->
+        <section>
+            <div class="modal" id="location_update" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8">
+                                    <div class="card-body text-center">
+                                        <h3>Update your location</h3>
+                                        <form method="POST" action="update_user.php?action=location">
+                                            <div class="form-outline">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="sign_email">Email</label>
+                                                    <input type="email" class="form-control" id="sign_email" name="sign_email" required/>
+                                                </div>
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="sign_pass">Password</label>
+                                                    <input type="password" class="form-control" id="sign_pass" name="sign_pass" minlength="6" required/>
+                                                </div>
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="sign_city">City</label>
+                                                    <input type="text" class="form-control" id="sign_city" name="sign_city"/>
+                                                </div>
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="sign_country">Country</label>
+                                                    <input type="text" class="form-control" id="sign_country" name="sign_country"/>
+                                                </div>
                                             </div>
                                             <button class="btn btn-block">Update</button>
                                         </form>

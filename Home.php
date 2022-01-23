@@ -1,3 +1,5 @@
+
+
 <html>
     <head>
         <title>Thriftie Marketplace</title>
@@ -32,14 +34,14 @@
                 <ul class="nav justify-content-center"> <!--align items in center-->
                     <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
                         <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
-                        <div class="dropdown-menu col-xs-12">
-                            <a class="dropdown-item" href="products.php?action=all">All products</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=clothes">Clothes</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=shoes">Shoes</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=accessories">Accessories</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=bags">Bags</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=gifts">Gifts</a>
+                            <a class="dropdown-item" href="#">Clothes</a>
+                            <a class="dropdown-item" href="#">Shoes</a>
+                            <a class="dropdown-item" href="#">Accessories</a>
+                            <a class="dropdown-item" href="#">Bags</a>
+                            <a class="dropdown-item" href="#">Gifts</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -60,9 +62,26 @@
         </nav>
         <section id="presection">
             <p>Recommended for you</p>
-            <div class="dropdown"> <!--shopping cart/ login buttons-->
+            <div class="dropdown"> <!--shopping cart/ login butttons-->
                 <button class="btn" data-toggle="modal" data-target="#cart_modal"><i class="fa fa-shopping-bag"></i> Cart</button>
-                <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign in</button>
+                <?php
+                    if (!isset($_SESSION["id"])) {
+                        echo '<button class="btn"><i class="fa fa-user"></i> <a> href="user.php">Profile</a></button>';
+                    }
+                    else {
+                        echo '<button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i></button>';
+                    }
+                ?>
+                <br><br> <!--sort by dropdown list-->
+                <!--<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    Sort by:
+                </button> <!--sort by options-->
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Relevancy</a>
+                    <a class="dropdown-item" href="#">Most Recent</a>
+                    <a class="dropdown-item" href="#">Highest Price</a>
+                    <a class="dropdown-item" href="#">Lowest Price</a>
+                </div>
             </div>
         </section>
         <section>
@@ -206,8 +225,8 @@
                                         Height: 13.78"<br>
                                         Depth: 5.12"<br>
                                         Shoulder straps: 25,60 inch<br>
-                                        Cross body strap: 33,46 - 41,34 inch adjustable<br>
-                                        Front pockets: width: 5,51 inch, height: 6,69 inch</span>
+                                        Crossbody strap: 33,46 - 41,34 inch adjustable<br>
+                                        Frontpockets: width: 5,51 inch, height: 6,69 inch</span>
                                     <h3>Size:<span class="badge badge-secondary">One size</span></h3>
                                     <h3>Fit:<span class="badge badge-secondary">-</span></h3>
                                     <h3>Material:<span class="badge badge-secondary">Leather</span></h3>

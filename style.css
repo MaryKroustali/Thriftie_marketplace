@@ -714,6 +714,11 @@ button:hover, button:focus {
     color:#5c142c;
     font-size: 17px;
 }
+#user textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #e9c1e2;
+}
 /*update email modal*/
 #email_update .modal-header {
     border-bottom: 0 none; /*remove bottom line*/
@@ -762,6 +767,30 @@ button:hover, button:focus {
     box-shadow: none !important;
 }
 #pass_update .btn {
+    margin: 10px 0px !important;
+}
+#location_update .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#location_update .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#location_update .modal-body .form-label {
+    font-size: 14px;
+}
+#location_update .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#location_update .btn {
     margin: 10px 0px !important;
 }
 #user > p { /*link for contact form*/

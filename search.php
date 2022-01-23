@@ -10,31 +10,15 @@
     $db = $m->Thriftie_DB; //database
     $collection_products = $db->Products; //collection
     $collection_users = $db->Users;
-    //get values from html input fields
-    //execute query
 
-    //get all products
-    if ($_GET['action'] == 'all') {
-        $result = $collection_products->find();
-    }
-    //get products by category
-    if ($_GET['action'] == 'category') {
-        $result = $collection_products->find(["category" => $_GET['by']]); //find by category
-    }
-    //sort products by criteria
-    if ($_GET['action'] == 'sort') {
-        if ($_GET['by'] == 'price_low') {
-           echo 1;
-        }
-    }
+    $search_key = $_POST["search"];
 
-    if ($_GET['action'] == 'add'){
-        $document = array(
-            "category" => "accessories"
-        );
-        $result = $collection_products->UpdateOne(["name" => "Leather minimalist Wallet"],['$set' => $document]); //create user and redirect
-
-    }
+    //search for keyword in keys name, description, material, size, fit
+    $result = $collection_products->find( ['$or' => [ [ 'name'=> [ '$regex' =>  new MongoDB\BSON\Regex($search_key,"i") ]],
+                                                    [ 'description'=> [ '$regex' =>  new MongoDB\BSON\Regex($search_key,"i") ]],
+                                                    [ 'size'=> [ '$regex' =>  new MongoDB\BSON\Regex($search_key,"i") ]],
+                                                    ['fit'=> [ '$regex' =>  new MongoDB\BSON\Regex($search_key,"i") ]],
+                                                    [ 'material'=> [ '$regex' =>  new MongoDB\BSON\Regex($search_key,"i") ]] ] ]);
 
 ?>
 
@@ -70,7 +54,7 @@
             <div class="nav">
                 <!--navigation bar, links-->
                 <ul class="nav justify-content-center">
-                    <li class=nav-item class="dropdown"> 
+                    <li class=nav-item class="dropdown">
                         <a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
                         <div class="dropdown-menu col-xs-12">
                             <a class="dropdown-item" href="products.php?action=all">All products</a>
@@ -99,7 +83,7 @@
             </div>
         </nav>
         <section id="presection">
-            <p>Products</p>
+            <p>Search Results</p>
             <div class="dropdown"> <!--shopping cart/ login buttons-->
                 <button class="btn" data-toggle="modal" data-target="#cart_modal"><i class="fa fa-shopping-bag"></i> Cart</button>
                 <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign in</button>
@@ -121,7 +105,13 @@
                     <div class="row">
                         <?php
                             $i = 0;  //counter to add row in each 4 products
-                            foreach ($result as $product) { ?>
+                            $array = $result->toArray();  //convert query result to array
+                            $length = count($array);  //count results
+                            if ($length == 0) { //if no results found ?>
+                                <h2 style="color:#5c142c">No results found with "<?php echo $search_key; ?>".</h2>
+                                <p style="height:190px"></p>
+                            <?php }
+                            else { foreach ($array as $product) { //for each product ?>
                                 <div class="col-sm-3"> <!--card product-->
                                     <div class="card">
                                         <button type="button" class="btn" data-toggle="modal" data-target="#product<?php echo $i ?>"> <!--on click on card get modal-->
@@ -206,7 +196,7 @@
                             if ($i == 8) {  //on 8th product close div row ?>
                                 </div>
                             <?php $i=0; } //after 8th product initialize counter for next 4 products ?>
-                        <?php } ?>
+                        <?php } }?>
                     </div>
                 </div>
             </div>
