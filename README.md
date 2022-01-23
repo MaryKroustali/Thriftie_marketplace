@@ -18,7 +18,7 @@
 - [ ] notifications on errors!
 - [x] user profile
 
-- [x] sign up (notification when user already exists)
+- [x] sign up (notification when user already exists + location+ description empty)
 - [x] login (notification when user doesn't exist)
 - [x] logout (session test)
 - [ ] remove product from favorites
@@ -28,7 +28,7 @@
 - [ ] product page (add to cart)
 - [ ] product review (?)
 - [x] search products
-- [ ] add user info (redo email/pass)
+- [ ] add user info (redo email/pass +description +fix empty location)
 - [ ] sort products by
 - [x] get by category
 - [x] product descr modal (seller info)
