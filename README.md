@@ -16,6 +16,7 @@
 - [x] sell product form
 - [x] add product to favorite
 - [ ] notifications on errors!
+- [ ] add more info in user profile
 
 - [x] sign up (notification when user already exists)
 - [x] login (notification when user doesn't exist)
