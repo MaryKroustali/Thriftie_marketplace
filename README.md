@@ -28,7 +28,7 @@
 - [ ] load history from db
 - [ ] product page (add to cart)
 - [ ] product review (?)
-- [ ] search products (select in db)
+- [x] search products
 - [ ] sort products by
 - [x] get by category
 - [x] product descr modal (seller info)
