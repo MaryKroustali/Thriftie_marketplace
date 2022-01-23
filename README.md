@@ -29,7 +29,8 @@
 - [ ] product review (?)
 - [ ] search products (select in db)
 - [ ] sort products by
-- [ ] product descr modal
+- [x] get by category
+- [x] product descr modal (seller info)
 - [ ] checkout Cart (remove products/remove after 24h/retrieve from db)
 
 ## Admin
