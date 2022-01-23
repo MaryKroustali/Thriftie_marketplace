@@ -16,7 +16,7 @@
 - [x] sell product form
 - [x] add product to favorite
 - [ ] notifications on errors!
-- [x] add more info in user profile
+- [x] user profile
 
 - [x] sign up (notification when user already exists)
 - [x] login (notification when user doesn't exist)
@@ -28,6 +28,7 @@
 - [ ] product page (add to cart)
 - [ ] product review (?)
 - [x] search products
+- [ ] add user info (redo email/pass)
 - [ ] sort products by
 - [x] get by category
 - [x] product descr modal (seller info)
