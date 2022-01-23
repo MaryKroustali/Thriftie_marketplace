@@ -7,7 +7,7 @@
 - [x] logout
 - [x] user profile
 - [x] product page
-- [ ] product review (?)
+- [ ] user review (?)
 - [x] about us
 - [x] checkout Cart
 - [x] checkout payment form
@@ -16,12 +16,11 @@
 - [x] sell product form
 - [x] add product to favorite
 - [ ] notifications on errors!
-- [ ] add more info in user profile
+- [x] add more info in user profile
 
 - [x] sign up (notification when user already exists)
 - [x] login (notification when user doesn't exist)
 - [x] logout (session test)
-- [x] update user data (error handling)
 - [ ] remove product from favorites
 - [ ] add product to cart
 - [ ] load favorites from db
