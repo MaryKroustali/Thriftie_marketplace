@@ -17,6 +17,11 @@
             "name" => $name,
             "email" => $username,
             "password" => $password,
+            "location" => '',
+            "description" => '',
+            "cart" => [],
+            "orders" => [],
+            "favorites" => []
         );
     //search if user already exists
     $result = $collection->findOne($document);

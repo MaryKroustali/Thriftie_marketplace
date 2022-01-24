@@ -714,9 +714,11 @@ button:hover, button:focus {
     color:#5c142c;
     font-size: 17px;
 }
+#user textarea {
+    border-color: #e9c1e2;
+}
 #user textarea:focus {
     outline: none;
-    box-shadow: none;
     border-color: #e9c1e2;
 }
 /*update email modal*/
@@ -793,6 +795,30 @@ button:hover, button:focus {
 #location_update .btn {
     margin: 10px 0px !important;
 }
+#description_update .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#description_update .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#description_update .modal-body .form-label {
+    font-size: 14px;
+}
+#description_update .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#description_update .btn {
+    margin: 10px 0px !important;
+}
 #user > p { /*link for contact form*/
     margin-top: 50px;
     margin-left: 250px;;
@@ -816,7 +842,7 @@ button:hover, button:focus {
     margin-top: 40px;
     width: 90%;
 }
-#favorites img {
+#favorites a > img {
     width: 100px;
 }
 #favorites a,td {
@@ -831,7 +857,7 @@ button:hover, button:focus {
     border: none !important;
     color: #5c142c;
 }
-#favorites td button:hover {
+#favorites td button a:hover {
     color: #e9c1e2;
 }
 /*order and selling history*/

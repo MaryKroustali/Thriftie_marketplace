@@ -1,5 +1,10 @@
 <?php
-    session_start(); //create session
+
+    $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
+    $db = $m->Thriftie_DB; //database
+    $collection_users = $db->Users; //collection
+    $collection_products = $db->Products;
+
 ?>
 
 <html>
@@ -37,13 +42,13 @@
                     <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
                         <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">All products</a>
+                            <a class="dropdown-item" href="products.php?action=all">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
-                            <a class="dropdown-item" href="#">Clothes</a>
-                            <a class="dropdown-item" href="#">Shoes</a>
-                            <a class="dropdown-item" href="#">Accessories</a>
-                            <a class="dropdown-item" href="#">Bags</a>
-                            <a class="dropdown-item" href="#">Gifts</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=clothes">Clothes</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=shoes">Shoes</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=accessories">Accessories</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=bags">Bags</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=gifts">Gifts</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -127,11 +132,11 @@
                             <p><a class="card-text" href="#pass_update" data-target="#pass_update" data-toggle="modal">Change my password</a></p>
                             <label style="font-weight:10" class="card-text">
                                 Describe yourself as a seller:
-                                <a href="update_user.php?action=description">
+                                <a href="#description_update" data-target="#description_update" data-toggle="modal">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </label>
-                            <textarea cols="34" rows="4" id="descr_sign" name="sign_descr">Description for a seller</textarea>
+                            <textarea cols="40" rows="5" id="sign_descr" name="sign_descr" readonly><?php echo $json->description; ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -151,7 +156,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body text-center">
                                         <h3>Update your email</h3>
-                                        <form method="POST" action="update_user.php">
+                                        <form method="POST" action="update_user.php?action=email">
                                             <div class="form-outline">
                                                 <label class="form-label" for="sign_email">Old Email</label>
                                                 <input type="email" class="form-control" id="sign_email" name="sign_email" required/>
@@ -188,7 +193,7 @@
                                     <div class="card-body text-center">
                                         <h3>Update your Password</h3>
                                         <!--check password confirmation-->
-                                        <form method="POST" action="update_user.php" oninput='confirm_new.setCustomValidity(confirm_new.value != new_pass.value ? "Passwords do not match." : "")'>
+                                        <form method="POST" action="update_user.php?action=password" oninput='confirm_new.setCustomValidity(confirm_new.value != new_pass.value ? "Passwords do not match." : "")'>
                                             <div class="form-outline">
                                                 <label class="form-label" for="sign_email">Email</label>
                                                 <input type="email" class="form-control" id="sign_email" name="sign_email" required/>
@@ -257,33 +262,127 @@
                 </div>
             </div>
         </section>
+        <!--update description-->
+        <section>
+            <div class="modal" id="description_update" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8">
+                                    <div class="card-body text-center">
+                                        <h3>Update your description</h3>
+                                        <form method="POST" action="update_user.php?action=description">
+                                            <div class="form-outline">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="sign_email">Email</label>
+                                                    <input type="email" class="form-control" id="sign_email" name="sign_email" required/>
+                                                </div>
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="sign_pass">Password</label>
+                                                    <input type="password" class="form-control" id="sign_pass" name="sign_pass" minlength="6" required/>
+                                                </div>
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="sign_descr">Describe yourself</label>
+                                                    <textarea class="form-control" cols="34" rows="5" id="sign_descr" name="sign_descr"><?php echo $json->description; ?></textarea>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-block">Update</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="favorites">
             <h1>Favorites</h1>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-borderedless">
+                        <?php
+                        $i = 0;
+                        foreach ($json->favorites as $favorite) {
+                            $product = $collection_products->findOne(["name" => $favorite]); ?>
                             <tr>
-                                <td><a href="home.html#item1"><img src="items/item1.jpg"/></a></td>
-                                <td><a href="#">Organic Handmade Striped Dress</a></td>
-                                <td>14.60$</td>
-                                <td><button><i class="fa fa-heart"></i></button></td>
+                                <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><img src="<?php echo $product->images->pic1; ?>.jpg"/></a></td>
+                                <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><?php echo $product->name; ?></a></td>
+                                <td><?php echo $product->price; ?></td>
+                                <td><button><a href="favorites.php"><i class="fa fa-heart"></i></a></button></td>
                                 <td><button><i class="fa fa-shopping-bag"></i></button></td>
                             </tr>
-                            <tr>
-                                <td><a href="#"><img src="items/item7.jpg"/></a></td>
-                                <td><a href="#">Beaded Silver Necklace</a></td>
-                                <td>13.00$</td>
-                                <td><button><i class="fa fa-heart"></i></button></td>
-                                <td><button><i class="fa fa-shopping-bag"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#"><img src="items/item8.jpg"/></a></td>
-                                <td><a href="#">Leather Shoulder bag</a></td>
-                                <td>23.00$</td>
-                                <td><button><i class="fa fa-heart"></i></button></td>
-                                <td><button><i class="fa fa-shopping-bag"></i></button></td>
-                            </tr>
+                            <!--modal for product info-->
+                            <!--i variable uniquely identifies each modal-->
+                            <div class="modal" id="product<?php echo $i ?>" role="dialog">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2><?php echo $product->name; ?></h2>
+                                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                                        </div>
+                                        <div class="modal-body">
+                                            <!--carousel, multiple product images-->
+                                            <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner" role="listbox">
+                                                    <!--show multiple images in carousel-->
+                                                    <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg" style="width:400px;"></div>
+                                                    <?php foreach ($product->images as $pic) {
+                                                    if ($pic == $product->images->pic1) { //skip first active pic
+                                                        continue; }?>
+                                                    <div class="item"><img src="<?php echo $pic; ?>.jpg" style="width:400px;"></div>
+                                                    <?php } ?>
+                                                </div>
+                                                <button><i class="fa fa-heart"></i></button>
+                                                <!-- carousel navigation buttons-->
+                                                <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
+                                                <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                </a>
+                                                <?php } ?>
+                                            </div>
+                                            <div id="info"> <!--info text about product-->
+                                                <h3>Description:</h3>
+                                                <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
+                                                <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
+                                                <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
+                                                <!--get multiple material tags-->
+                                                <h3>Material:
+                                                <?php foreach ($product->material as $material) { ?>
+                                                    <span class="badge badge-secondary"><?php echo $material; ?></span>
+                                                <?php } ?>
+                                                </h3>
+                                                <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
+                                            </div>
+                                            <!--TO DO get seller info from db-->
+                                            <div id="seller_info"> <!-- info text about seller-->
+                                                <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
+                                                <h2><?php echo $seller->name; ?></h2>
+                                                <hr>
+                                                <h4><?php echo $seller->location; ?></h4>
+                                                <span>54 sales</span>
+                                                <span class="fa fa-star checked"></span> <!--seller rating-->
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <br> <!-- seller note-->
+                                                <span><?php echo $seller->description; ?></span>
+                                            </div>
+                                            <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php $i++; } ?>
                         </table>
                     </div>
                 </div>

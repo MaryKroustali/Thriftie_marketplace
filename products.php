@@ -28,14 +28,6 @@
         }
     }
 
-    if ($_GET['action'] == 'add'){
-        $document = array(
-            "category" => "accessories"
-        );
-        $result = $collection_products->UpdateOne(["name" => "Leather minimalist Wallet"],['$set' => $document]); //create user and redirect
-
-    }
-
 ?>
 
 <html>
@@ -184,7 +176,7 @@
                                                     <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
                                                     <h2><?php echo $seller->name; ?></h2>
                                                     <hr>
-                                                    <h4>Athens, Greece</h4>
+                                                    <h4><?php echo $seller->location; ?></h4>
                                                     <span>54 sales</span>
                                                     <span class="fa fa-star checked"></span> <!--seller rating-->
                                                     <span class="fa fa-star checked"></span>
@@ -192,7 +184,7 @@
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star"></span>
                                                     <br> <!-- seller note-->
-                                                    <span>If you are not satisfied with the product, it is no problem! You easily send it back to my address and after receiving the product in a good condition you will immediately get your money back!</span>
+                                                    <span><?php echo $seller->description; ?></span>
                                                 </div>
                                                 <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                                             </div>
