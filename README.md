@@ -24,7 +24,7 @@
 - [ ] remove product from favorites
 - [ ] add product to favorites
 - [ ] remove product from cart
-- [ ] load favorites from db
+- [x] load favorites from db
 - [ ] load history from db
 - [ ] product page (add to cart)
 - [ ] product review (?)
