@@ -17,6 +17,7 @@
 - [x] add product to favorite
 - [ ] notifications on errors!
 - [x] user profile
+- [ ] favorites change icon if on favorites or not
 
 - [x] sign up (notification when user already exists + location+ description empty)
 - [x] login (notification when user doesn't exist)
