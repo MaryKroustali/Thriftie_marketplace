@@ -22,16 +22,17 @@
 - [x] login (notification when user doesn't exist)
 - [x] logout (session test)
 - [ ] remove product from favorites
-- [ ] add product to cart
+- [ ] add product to favorites
+- [ ] remove product from cart
 - [ ] load favorites from db
 - [ ] load history from db
 - [ ] product page (add to cart)
 - [ ] product review (?)
 - [x] search products
-- [ ] add user info (redo email/pass +description +fix empty location)
+- [x] add user info
 - [ ] sort products by
 - [x] get by category
-- [x] product descr modal (seller info)
+- [x] product descr modal (sales + rating hardcoded)
 - [ ] checkout Cart (remove products/remove after 24h/retrieve from db)
 
 ## Admin
