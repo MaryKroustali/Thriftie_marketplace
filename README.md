@@ -1,4 +1,4 @@
-# Thriftie_marketplace# thriftie
+# Thriftie_marketplace
 
 ## User
 - [x] home page (front)
