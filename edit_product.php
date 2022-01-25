@@ -1,3 +1,16 @@
+<?php //connect to db
+
+    require '../vendor/autoload.php';
+    include 'config.php';
+
+    $product = $_GET['product'];  //get product name
+    $json = $_GET['user'];
+
+    //find product in db
+    $item = $collection_products->findOne(["name" => $product]);
+
+?>
+
 <html>
     <head>
         <title>Thriftie Marketplace</title>
@@ -57,34 +70,35 @@
             </div>
         </nav>
         <section id="sell">
-            <h1>Sell a product</h1>
+            <h1>Edit your product</h1>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <p>Before you sell a product at Thriftie, make sure you have read our <a href="help center.html">policies</a>.</p>
                     </div>
-                    <form action="sell.php" method="POST" class="col-md-12">
+                    <!--fill form with values of product-->
+                    <form action="sell.php?action=update&name=<?php echo $item->name; ?>&user=<?php echo $json; ?>" method="POST" class="col-md-12">
                         <div class="col-lg-5 form-outline col-md-12">
                             <label for="files[]" class="form-label">Upload one or more images</label>
-                            <input type="file" class="form-control" name="files[]" id="file" required multiple accept="image/*"/>
+                            <input type="file" class="form-control" name="files[]" id="file" required multiple accept="image/.jpg"/>
                         </div>
                         <div class="col-lg-7 col-md-12">
                             <div class="form-outline">
                                 <label for="name" class="form-label">Name your product</label>
-                                <input class="form-control" type="text" name="name" id="name" required/>
+                                <input class="form-control" type="text" name="name" id="name" value="<?php echo $item->name; ?>" required/>
                             </div>
                             <div class="form-outline">
                                 <label for="descr" class="form-label">Add a description</label>
-                                <textarea class="form-control" id="descr" name="descr" rows="7" required></textarea>
+                                <textarea class="form-control" id="descr" name="descr" rows="7" required><?php echo $item->description; ?></textarea>
                             </div>
                             <div class="form-outline">
                                 <label for="price" class="form-label">Define your price</label>
-                                <input class="form-control" type="number" name="price" id="price" step="0.1" required/>
+                                <input class="form-control" type="number" name="price" id="price" step="0.1" value="<?php echo substr($item->price,1,-1); ?>"required/> <!--exclude dollar sign-->
                             </div>
                             <div>
                                 <label for="size" class="form-label">Select size</label>
                                 <fieldset>
-                                    <input type="radio" class="btn-check" name="size" id="xs" value="X Small" autocomplete="off">
+                                <input type="radio" class="btn-check" name="size" id="xs" value="X Small" autocomplete="off">
                                     <label class="btn btn-secondary" for="xs">X Small</label>
                                     <input type="radio" class="btn-check" name="size" id="s" value="Small" autocomplete="off">
                                     <label class="btn btn-secondary" for="s">Small</label>
@@ -98,6 +112,29 @@
                                     <label class="btn btn-secondary" for="xxl">XX Large</label>
                                     <input type="radio" class="btn-check" name="size" id="one" value="One Size" autocomplete="off">
                                     <label class="btn btn-secondary" for="one">One Size</label>
+                                    <!--show selected radio button-->
+                                    <?php if ($item->size == "X Small") { ?>
+                                    <input type="radio" class="btn-check" name="size" id="xs" value="X Small" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="xs">X Small</label>
+                                    <?php } elseif ($item->size == "Small") { ?>
+                                    <input type="radio" class="btn-check" name="size" id="s" value="Small" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="s">Small</label>
+                                    <?php } elseif ($item->size == "Medium") { ?>
+                                    <input type="radio" class="btn-check" name="size" id="m" value="Medium" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="m">Medium</label>
+                                    <?php } elseif ($item->size == "Large") { ?>
+                                    <input type="radio" class="btn-check" name="size" id="l" value="Large" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="l">Large</label>
+                                    <?php } elseif ($item->size == "X Large") { ?>
+                                    <input type="radio" class="btn-check" name="size" id="xl" value="X Large" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="xl">X Large</label>
+                                    <?php } elseif ($item->size == "XX Large") { ?>
+                                    <input type="radio" class="btn-check" name="size" id="xxl" value="XX Large" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="xxl">XX Large</label>
+                                    <?php } elseif ($item->size == "One Size") { ?>
+                                    <input type="radio" class="btn-check" name="size" id="one" value="One Size" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="one">One Size</label>
+                                    <?php } ?>
                                 </fieldset>
                             </div>
                             <div>
@@ -111,6 +148,20 @@
                                     <label class="btn btn-secondary" for="slim">Slim</label>
                                     <input type="radio" class="btn-check" name="fit" id="regular" value="Regular" autocomplete="off">
                                     <label class="btn btn-secondary" for="regular">Regular</label>
+                                    <!--show selected radio button-->
+                                    <?php if ($item->fit == "Oversized") { ?>
+                                    <input type="radio" class="btn-check" name="fit" id="over" value="Oversized" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="over">Oversized</label>
+                                    <?php } elseif ($item->fit == "Skinny") { ?>
+                                    <input type="radio" class="btn-check" name="fit" id="skin" value="Skinny" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="skin">Skinny</label>
+                                    <?php } elseif ($item->fit == "Slim") { ?>
+                                    <input type="radio" class="btn-check" name="fit" id="slim" value="Slim" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="slim">Slim</label>
+                                    <?php } elseif ($item->fit == "Regular") { ?>
+                                    <input type="radio" class="btn-check" name="fit" id="regular" value="Regular" autocomplete="off" checked>
+                                    <label class="btn btn-secondary" for="regular">Regular</label>
+                                    <?php } ?>
                                 </fieldset>
                             </div>
                             <div>
@@ -132,10 +183,30 @@
                                     <label class="btn btn-secondary" for="silver">Silver</label>
                                     <input type="checkbox" class="btn-check" name="materials[]" id="gold" value="Gold" autocomplete="off">
                                     <label class="btn btn-secondary" for="gold">Gold</label>
+                                    <!--show selected checkboxes-->
+                                    <?php if (in_array("Linen", (array)$item->materials)) { ?>
+                                    <script>document.getElementById("linen").checked = true;</script>
+                                    <?php } if (in_array("Cotton", (array)$item->materials,)) { ?>
+                                    <script>document.getElementById("cotton").checked = true;</script>
+                                    <?php } if (in_array("Leather", (array)$item->materials)) { ?>
+                                    <script>document.getElementById("leather").checked = true;</script>
+                                    <?php } if (in_array("Polyester", (array)$item->materials)) { ?>
+                                    <script>document.getElementById("poly").checked = true;</script>
+                                    <?php } if (in_array("Fleece", (array)$item->materials)) { ?>
+                                    <script>document.getElementById("fleece").checked = true;</script>
+                                    <?php } if (in_array("Plastic", (array)$item->materials)) { ?>
+                                    <script>document.getElementById("plastic").checked = true;</script>
+                                    <?php } if (in_array("Silver", (array)$item->materials)) { ?>
+                                    <script>document.getElementById("silver").checked = true;</script>
+                                    <?php } if (in_array("Gold", (array)$item->materials)) { ?>
+                                    <script>document.getElementById("gold").checked = true;</script>
+                                    <?php } ?>
                                 </fieldset>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-block">Sell it!</button>
+                        <button type="submit" class="btn btn-block">Update</button>
+                        <span>OR</span>
+                        <button class="btn btn-block"><a href="sell.php?action=delete&name=<?php echo $item->name ?>">Delete this Item</a></button>
                     </form>
                 </div>
             </div>
