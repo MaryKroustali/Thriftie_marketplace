@@ -58,4 +58,7 @@
 - [ ] how to check if a user is signed in
 - [ ] login/signup modals overflow
 - [ ] modals on tablet view close button disabled
+- [ ] check responsive again
 - [ ] notification in signup/login errors
+- [ ] add a image pic new color
+- [ ] add images to db as jpg
