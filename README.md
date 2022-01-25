@@ -62,3 +62,4 @@
 - [ ] notification in signup/login errors
 - [ ] add a image pic new color
 - [ ] add images to db as jpg
+- [ ] add a config to connect to db
