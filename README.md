@@ -28,10 +28,10 @@
 - [ ] remove product from favorites
 - [ ] add product to favorites
 - [ ] remove product from cart
-- [x] load favorites from db
-- [x] products sold history (edit product no images)
-- [ ] order history
 - [ ] product page (add to cart)
+- [x] load favorites from db
+- [x] products sold history (edit product no images/delete no confirm)
+- [ ] order history
 - [x] add product to db (no seller passed - redirect)
 - [ ] product review (?)
 - [x] search products
