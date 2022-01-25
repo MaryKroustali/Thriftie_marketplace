@@ -12,7 +12,6 @@
 - [x] about us
 - [x] checkout Cart
 - [x] checkout payment form
-- [x] order history
 - [x] fav products
 - [x] sell product form
 - [x] add product to favorite
@@ -20,6 +19,8 @@
 - [x] user profile
 - [ ] favorites change icon if on favorites or not
 - [ ] add pagination
+- [x] products sold history
+- [x] order history
 ### back
 - [x] sign up (notification when user already exists + location+ description empty)
 - [x] login (notification when user doesn't exist)
@@ -28,7 +29,8 @@
 - [ ] add product to favorites
 - [ ] remove product from cart
 - [x] load favorites from db
-- [ ] load history from db
+- [x] products sold history (edit product no images)
+- [ ] order history
 - [ ] product page (add to cart)
 - [x] add product to db (no seller passed - redirect)
 - [ ] product review (?)
