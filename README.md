@@ -28,6 +28,7 @@
 - [x] load favorites from db
 - [ ] load history from db
 - [ ] product page (add to cart)
+- [ ] add product to db
 - [ ] product review (?)
 - [x] search products
 - [x] add user info
