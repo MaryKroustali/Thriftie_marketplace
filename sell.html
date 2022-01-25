@@ -31,13 +31,13 @@
                     <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
                         <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">All products</a>
+                            <a class="dropdown-item" href="products.php?action=all">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
-                            <a class="dropdown-item" href="#">Clothes</a>
-                            <a class="dropdown-item" href="#">Shoes</a>
-                            <a class="dropdown-item" href="#">Accessories</a>
-                            <a class="dropdown-item" href="#">Bags</a>
-                            <a class="dropdown-item" href="#">Gifts</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=clothes">Clothes</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=shoes">Shoes</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=accessories">Accessories</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=bags">Bags</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=gifts">Gifts</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -49,14 +49,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="Help Center.html">Help Center</a>
                     </li>
-                    <form  class="form-inline my-2" action="#">  <!--search bar-->
-                        <input type="text" class="form-control" placeholder="Search...">
+                    <form  class="form-inline" role="search" action="search.php" method="POST">  <!--search bar-->
+                        <input type="text" class="form-control" placeholder="Search..." name="search"/>
                         <button class="btn"><i class="fa fa-search"></i></button>
                     </form>
                 </ul>
             </div>
         </nav>
-       <section id="sell">
+        <section id="presection">
+            <div class="dropdown"> <!--shopping cart/ login buttons-->
+                <button class="btn" data-toggle="modal" data-target="#cart_modal"><i class="fa fa-shopping-bag"></i> Cart</button>
+                <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign in</button>
+            </div>
+        </section>
+         <section id="sell">
             <h1>Sell a product</h1>
             <div class="container">
                 <div class="row">
@@ -64,15 +70,15 @@
                         <p>Before you sell a product at Thriftie, make sure you have read our <a href="help center.html">policies</a>.</p>
                     </div>
                     <!--TO DO add product to db-->
-                    <form action="#" method="POST" class="col-md-12">
+                    <form action="sell.php" method="POST" class="col-md-12">
                         <div class="col-lg-5 form-outline col-md-12">
-                            <label for="file" class="form-label">Upload one or more images</label>
-                            <input type="file" class="form-control" name="file" id="file" required multiple accept="image/*"/>
+                            <label for="files[]" class="form-label">Upload one or more images</label>
+                            <input type="file" class="form-control" name="files[]" id="file" required multiple accept="image/*"/>
                         </div>
                         <div class="col-lg-7 col-md-12">
                             <div class="form-outline">
                                 <label for="name" class="form-label">Name your product</label>
-                                <input class="form-control" type="text" name="Name" id="name" required/>
+                                <input class="form-control" type="text" name="name" id="name" required/>
                             </div>
                             <div class="form-outline">
                                 <label for="descr" class="form-label">Add a description</label>
@@ -80,58 +86,58 @@
                             </div>
                             <div class="form-outline">
                                 <label for="price" class="form-label">Define your price</label>
-                                <input class="form-control" type="number" name="price" id="price"required/>
+                                <input class="form-control" type="number" name="price" id="price" step="0.1" required/>
                             </div>
                             <div>
                                 <label for="size" class="form-label">Select size</label>
                                 <fieldset>
-                                    <input type="radio" class="btn-check" name="size" id="xxxs" autocomplete="off">
-                                    <label class="btn btn-secondary" for="xxxs">X Small</label>
-                                    <input type="radio" class="btn-check" name="size" id="s" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="size" id="xs" value="X Small" autocomplete="off">
+                                    <label class="btn btn-secondary" for="xs">X Small</label>
+                                    <input type="radio" class="btn-check" name="size" id="s" value="Small" autocomplete="off">
                                     <label class="btn btn-secondary" for="s">Small</label>
-                                    <input type="radio" class="btn-check" name="size" id="m" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="size" id="m" value="Medium" autocomplete="off">
                                     <label class="btn btn-secondary" for="m">Medium</label>
-                                    <input type="radio" class="btn-check" name="size" id="l" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="size" id="l" value="Large" autocomplete="off">
                                     <label class="btn btn-secondary" for="l">Large</label>
-                                    <input type="radio" class="btn-check" name="size" id="xl" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="size" id="xl" value="X Large" autocomplete="off">
                                     <label class="btn btn-secondary" for="xl">X Large</label>
-                                    <input type="radio" class="btn-check" name="size" id="xxl" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="size" id="xxl" value="XX Large" autocomplete="off">
                                     <label class="btn btn-secondary" for="xxl">XX Large</label>
-                                    <input type="radio" class="btn-check" name="size" id="one" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="size" id="one" value="One Size" autocomplete="off">
                                     <label class="btn btn-secondary" for="one">One Size</label>
                                 </fieldset>
                             </div>
                             <div>
                                 <label for="fit" class="form-label">Describe Fit</label>
                                 <fieldset>
-                                    <input type="radio" class="btn-check" name="fit" id="over" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="fit" id="over" value="Oversized" autocomplete="off">
                                     <label class="btn btn-secondary" for="over">Oversized</label>
-                                    <input type="radio" class="btn-check" name="fit" id="skin" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="fit" id="skin" value="Skinny" autocomplete="off">
                                     <label class="btn btn-secondary" for="skin">Skinny</label>
-                                    <input type="radio" class="btn-check" name="fit" id="slim" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="fit" id="slim" value="Slim" autocomplete="off">
                                     <label class="btn btn-secondary" for="slim">Slim</label>
-                                    <input type="radio" class="btn-check" name="fit" id="regular" autocomplete="off">
-                                    <label class="btn btn-secondary" for="regular">regular</label>
+                                    <input type="radio" class="btn-check" name="fit" id="regular" value="Regular" autocomplete="off">
+                                    <label class="btn btn-secondary" for="regular">Regular</label>
                                 </fieldset>
                             </div>
                             <div>
-                                <label for="material" class="form-label">Material</label>
+                                <label for="materials[]" class="form-label">Material</label>
                                 <fieldset>
-                                    <input type="checkbox" class="btn-check" name="material" id="linen" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="linen" value="Linen" autocomplete="off">
                                     <label class="btn btn-secondary" for="linen">Linen</label>
-                                    <input type="checkbox" class="btn-check" name="material" id="cotton" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="cotton" value="Cotton" autocomplete="off">
                                     <label class="btn btn-secondary" for="cotton">Cotton</label>
-                                    <input type="checkbox" class="btn-check" name="material" id="leather" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="leather" value="Leather" autocomplete="off">
                                     <label class="btn btn-secondary" for="leather">Leather</label>
-                                    <input type="checkbox" class="btn-check" name="material" id="poly" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="poly" value="Polyester" autocomplete="off">
                                     <label class="btn btn-secondary" for="poly">Polyester</label>
-                                    <input type="checkbox" class="btn-check" name="material" id="fleece" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="fleece" value="Fleece" autocomplete="off">
                                     <label class="btn btn-secondary" for="fleece">Fleece</label>
-                                    <input type="checkbox" class="btn-check" name="material" id="plastic" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="plastic" value="Plastic" autocomplete="off">
                                     <label class="btn btn-secondary" for="plastic">Plastic</label>
-                                    <input type="checkbox" class="btn-check" name="material" id="silver" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="silver" value="Silver" autocomplete="off">
                                     <label class="btn btn-secondary" for="silver">Silver</label>
-                                    <input type="checkbox" class="btn-check" name="material" id="gold" autocomplete="off">
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="gold" value="Gold" autocomplete="off">
                                     <label class="btn btn-secondary" for="gold">Gold</label>
                                 </fieldset>
                             </div>
