@@ -28,7 +28,7 @@
 - [x] load favorites from db
 - [ ] load history from db
 - [ ] product page (add to cart)
-- [ ] add product to db
+- [x] add product to db (no seller passed)
 - [ ] product review (?)
 - [x] search products
 - [x] add user info
