@@ -30,7 +30,7 @@
 - [x] load favorites from db
 - [ ] load history from db
 - [ ] product page (add to cart)
-- [x] add product to db (no seller passed)
+- [x] add product to db (no seller passed - redirect)
 - [ ] product review (?)
 - [x] search products
 - [x] add user info
