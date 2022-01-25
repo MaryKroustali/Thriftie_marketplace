@@ -1,6 +1,7 @@
 # Thriftie_marketplace
 
 ## User
+### front
 - [x] home page (front)
 - [x] sign up (session)
 - [x] login (session)
@@ -18,7 +19,8 @@
 - [ ] notifications on errors!
 - [x] user profile
 - [ ] favorites change icon if on favorites or not
-
+- [ ] add pagination
+### back
 - [x] sign up (notification when user already exists + location+ description empty)
 - [x] login (notification when user doesn't exist)
 - [x] logout (session test)
