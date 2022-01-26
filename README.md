@@ -27,7 +27,8 @@
 - [ ] remove product from favorites general 
 - [ ] add product to favorites
 - [x] load favorites from db
-- [ ] remove product from cart
+- [x] remove product from cart user (confirmation/redirect)
+- [ ] remove product from cart genetral
 - [x] add to cart user (redirect)
 - [ ] add to cart general
 - [x] products sold history (edit product no images/delete no confirm)
