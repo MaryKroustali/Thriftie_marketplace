@@ -2,44 +2,48 @@
 
 ## User
 ### front
-- [x] home page (front)
-- [x] sign up (session)
-- [x] login (session)
-- [x] logout
+- [x] home page (php)
+- [ ] add pagination
+- [x] sign up (handle error)
+- [x] login (handle error)
+- [x] logout (ask user)
 - [x] user profile
 - [x] product page
 - [ ] user review (?)
 - [x] about us
-- [x] checkout Cart
+- [x] checkout Cart (php)
 - [x] checkout payment form
 - [x] fav products
 - [x] sell product form
-- [x] add product to favorite
-- [ ] notifications on errors!
-- [x] user profile
-- [ ] favorites change icon if on favorites or not
-- [ ] add pagination
+- [ ] favorites change icon
 - [x] products sold history
 - [x] order history
 ### back
-- [x] sign up (notification when user already exists + location+ description empty)
-- [x] login (notification when user doesn't exist)
-- [x] logout (session test)
-- [ ] remove product from favorites
+- [x] sign up (session)
+- [x] login (session)
+- [x] logout (session check)
+- [ ] remove product from favorites user profile
+- [ ] remove product from favorites general 
 - [ ] add product to favorites
-- [ ] remove product from cart
-- [ ] product page (add to cart)
 - [x] load favorites from db
+- [ ] remove product from cart
+- [ ] add to cart user
+- [ ] add to cart general
 - [x] products sold history (edit product no images/delete no confirm)
+- [x] edit sold product (no images/redirect)
+- [x] delete product sold (confirmation/redirect)
 - [ ] order history
-- [x] add product to db (no seller passed - redirect)
-- [ ] product review (?)
+- [ ] view order history details + total
+- [x] sell product to db (no seller passed/redirect)
+- [ ] seller review (?)
 - [x] search products
 - [x] add user info
 - [ ] sort products by
-- [x] get by category
+- [x] get by category (remove gift category)
 - [x] product descr modal (sales + rating hardcoded)
-- [ ] checkout Cart (remove products/remove after 24h/retrieve from db)
+- [ ] checkout Cart (remove products/remove after 24h/retrieve from db/add to history/total)
+- [ ] contact from about us (redirect)
+- [ ] subscribe to newsletter (redirect)
 
 ## Admin
 - [ ] home page admin
