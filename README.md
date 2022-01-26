@@ -20,6 +20,7 @@
 - [x] order history
 - [ ] delete account
 - [ ] cart (no detailed view)
+- [ ] checkout form validiity + customization
 ### back
 - [x] sign up (session)
 - [x] login (session)
