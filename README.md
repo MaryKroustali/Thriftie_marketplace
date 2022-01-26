@@ -38,8 +38,7 @@
 - [x] products sold history (edit product no images/delete no confirm)
 - [x] edit sold product (no images/redirect)
 - [x] delete product sold (confirmation/redirect)
-- [ ] order history
-- [ ] view order history details + total
+- [x] view order history details + total
 - [x] sell product to db (no seller passed/redirect)
 - [ ] seller review (?)
 - [x] search products
