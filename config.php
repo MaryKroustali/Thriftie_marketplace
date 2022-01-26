@@ -4,7 +4,7 @@
 
     $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
     $db = $m->Thriftie_DB; //database
-    $collection_products = $db->Products;
-    $collection_users = $db->User;
+    $collection_products = $db->Products;  //collections
+    $collection_users = $db->Users;
 
 ?>

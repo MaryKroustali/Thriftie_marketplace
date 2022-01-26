@@ -1,9 +1,7 @@
 <?php
 
-    $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
-    $db = $m->Thriftie_DB; //database
-    $collection_users = $db->Users; //collection
-    $collection_products = $db->Products;
+    require '../vendor/autoload.php';
+    include 'config.php';  //connect to db
 
 ?>
 
@@ -17,7 +15,7 @@
         <!--cart/user login signs-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="style.css?v=1" type="text/css">
         <!--import JavaScript functions-->
         <script src="functions.js" type="text/javascript"></script>
         <!--import bootstrap file-->
@@ -60,8 +58,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="Help Center.html">Help Center</a>
                     </li>
-                    <form  class="form-inline my-2" action="#">  <!--search bar-->
-                        <input type="text" class="form-control" placeholder="Search...">
+                    <form  class="form-inline" action="search.php" method="POST">  <!--search bar-->
+                        <input type="text" class="form-control" placeholder="Search..." name="search"/>
                         <button class="btn"><i class="fa fa-search"></i></button>
                     </form>
                 </ul>
@@ -73,7 +71,8 @@
                 <button class="btn"><i class="fa fa-user"></i> <a href="logout.php">Log out</a></button>
             </div>
         </section>
-        <section>
+        <!--cart-->
+        <section id="cart">
             <div class="modal" id="cart_modal" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -86,29 +85,121 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <table class="table table-borderedless">
+                                         <?php $i=0;
+                                            foreach($json->cart as $item) { //for each item in cart
+                                            $item = $collection_products->findOne(["name" => $item]); //find product in db?>
                                             <tr>
-                                                <td><img src="items/item1.jpg"/></td>
-                                                <td>Organic Handmade Striped Dress</td>
-                                                <td>14.60$</td>
-                                                <td><button><i class="fa fa-close"></i></button></td>
+                                                <td><img src="<?php echo $item->images->pic1 ?>.jpg"/></td>
+                                                <td><?php echo $item->name ?></td>
+                                                <td><?php echo $item->price ?></td>
+                                                <td><a href="cart.php?action=remove&item=<?php echo $item->name; ?>&user=<?php echo $json->email; ?>"><i class="fa fa-close"></i></a></td>
                                             </tr>
-                                            <tr>
-                                                <td><img src="items/item7.jpg"/></td>
-                                                <td>Beaded Silver Necklace</td>
-                                                <td>13.00$</td>
-                                                <td><button><i class="fa fa-close"></i></button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="items/item8.jpg"/></td>
-                                                <td>Leather Shoulder bag</td>
-                                                <td>23.00$</td>
-                                                <td><button><i class="fa fa-close"></i></button></td>
-                                            </tr>
+                                        <?php $i++; } ?>
                                         </table>
                                         <hr>
-                                        <!--TO DO fix total with js-->
-                                        <p>Total <span>   10</span>$</p>
+                                        <!--get total price of products-->
+                                        <?php $sum=0;
+                                        foreach($json->cart as $item) {
+                                        $item = $collection_products->findOne(["name" => $item]); //find products in db
+                                            $sum = $sum + (float)$item->price;
+                                        } ?>
+                                        <p>Total <span>   <?php echo $sum; ?></span>$</p>
                                         <button class="btn btn-block"><a data-target="#checkout_modal" data-toggle="modal" href="#checkout_modal">Checkout</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--modal checkout, payment form-->
+        <section>
+            <div class="modal" id="checkout_modal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h3>Checkout</h3>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="order.php?user=<?php echo $json->email; ?>" method="post">
+                                            <div class="form-outline">
+                                                <label class="form-label" for="card_num">Card Number</label>
+                                                <input type="text" class="form-control" id="card_num" required maxlength="19"/>
+                                            </div>
+                                            <div class="form-outline">
+                                                <label class="form-label" for="card_name">Cardholder Name</label>
+                                                <input type="text" class="form-control" id="card_name" required/>
+                                            </div>
+                                            <div class="form-outline">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="card_expire">Expiry</label>
+                                                        <input type="text" class="form-control" id="card_expire" required>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="card_cvv">CVV</label>
+                                                        <input type="text" class="form-control" id="card_cvv" maxlength="3" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-outline">
+                                                <label class="form-label" for="alt_pay">Or Purchase with:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4 justify-content-center d-flex ">
+                                                        <input type="radio" class="btn-check" name="alt_pay" id="paypal" autocomplete="off">
+                                                        <label class="btn btn-secondary" for="paypal"><span class="fa fa-paypal"></span> PayPall</label>
+                                                    </div>
+                                                    <div class="col-md-4 justify-content-center d-flex ">
+                                                        <input type="radio" class="btn-check" name="alt_pay" id="google" autocomplete="off">
+                                                        <label class="btn btn-secondary" for="google"><span class="fa fa-google"></span> Google Pay</label>
+                                                    </div>
+                                                    <div class="col-md-4 justify-content-center d-flex ">
+                                                        <input type="radio" class="btn-check" name="alt_pay" id="apple" autocomplete="off">
+                                                        <label class="btn btn-secondary" for="apple"><span class="fa fa-apple"></span> Apple Pay</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-outline">
+                                                <br>
+                                                <label class="form-label" for="sign_pass">Billing Address</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <input class="form-control zip" type="text" placeholder="Number" required>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input class="form-control state" type="text" placeholder="Street" required>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input class="form-control zip" type="text" placeholder="City" required>
+                                                    </div>
+                                                </div>
+                                                <div class="address">
+                                                    <select class="form-select">
+                                                        <option value="4" selected>United States</option>
+                                                        <option value="1">India</option>
+                                                        <option value="2">Australia</option>
+                                                        <option value="3">Greece</option>
+                                                        <option value="3">Germany</option>
+                                                        <option value="3">UK</option>
+                                                        <option value="3">Italy</option>
+                                                    </select>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <input class="form-control zip" type="text" placeholder="ZIP" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input class="form-control state" type="text" placeholder="State" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-block">Purchase <span><?php echo $sum; ?></span> <span>$</span></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -314,8 +405,8 @@
                                 <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><img src="<?php echo $product->images->pic1; ?>.jpg"/></a></td>
                                 <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><?php echo $product->name; ?></a></td>
                                 <td><?php echo $product->price; ?></td>
-                                <td><button><a href="favorites.php"><i class="fa fa-heart"></i></a></button></td>
-                                <td><button><i class="fa fa-shopping-bag"></i></button></td>
+                                <td><button><a href="favorites.php?action=remove&item=<?php echo $product->name; ?>&user=<?php echo $json->email; ?>"><i class="fa fa-heart"></i></a></button></td>
+                                <td><button><a href="cart.php?action=add&item=<?php echo $product->name; ?>&user=<?php echo $json->email; ?>"><i class="fa fa-shopping-bag"></i></a></button></td>
                             </tr>
                             <!--modal for product info-->
                             <!--i variable uniquely identifies each modal-->
@@ -394,79 +485,68 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h2>Your Orders</h2>
-                        <table class="table table-borderedless">
+                        <table id="1" class="table table-borderedless">
+                            <?php $i=0;
+                            foreach ($json->orders as $order) {  //for each order
+                                $item = $collection_products->findOne(["name" => $order[0]]); //find first item of each order ?>
                             <tr>
-                                <td><a href="#order_modal" data-toggle="modal" data-target="#order_modal"><img src="items/item1.jpg" style="opacity: 0.5"/></a></td>
-                                <td><a href="#order_modal" data-toggle="modal" data-target="#order_modal"><span>17</span> Items</a></td>
-                                <td>Total: <span>14.60$</span></td>
+                                <td><a href="#order<?php echo $i ?>" data-toggle="modal" data-target="#order<?php echo $i ?>"><img src="<?php echo $item->images->pic1; ?>.jpg" style="opacity: 0.5"/></a></td>
+                                <?php $count = count($order)-1;//count items in order, -1 containing total cost of order?>
+                                <td><a href="#order<?php echo $i ?>" data-toggle="modal" data-target="#order<?php echo $i ?>"><span><?php echo $count; ?></span> Items</a></td>
+                                <td>Total: <span><?php echo $order[$count]->total.'$'; ?></span></td>
                             </tr>
-                            <tr>
-                                <td><a href="#order_modal" data-toggle="modal" data-target="#order_modal"><img src="items/item7.jpg" style="opacity: 0.5"/></a></td>
-                                <td><a href="#order_modal" data-toggle="modal" data-target="#order_modal"><span>2</span> Items</a></td>
-                                <td>Total: <span>13.00$</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <h2>Products you sold</h2>
-                        <!--TO DO redirect to sell product page-->
-                        <table class="table table-borderedless">
-                            <tr>
-                                <td><a href="#"><img src="items/item1.jpg"/></a></td>
-                                <td><a href="#">Organic Handmade Striped Dress</a></td>
-                                <td>14.60$</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#"><img src="items/item7.jpg"/></a></td>
-                                <td><a href="#">Beaded Silver Necklace</a></td>
-                                <td>13.00$</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="modal" id="order_modal" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <h3>Order</h3>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!--TO DO add data from db-->
-                                        <table class="table table-borderedless">
-                                            <tr>
-                                                <td><img src="items/item1.jpg"/></td>
-                                                <td>Organic Handmade Striped Dress</td>
-                                                <td>14.60$</td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="items/item7.jpg"/></td>
-                                                <td>Beaded Silver Necklace</td>
-                                                <td>13.00$</td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="items/item8.jpg"/></td>
-                                                <td>Leather Shoulder bag</td>
-                                                <td>23.00$</td>
-                                            </tr>
-                                        </table>
-                                        <hr>
-                                        <!--TO DO fix total with js-->
-                                        <p>Total <span>   10</span>$</p>
+                            <div class="modal" id="order<?php echo $i ?>" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <h3>Order</h3>
+                                            <div class="container">
+                                                <div class="table">
+                                                    <?php foreach ($order as $item) {
+                                                        $product = $collection_products->FindOne(["name" => $item]);
+                                                        if (gettype($item) != 'object') { ?>
+                                                        <div class="row">
+                                                            <div class="cell"><img src="<?php echo $product->images->pic1; ?>.jpg"/></div>
+                                                            <div class="cell"><?php echo $product->name ?></div>
+                                                            <div class="cell"><?php echo $product->price ?></div>
+                                                        </div>
+                                                        <hr>
+                                                    <?php } } ?>
+                                                </div>
+                                                        <hr>
+                                                <p><span><strong>Total:    <?php echo $order[$count]->total.'$'; ?></strong></span></p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php $i++; } ?>
+                        </table>
+                    </div>
+                    <!--products sold by this user-->
+                    <?php $result=$collection_products->find(["seller" => $json->email]); //fond products sold by this user ?>
+                    <div class="col-md-6">
+                        <h2>Products you sell</h2>
+                        <table class="table table-borderedless">
+                        <?php foreach ($result as $product) { //show all products in array ?>
+                            <tr>
+                                <td><img src="<?php echo $product->images->pic1; ?>.jpg"/></td>
+                                <td><?php echo $product->name; ?></td>
+                                <td><?php echo $product->price; ?></td>
+                                <td><a href="edit_product.php?product=<?php echo $product->name ?>&user=<?php echo $json->email ?>"><i class="fa fa-edit"></i></a></td>
+                                <td><a href="sell.php?action=delete&name=<?php echo $product->name ?>"><i class="fa fa-close"></i></a></td>
+                            </tr>
+                        <?php } ?>
+                        </table>
                     </div>
                 </div>
             </div>
         </section>
+        
         <!--sell a product, promotion button-->
         <button type="button" class="btn" id="promo"><a href="sell.html">+ Sell a Product</a></button>
         <!--footer-->

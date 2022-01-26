@@ -1,16 +1,16 @@
 <?php
 
-    //start xampp/apache
-    //start mongo -> (adm) net start mongodb
-    //start mongo shell -> (adm) mongo
-    //access php files localhost/pr1/final/login.php
     require '../vendor/autoload.php';
+    include 'config.php';
 
-    $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
-    $db = $m->Thriftie_DB; //database
-    $collection_users = $db->Users; //collection
-    $collection_products = $db->Products;
+    //remove product from favorites
+    if ($_GET['action'] == 'remove') {
+        $user = $collection_users->findOne(["email" => $_GET['user']]);  //find user
+        $key = array_search($_GET['item'], (array)$user->favorites);  //get position of item in favorites array
+        unset($user->favorites[$key]);  //delete item from favorites array
+        $result = $collection_users->UpdateOne(["email" => $_GET['user']], ['$set' => [ "favorites" => (array)$user->favorites]]); //remove item
+    }
 
-    echo $product->name;
+    echo '<script>window.location.replace("user.php");</script>';
 
 ?>

@@ -205,8 +205,6 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-block">Update</button>
-                        <span>OR</span>
-                        <button class="btn btn-block"><a href="sell.php?action=delete&name=<?php echo $item->name ?>">Delete this Item</a></button>
                     </form>
                 </div>
             </div>

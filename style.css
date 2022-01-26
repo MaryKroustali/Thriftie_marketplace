@@ -166,6 +166,9 @@ footer .btn {
     width: 100%;
     height: 201px;
 }
+.card {
+    margin-bottom: 40px;
+}
 .col-sm-3 .card .btn { /*cards*/
     width: 100%;
     height: 310px;
@@ -531,6 +534,9 @@ button:hover, button:focus {
 #cart_modal .btn {
     margin: 10px 0px !important;
 }
+#cart_modal td a {
+    color: #5c142c;
+}
 #cart_modal a {
     color: white;
     font-size: 16px;
@@ -546,6 +552,9 @@ button:hover, button:focus {
     font-weight: bold;
     font-size: 18px;
     color: #5c142c;
+}
+#cart .modal   {
+    font-size: blue;
 }
 /*checkout form modal*/
 #checkout_modal .modal-body h3 {
@@ -665,6 +674,9 @@ button:hover, button:focus {
     margin-top: 630px;
     margin-left: 30%;
     font-size: 17px !important;
+}
+#sell button a:hover {
+    text-decoration: none;
 }
 #sell .btn-block:hover { 
     color: #e9c1e2;
@@ -898,23 +910,38 @@ button:hover, button:focus {
     text-decoration: none;
 }
 /*view order modal*/
-#order_modal .modal-header {
+#history .modal-header {
     border-bottom: 0 none; /*remove bottom line*/
 }
-#order_modal .modal-body h3 {
+#history .modal-body h3 {
     padding: 0px 0 20px 0;
     font-weight: bold;
     font-size: 25px;
     color: #5c142c;
 }
-#order_modal img {
+#history div img {
     width: 100px;
     height: 90px !important;
 }
-#order_modal p, #order_modal span{
-    font-weight: bold;
+#history p, #history span{
     font-size: 18px;
     color: #5c142c;
+}
+#history .table {
+    display: table;
+    width:100%;
+}
+#history .row {
+    display: table-row;
+  
+}
+#history .cell {
+    display: table-cell;
+    color: #5c142c;
+    text-align: left;
+}
+#history .cell img {
+    text-align: right;
 }
 /*RESPONSIVE*/
 /*tablet view*/

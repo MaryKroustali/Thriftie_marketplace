@@ -1,7 +1,13 @@
 <?php
 
+    require '../vendor/autoload.php';
     include 'config.php';  //connect to db
 
+    if ($_GET['action'] == 'delete') {
+        $delete = $collection_products->DeleteOne(["name" => $_GET['name']]);
+        echo '<script>window.location.replace("user.php");</script>';
+        exit();
+    }
     //get product images
     $files = $_POST['files'];  //multiple files uploaded
     $array_files = new stdClass();
@@ -53,7 +59,14 @@
             "category" => '' //for admin
         );
 
-    $search = $collection_products->InsertOne($document);
+    if ($_GET['action'] == 'update') {
+        $document["seller"] = $_GET['user'];
+        $update = $collection_products->UpdateOne(["name" => $_GET['name']], ['$set' => $document]);
+    }
+    else {
+        $search = $collection_products->InsertOne($document);
+    }
 
     echo '<script>window.location.replace("user.php");</script>';
+
 ?>
