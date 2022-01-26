@@ -18,6 +18,7 @@
 - [ ] favorites change icon
 - [x] products sold history
 - [x] order history
+- [ ] delete account
 ### back
 - [x] sign up (session)
 - [x] login (session)
