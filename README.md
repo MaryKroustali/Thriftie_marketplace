@@ -23,12 +23,12 @@
 - [x] sign up (session)
 - [x] login (session)
 - [x] logout (session check)
-- [ ] remove product from favorites user profile
+- [x] remove product from favorites user profile
 - [ ] remove product from favorites general 
 - [ ] add product to favorites
 - [x] load favorites from db
 - [ ] remove product from cart
-- [ ] add to cart user
+- [x] add to cart user
 - [ ] add to cart general
 - [x] products sold history (edit product no images/delete no confirm)
 - [x] edit sold product (no images/redirect)
