@@ -19,6 +19,7 @@
 - [x] products sold history
 - [x] order history
 - [ ] delete account
+- [ ] cart (no detailed view)
 ### back
 - [x] sign up (session)
 - [x] login (session)
