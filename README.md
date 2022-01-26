@@ -47,7 +47,10 @@
 - [ ] sort products by
 - [x] get by category (remove gift category)
 - [x] product descr modal (sales + rating hardcoded)
-- [ ] checkout Cart (remove products/remove after 24h/retrieve from db/add to history/total)
+- [x] checkout remove products from cart
+- [ ] remove products from cart after 24h
+- [x] retrieve from db
+- [x] add order to history + total
 - [ ] contact from about us (redirect)
 - [ ] subscribe to newsletter (redirect)
 
