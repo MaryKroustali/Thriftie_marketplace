@@ -33,7 +33,7 @@
 - [x] add to cart user (redirect)
 - [ ] add to cart general
 - [x] load cart from db
-- [ ] get cart total automatically
+- [x] get cart total automatically
 - [x] products sold history (edit product no images/delete no confirm)
 - [x] edit sold product (no images/redirect)
 - [x] delete product sold (confirmation/redirect)
