@@ -22,6 +22,7 @@
 - [ ] cart (no detailed view)
 - [ ] checkout form validiity + customization
 - [ ] review eshop
+- [x] contact from about us
 ### back
 - [x] sign up (session)
 - [x] login (session)
@@ -51,8 +52,6 @@
 - [ ] remove products from cart after 24h
 - [x] retrieve from db
 - [x] add order to history + total
-- [ ] contact from about us (redirect)
-- [ ] subscribe to newsletter (redirect)
 - [ ] get sells of each seller
 
 ## Admin
