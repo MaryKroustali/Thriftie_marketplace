@@ -1,17 +1,7 @@
 <?php
 
-    //start xampp/apache
-    //start mongo -> (adm) net start mongodb
-    //start mongo shell -> (adm) mongo
-    //access php files localhost/pr1/final/login.php
     require '../vendor/autoload.php';
-
-    $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
-    $db = $m->Thriftie_DB; //database
-    $collection_products = $db->Products; //collection
-    $collection_users = $db->Users;
-    //get values from html input fields
-    //execute query
+    include 'config.php'; //connect to db
 
     //get all products
     if ($_GET['action'] == 'all') {
@@ -41,8 +31,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
         <link rel="stylesheet" href="style.css" type="text/css">
-        <!--import JavaScript functions-->
-        <script src="functions.js" type="text/javascript"></script>
+        <!--import JQuery pagination function-->
+        <script src="pagination.js" type="text/javascript"></script>
         <!--import bootstrap file-->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -110,10 +100,10 @@
         <section>
             <div class="bg-1">
                 <div class="container">
-                    <div class="row">
-                        <?php
-                            $i = 0;  //counter to add row in each 4 products
-                            foreach ($result as $product) { ?>
+                    <?php
+                        $i = 0;  //counter to add row in each 4 products ?>
+                        <div class="row">
+                        <?php foreach ($result as $product) { ?>
                                 <div class="col-sm-3"> <!--card product-->
                                     <div class="card">
                                         <button type="button" class="btn" data-toggle="modal" data-target="#product<?php echo $i ?>"> <!--on click on card get modal-->
@@ -165,7 +155,7 @@
                                                     <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
                                                     <!--get multiple material tags-->
                                                     <h3>Material:
-                                                    <?php foreach ($product->material as $material) { ?>
+                                                    <?php foreach ($product->materials as $material) { ?>
                                                         <span class="badge badge-secondary"><?php echo $material; ?></span>
                                                     <?php } ?>
                                                     </h3>
@@ -192,12 +182,7 @@
                                     </div>
                                 </div>
                             <?php $i++;
-                            if ($i == 4) { //on 4th product open div row ?>
-                                <div class="row">
-                            <?php }
-                            if ($i == 8) {  //on 8th product close div row ?>
-                                </div>
-                            <?php $i=0; } //after 8th product initialize counter for next 4 products ?>
+                             //after 8th product initialize counter for next 4 products ?>
                         <?php } ?>
                     </div>
                 </div>
@@ -292,7 +277,6 @@
         </section>
         <!--cart-->
         <!--TO DO fix cart to be adjustable-->
-        <!--TO DO fix buttons to remove item from cart-->
         <section>
             <div class="modal" id="cart_modal" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
@@ -422,14 +406,14 @@
                 </div>
             </div>
         </section>
-        <!--Pagination
+        <!--Pagination-->
         <ul class="pagination justify-content-center">
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li> 
+           <!--<?php $name = 8; ?>
             <li class="page-item active"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>-->
+            -->
+        </ul>
         <!--sell a product, promotion button-->
         <button type="button" class="btn" id="promo"><a href="sell.html">+ Sell a Product</a></button>
         <!--footer-->
