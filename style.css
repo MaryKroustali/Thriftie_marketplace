@@ -101,6 +101,11 @@ footer .btn {
     border: none;
     color: #5c142c !important;
 }
+.pagination .page-link .active {
+    background-color: #e9c1e2 !important;
+    border: none;
+    color: #5c142c !important;
+}
 #presection p {  /*recommended for you*/
     color:#5c142c;
     font-weight: bold;
@@ -300,13 +305,11 @@ button:hover, button:focus {
     font-size: 15px;
     background-color: #e2d6da;
 }
-#newsletter {
+#feedback {
     width: 89%;
-    padding-bottom: 40px;
-    padding-top: 30px;
     margin: 0 0 50px 10%;
 }
-#newsletter h1 {
+#feedback h1 {
     color:#5c142c;
     font-weight: bold;
     font-size: 25px;
@@ -316,24 +319,58 @@ button:hover, button:focus {
     float: left;
     width: 70%;
 }
-#newsletter .btn {
-    outline: none;
-	width: 10%;
-	padding: 10px;
-	background-color: #5c142c;
-	border: none;
-    font-size: 15px;
-}
-#newsletter p {
+#feedback p {
     width: 82%;
     font-size: 17px;
-    padding: 30px;
     font-weight: bold;
 }
-#newsletter input {
-    width: 20%;
-    padding: 21px;
-    font-size: 15px;
+#feedback .form {
+    width: 400px;
+    margin-left: 32%;
+    margin-right: auto;
+}
+#feedback .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#feedback .btn {
+    margin: 10px 0px !important;
+    background-color: #5c142c;
+    color: #e2d6da;
+    font-size: 18px;
+}
+#feedback .rating {  /*on hover show stars*/
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+#feedback .rating>input {  /*dont show radio buttons*/
+    display: none
+}
+#feedback .rating>label { /*show stars*/
+    font-size: 30px;
+    font-weight: 300;
+    color: #5c142c;
+    cursor: pointer
+}
+#feedback .rating>label::before { /*change star styling*/
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+#feedback .rating>label:hover:before,  /*styling before hover*/
+#feedback .rating>label:hover~label:before {
+    opacity: 1 !important
+}
+#feedback .rating>input:checked~label:before { /*on click on star*/
+    opacity: 1
+}
+#feedback .modal a {
+    color: #5c142c;
 }
 /*Help center*/
 #contact h1 {
@@ -374,6 +411,9 @@ button:hover, button:focus {
     float: right;
     margin: 20px;
     font-size: 18px;
+}
+#contact h3 {
+    padding: 30px !important;
 }
 #information {
 	width: 89%;

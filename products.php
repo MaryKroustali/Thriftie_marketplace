@@ -31,8 +31,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
         <link rel="stylesheet" href="style.css" type="text/css">
+        <!--import JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!--import JQuery pagination function-->
-        <script src="pagination.js" type="text/javascript"></script>
+        <script src="pagination.js?v=1" type="text/javascript"></script>
         <!--import bootstrap file-->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -104,90 +106,104 @@
                         $i = 0;  //counter to add row in each 4 products ?>
                         <div class="row">
                         <?php foreach ($result as $product) { ?>
-                                <div class="col-sm-3"> <!--card product-->
-                                    <div class="card">
-                                        <button type="button" class="btn" data-toggle="modal" data-target="#product<?php echo $i ?>"> <!--on click on card get modal-->
-                                            <img src="<?php echo $product->images->pic1; ?>.jpg">
-                                            <div class="card-body">
-                                                <p class="card-text"><?php echo $product->name; ?></p>
-                                                <br><br>
-                                                <p class="text-right"><?php echo $product->price; ?></p>
-                                            </div>
-                                        </button>
-                                    </div>
+                            <div class="col-sm-3"> <!--card product-->
+                                <div class="card">
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#product<?php echo $i ?>"> <!--on click on card get modal-->
+                                        <img src="<?php echo $product->images->pic1; ?>.jpg">
+                                        <div class="card-body">
+                                            <p class="card-text"><?php echo $product->name; ?></p>
+                                            <br><br>
+                                            <p class="text-right"><?php echo $product->price; ?></p>
+                                        </div>
+                                    </button>
                                 </div>
-                                <!--modal for product info-->
-                                <!--i variable uniquely identifies each modal-->
-                                <div class="modal" id="product<?php echo $i ?>" role="dialog">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h2><?php echo $product->name; ?></h2>
-                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
-                                            </div>
-                                            <div class="modal-body">
-                                                <!--carousel, multiple product images-->
-                                                <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
-                                                    <div class="carousel-inner" role="listbox">
-                                                        <!--show multiple images in carousel-->
-                                                        <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg"></div>
-                                                        <?php foreach ($product->images as $pic) {
-                                                        if ($pic == $product->images->pic1) { //skip first active pic
-                                                            continue; }?>
-                                                        <div class="item"><img src="<?php echo $pic; ?>.jpg"></div>
-                                                        <?php } ?>
-                                                    </div>
-                                                    <button><i class="fa fa-heart"></i></button>
-                                                    <!-- carousel navigation buttons-->
-                                                    <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
-                                                    <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
-                                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                    </a>
-                                                    <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
-                                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                    </a>
+                            </div>
+                            <!--modal for product info-->
+                            <!--i variable uniquely identifies each modal-->
+                            <div class="modal" id="product<?php echo $i ?>" role="dialog">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2><?php echo $product->name; ?></h2>
+                                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                                        </div>
+                                        <div class="modal-body">
+                                            <!--carousel, multiple product images-->
+                                            <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner" role="listbox">
+                                                    <!--show multiple images in carousel-->
+                                                    <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg"></div>
+                                                    <?php foreach ($product->images as $pic) {
+                                                    if ($pic == $product->images->pic1) { //skip first active pic
+                                                        continue; }?>
+                                                    <div class="item"><img src="<?php echo $pic; ?>.jpg"></div>
                                                     <?php } ?>
                                                 </div>
-                                                <div id="info"> <!--info text about product-->
-                                                    <h3>Description:</h3>
-                                                    <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
-                                                    <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
-                                                    <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
-                                                    <!--get multiple material tags-->
-                                                    <h3>Material:
-                                                    <?php foreach ($product->materials as $material) { ?>
-                                                        <span class="badge badge-secondary"><?php echo $material; ?></span>
-                                                    <?php } ?>
-                                                    </h3>
-                                                    <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
-                                                </div>
-                                                <!--TO DO get seller info from db-->
-                                                <div id="seller_info"> <!-- info text about seller-->
-                                                    <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
-                                                    <h2><?php echo $seller->name; ?></h2>
-                                                    <hr>
-                                                    <h4><?php echo $seller->location; ?></h4>
-                                                    <span>54 sales</span>
-                                                    <span class="fa fa-star checked"></span> <!--seller rating-->
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <br> <!-- seller note-->
-                                                    <span><?php echo $seller->description; ?></span>
-                                                </div>
-                                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
+                                                <button><i class="fa fa-heart"></i></button>
+                                                <!-- carousel navigation buttons-->
+                                                <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
+                                                <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                </a>
+                                                <?php } ?>
                                             </div>
+                                            <div id="info"> <!--info text about product-->
+                                                <h3>Description:</h3>
+                                                <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
+                                                <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
+                                                <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
+                                                <!--get multiple material tags-->
+                                                <h3>Material:
+                                                <?php foreach ($product->materials as $material) { ?>
+                                                    <span class="badge badge-secondary"><?php echo $material; ?></span>
+                                                <?php } ?>
+                                                </h3>
+                                                <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
+                                            </div>
+                                            <!--TO DO get seller info from db-->
+                                            <div id="seller_info"> <!-- info text about seller-->
+                                                <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
+                                                <h2><?php echo $seller->name; ?></h2>
+                                                <hr>
+                                                <h4><?php echo $seller->location; ?></h4>
+                                                <?php $count=0;
+                                                $sales = $collection_products->find(["seller" => $seller->email]);  //count sales of each seller
+                                                foreach ($sales as $sale) {
+                                                    $count++;
+                                                } ?>
+                                                <span><?php echo $count ?> sales</span>
+                                                <span class="fa fa-star checked"></span> <!--seller rating-->
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <br> <!-- seller note-->
+                                                <span><?php echo $seller->description; ?></span>
+                                            </div>
+                                            <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                                         </div>
                                     </div>
                                 </div>
-                            <?php $i++;
-                             //after 8th product initialize counter for next 4 products ?>
-                        <?php } ?>
+                            </div>
+                        <?php $i++; } ?>
                     </div>
                 </div>
             </div>
         </section>
+        <!--Pagination-->
+        <ul class="pagination justify-content-center">
+           <?php $links = $i/8; //8 products per page
+            for ($k = 0; $k < $links; $k++) {
+                if ($k == 0) { //first item apply active ?>
+                <li class="page-item active"><a class="page-link" rel="<?php echo 0; ?>" href="#"><?php echo 1; ?></a></li>
+            <?php } else { ?>
+                <li class="page-item"><a class="page-link" rel="<?php echo $k; ?>" href="#"><?php echo $k+1; ?></a></li>
+            <?php  }
+        } ?>
+        </ul>
         <section>
             <div class="modal" id="login_modal" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -406,14 +422,6 @@
                 </div>
             </div>
         </section>
-        <!--Pagination-->
-        <ul class="pagination justify-content-center">
-           <!--<?php $name = 8; ?>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            -->
-        </ul>
         <!--sell a product, promotion button-->
         <button type="button" class="btn" id="promo"><a href="sell.html">+ Sell a Product</a></button>
         <!--footer-->

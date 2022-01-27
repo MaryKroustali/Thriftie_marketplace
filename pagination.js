@@ -1,20 +1,9 @@
 $(document).ready (function () {
 
-        var pageSize = 4; //8 items per page
-        var pageFull = $name;
-        var pageNumber = 2;  //get products/8
-
-        for (i = 0;i < pageNumber;i++) {
-            var pageNum = i+1;
-            if (i == 0) {
-                $('.pagination').append ('<li class="page-item active"><a class="page-link" rel="'+0+'" href="#">'+pageNum+'</a></li>'); //add first active page button
-            } else {
-                $('.pagination').append ('<li class="page-item"><a class="page-link" rel="'+i+'" href="#">'+pageNum+'</a></li>'); //add page buttons
-            }
-        }
+        var pageSize = 8; //8 items per page
 
         $('.card').hide();
-        $('.card').slice(0,4).show(); //show first 8 products
+        $('.card').slice(0,8).show(); //show first 8 products
         $('.pagination li a').not('.previous, .next').bind('click', function() {  //when page buttons are clicked
                 $('.card').hide(); //hide all products
                 $('.pagination li').removeClass('active');
