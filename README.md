@@ -9,7 +9,7 @@
 - [x] logout (ask user)
 - [x] user profile
 - [x] product page
-- [ ] user review (?)
+- [ ] user review
 - [x] about us
 - [x] checkout Cart (php)
 - [x] checkout payment form
@@ -22,7 +22,7 @@
 - [ ] cart (no detailed view)
 - [ ] checkout form validiity + customization
 - [x] contact from about us
-- [x] rate us + pop up
+- [x] rate us + pop up (no back?)
 
 ### back
 - [x] sign up (session)
@@ -43,7 +43,7 @@
 - [x] delete product sold (confirmation/redirect)
 - [x] view order history details + total
 - [x] sell product to db (no seller passed/redirect)
-- [ ] seller review (?)
+- [ ] seller review
 - [x] search products
 - [x] add user info
 - [ ] sort products by
