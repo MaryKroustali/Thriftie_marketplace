@@ -53,6 +53,7 @@
 - [x] add order to history + total
 - [ ] contact from about us (redirect)
 - [ ] subscribe to newsletter (redirect)
+- [ ] get sells of each seller
 
 ## Admin
 - [ ] home page admin
