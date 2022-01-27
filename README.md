@@ -74,8 +74,8 @@
 - [ ] how to check if a user is signed in
 - [ ] login/signup modals overflow
 - [ ] modals on tablet view close button disabled
-- [ ] check responsive again
+- [ ] change color in picture add image for product
+- [ ] check responsive again!
 - [ ] notification in signup/login errors
-- [ ] add a image pic new color
 - [ ] add images to db as jpg
-- [ ] add a config to connect to db
+- [ ] return message when query doesnt return results
