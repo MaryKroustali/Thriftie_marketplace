@@ -53,7 +53,8 @@
 - [ ] remove products from cart after 24h
 - [x] retrieve from db
 - [x] add order to history + total
-- [ ] get sells of each seller
+- [x] get sells of each seller
+- [ ] get review of each seller
 
 ## Admin
 - [ ] home page admin
