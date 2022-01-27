@@ -21,9 +21,9 @@
 - [ ] delete account
 - [ ] cart (no detailed view)
 - [ ] checkout form validiity + customization
-- [ ] review eshop
 - [x] contact from about us
-- [ ] rate us 
+- [x] rate us + pop up
+
 ### back
 - [x] sign up (session)
 - [x] login (session)
