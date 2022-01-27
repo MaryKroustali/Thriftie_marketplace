@@ -3,7 +3,7 @@
 ## User
 ### front
 - [x] home page (php)
-- [ ] add pagination
+- [x] add pagination
 - [x] sign up (handle error)
 - [x] login (handle error)
 - [x] logout (ask user)
