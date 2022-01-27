@@ -23,6 +23,7 @@
 - [ ] checkout form validiity + customization
 - [ ] review eshop
 - [x] contact from about us
+- [ ] rate us 
 ### back
 - [x] sign up (session)
 - [x] login (session)
