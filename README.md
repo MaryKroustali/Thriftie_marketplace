@@ -2,7 +2,7 @@
 
 ## User
 ### front
-- [x] home page (php)
+- [x] home page (newest)
 - [x] add pagination
 - [x] sign up (handle error)
 - [x] login (handle error)
@@ -18,11 +18,9 @@
 - [ ] favorites change icon
 - [x] products sold history
 - [x] order history
-- [ ] delete account
 - [ ] cart (no detailed view)
-- [ ] checkout form validiity + customization
-- [x] contact from about us
-- [x] rate us + pop up (no back?)
+- [x] contact from about us (no back)
+- [x] rate us + pop up (no back)
 
 ### back
 - [x] sign up (session)
@@ -46,7 +44,6 @@
 - [ ] seller review
 - [x] search products
 - [x] add user info
-- [ ] sort products by
 - [x] get by category (remove gift category)
 - [x] product descr modal (sales + rating hardcoded)
 - [x] checkout remove products from cart
@@ -82,3 +79,6 @@
 - [ ] notification in signup/login errors
 - [ ] add images to db as jpg
 - [ ] return message when query doesnt return results
+- [ ] checkout form validiity + customization
+- [ ] delete account
+- [ ] sort products by
