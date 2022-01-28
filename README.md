@@ -9,7 +9,8 @@
 - [x] logout (ask user)
 - [x] user profile
 - [x] product page
-- [ ] user review
+- [x] user review
+- [ ] user review on product modal
 - [x] about us
 - [x] checkout Cart (php)
 - [x] checkout payment form
