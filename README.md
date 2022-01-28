@@ -73,12 +73,10 @@
 # Struggles
 - [ ] how to check if a user is signed in
 - [ ] login/signup modals overflow
-- [ ] modals on tablet view close button disabled
 - [ ] change color in picture add image for product
 - [ ] check responsive again!
 - [ ] notification in signup/login errors
 - [ ] add images to db as jpg
-- [ ] return message when query doesnt return results
 - [ ] checkout form validiity + customization
 - [ ] delete account
 - [ ] sort products by
