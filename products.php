@@ -14,7 +14,7 @@
     //sort products by criteria
     if ($_GET['action'] == 'sort') {
         if ($_GET['by'] == 'price_low') {
-           echo 1;
+            echo 'to do';
         }
     }
 
@@ -163,7 +163,6 @@
                                                 </h3>
                                                 <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
                                             </div>
-                                            <!--TO DO get seller info from db-->
                                             <div id="seller_info"> <!-- info text about seller-->
                                                 <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
                                                 <h2><?php echo $seller->name; ?></h2>
@@ -175,11 +174,46 @@
                                                     $count++;
                                                 } ?>
                                                 <span><?php echo $count ?> sales</span>
-                                                <span class="fa fa-star checked"></span> <!--seller rating-->
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
+                                                <!--seller rating-->
+                                                <?php //count rating stars and find average
+                                                $sum = 0;
+                                                $count = 0;
+                                                foreach($seller->rate as $rating) {  //get total price of order
+                                                    $sum = $sum + (int)$rating->stars;
+                                                    $count++;
+                                                }
+                                                $total_rate = $sum/$count;
+                                                if ((int)$total_rate == 1) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 2) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 3) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 4) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 5) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                <?php } ?>
                                                 <br> <!-- seller note-->
                                                 <span><?php echo $seller->description; ?></span>
                                             </div>

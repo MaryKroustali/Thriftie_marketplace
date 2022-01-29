@@ -21,7 +21,8 @@
             "description" => '',
             "cart" => [],
             "orders" => [],
-            "favorites" => []
+            "favorites" => [],
+            "rate" => []
         );
     //search if user already exists
     $result = $collection->findOne($document);
