@@ -42,8 +42,8 @@
 - [x] delete product sold (confirmation/redirect)
 - [x] view order history details + total
 - [x] sell product to db (no seller passed/redirect)
-- [ ] seller review
-- [ ] retrieve seller review from db
+- [x] seller review
+- [x] retrieve seller review from db
 - [x] search products
 - [x] add user info
 - [x] get by category (remove gift category)
