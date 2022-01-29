@@ -82,3 +82,5 @@
 - [ ] delete account
 - [ ] sort products by (js)
 - [ ] organize random functions
+- [ ] add users and products
+- [ ] fix products
