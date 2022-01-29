@@ -10,7 +10,7 @@
 - [x] user profile
 - [x] product page
 - [x] user review
-- [ ] user review on product modal
+- [x] user review on product modal
 - [x] about us
 - [x] checkout Cart (php)
 - [x] checkout payment form
