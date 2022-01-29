@@ -43,6 +43,7 @@
 - [x] view order history details + total
 - [x] sell product to db (no seller passed/redirect)
 - [ ] seller review
+- [ ] retrieve seller review from db
 - [x] search products
 - [x] add user info
 - [x] get by category (remove gift category)
@@ -52,7 +53,6 @@
 - [x] retrieve from db
 - [x] add order to history + total
 - [x] get sells of each seller
-- [ ] get review of each seller
 
 ## Admin
 - [ ] home page admin
@@ -63,13 +63,13 @@
 
 ## Report/General
 - [ ] 3 taseis
-- [ ] review eshop
-- [x] report part 1
-- [x] report part 2
-- [x] report part 3
-- [x] report part 4
-- [x] report part 5
-- [ ] report part 6
+- [x] review eshop (no back)
+- [x] report part 1 (check)
+- [x] report part 2 (check)
+- [x] report part 3 (check)
+- [x] report part 4 (check)
+- [x] report part 5 (check)
+- [ ] report part 6 (check)
 
 # Struggles
 - [ ] how to check if a user is signed in
@@ -80,4 +80,5 @@
 - [ ] add images to db as jpg
 - [ ] checkout form validiity + customization
 - [ ] delete account
-- [ ] sort products by
+- [ ] sort products by (js)
+- [ ] organize random functions
