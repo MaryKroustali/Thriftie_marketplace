@@ -18,6 +18,8 @@
         <link rel="stylesheet" href="style.css?v=1" type="text/css">
         <!--import JavaScript functions-->
         <script src="functions.js" type="text/javascript"></script>
+        <!--import JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!--import bootstrap file-->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -89,12 +91,15 @@
                                             foreach($json->cart as $item) { //for each item in cart
                                             $item = $collection_products->findOne(["name" => $item]); //find product in db?>
                                             <tr>
-                                                <td><img src="<?php echo $item->images->pic1 ?>.jpg"/></td>
-                                                <td><?php echo $item->name ?></td>
+                                                <!--call modal for product details, pass product as parameter in modal-->
+                                                <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><img src="<?php echo $item->images->pic1 ?>.jpg"/></a></td>
+                                                <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><?php echo $item->name ?></a></td>
                                                 <td><?php echo $item->price ?></td>
                                                 <td><a href="cart.php?action=remove&item=<?php echo $item->name; ?>&user=<?php echo $json->email; ?>"><i class="fa fa-close"></i></a></td>
                                             </tr>
-                                        <?php $i++; } ?>
+                                        <?php $i++; }
+                                        if (count((array)$json->cart) == 0) { //if no products on cart show mesg ?>
+                                            <p id="msg"><?php echo 'No items on cart yet...'; } ?> </p>
                                         </table>
                                         <hr>
                                         <!--get total price of products-->
@@ -108,6 +113,75 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--modal for product info-->
+            <div class="modal" id="product" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="uni"></h2>
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                        </div>
+                        <div class="modal-body">
+                            <!--carousel, multiple product images-->
+                            <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner" role="listbox">
+                                    <!--show multiple images in carousel-->
+                                    <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg" style="width:400px;"></div>
+                                    <?php foreach ($product->images as $pic) {
+                                    if ($pic == $product->images->pic1) { //skip first active pic
+                                        continue; }?>
+                                    <div class="item"><img src="<?php echo $pic; ?>.jpg" style="width:400px;"></div>
+                                    <?php } ?>
+                                </div>
+                                <button><i class="fa fa-heart"></i></button>
+                                <!-- carousel navigation buttons-->
+                                <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
+                                <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                </a>
+                                <?php } ?>
+                            </div>
+                            <div id="info"> <!--info text about product-->
+                                <h3>Description:</h3>
+                                <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
+                                <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
+                                <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
+                                <!--get multiple material tags-->
+                                <h3>Material:
+                                <?php foreach ($product->materials as $material) { ?>
+                                    <span class="badge badge-secondary"><?php echo $material; ?></span>
+                                <?php } ?>
+                                </h3>
+                                <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
+                            </div>
+                            <!--TO DO get seller info from db-->
+                            <div id="seller_info"> <!-- info text about seller-->
+                                <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
+                                <h2><?php echo $seller->name; ?></h2>
+                                <hr>
+                                <h4><?php echo $seller->location; ?></h4>
+                                <?php $count=0;
+                                $sales = $collection_products->find(["seller" => $seller->email]);  //count sales of each seller
+                                foreach ($sales as $sale) {
+                                    $count++;
+                                } ?>
+                                <span><?php echo $count ?> sales</span>
+                                <span class="fa fa-star checked"></span> <!--seller rating-->
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <br> <!-- seller note-->
+                                <span><?php echo $seller->description; ?></span>
+                            </div>
+                            <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                         </div>
                     </div>
                 </div>
@@ -152,7 +226,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4 justify-content-center d-flex ">
                                                         <input type="radio" class="btn-check" name="alt_pay" id="paypal" autocomplete="off">
-                                                        <label class="btn btn-secondary" for="paypal"><span class="fa fa-paypal"></span> PayPall</label>
+                                                        <label class="btn btn-secondary" for="paypal"><span class="fa fa-paypal"></span> PayPal</label>
                                                     </div>
                                                     <div class="col-md-4 justify-content-center d-flex ">
                                                         <input type="radio" class="btn-check" name="alt_pay" id="google" autocomplete="off">
@@ -447,7 +521,7 @@
                                                 <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
                                                 <!--get multiple material tags-->
                                                 <h3>Material:
-                                                <?php foreach ($product->material as $material) { ?>
+                                                <?php foreach ($product->materials as $material) { ?>
                                                     <span class="badge badge-secondary"><?php echo $material; ?></span>
                                                 <?php } ?>
                                                 </h3>
@@ -459,7 +533,12 @@
                                                 <h2><?php echo $seller->name; ?></h2>
                                                 <hr>
                                                 <h4><?php echo $seller->location; ?></h4>
-                                                <span>54 sales</span>
+                                                <?php $count=0;
+                                                $sales = $collection_products->find(["seller" => $seller->email]);  //count sales of each seller
+                                                foreach ($sales as $sale) {
+                                                    $count++;
+                                                } ?>
+                                                <span><?php echo $count ?> sales</span>
                                                 <span class="fa fa-star checked"></span> <!--seller rating-->
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -473,7 +552,9 @@
                                     </div>
                                 </div>
                             </div>
-                    <?php $i++; } ?>
+                    <?php $i++; }
+                    if (count((array)$json->favorites) == 0) { //if no products on cart show mesg ?>
+                            <p id="msg"><?php echo 'No items on favorites yet...'; } ?> </p>
                         </table>
                     </div>
                 </div>
@@ -505,18 +586,22 @@
                                             <h3>Order</h3>
                                             <div class="container">
                                                 <div class="table">
-                                                    <?php foreach ($order as $item) {
+                                                    <?php $i=0;
+                                                    foreach ($order as $item) {
                                                         $product = $collection_products->FindOne(["name" => $item]);
                                                         if (gettype($item) != 'object') { ?>
                                                         <div class="row">
                                                             <div class="cell"><img src="<?php echo $product->images->pic1; ?>.jpg"/></div>
                                                             <div class="cell"><?php echo $product->name ?></div>
                                                             <div class="cell"><?php echo $product->price ?></div>
-                                                        </div>
+                                                            <!--pass seller name to modal via Jquery-->
+                                                            <?php $seller = $collection_users->findOne(["email" => $product->seller]) ?>
+                                                            <div class="cell"><a id="link" href="" data-toggle="modal" data-seller="<?php echo $seller->name; ?>"><i class="fa fa-star"></i></a></div>                                                        </div>
                                                         <hr>
-                                                    <?php } } ?>
+                                                    <?php }  ?>
+                                                   <?php $i++; } ?>
                                                 </div>
-                                                        <hr>
+                                                <hr>
                                                 <p><span><strong>Total:    <?php echo $order[$count]->total.'$'; ?></strong></span></p>
                                             </div>
                                         </div>
@@ -524,8 +609,53 @@
                                 </div>
                             </div>
                         </div>
-                        <?php $i++; } ?>
+                        <?php $i++; }
+                        if (count((array)$json->orders) == 0) { //if no products on cart show mesg ?>
+                                <p id="msg" ><?php echo 'You have no orders yet.'; } ?>
                         </table>
+                        <!--modal rate seller of product-->
+                        <div class="modal" id="rate" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <h3>Rate</h3>
+                                        <span id="seller"></span>
+                                        <form id="form" method="POST" onsubmit="seller()">
+                                            <div class="form-outline">
+                                                <div class="form-outline">
+                                                    <div class="rating text-center">
+                                                        <input type="radio" name="rating" value="5" id="5">
+                                                        <label for="5">☆</label>
+                                                        <input type="radio" name="rating" value="4" id="4">
+                                                        <label for="4">☆</label>
+                                                        <input type="radio" name="rating" value="3" id="3">
+                                                        <label for="3">☆</label>
+                                                        <input type="radio" name="rating" value="2" id="2">
+                                                        <label for="2">☆</label>
+                                                        <input type="radio" name="rating" value="1" id="1">
+                                                        <label for="1">☆</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-outline">
+                                                    <!--script to pass seller name in rating page as parameter-->
+                                                    <script>
+                                                        function seller () {
+                                                        var seller = document.getElementById("seller").innerHTML;
+                                                        document.getElementById("form").action = 'rate_seller.php?user='+seller;
+                                                    }
+                                                    </script>
+                                                    <textarea class="form-control" rows="3" id="rate" name="rate" placeholder="Describe your experience..."></textarea>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-block">Post</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!--products sold by this user-->
                     <?php $result=$collection_products->find(["seller" => $json->email]); //fond products sold by this user ?>
@@ -546,7 +676,6 @@
                 </div>
             </div>
         </section>
-        
         <!--sell a product, promotion button-->
         <button type="button" class="btn" id="promo"><a href="sell.html">+ Sell a Product</a></button>
         <!--footer-->
@@ -555,5 +684,15 @@
             <button type="button" class="btn btn-outline-dark">Download the app</button>
             <span>&copy; 2021 Thriftie, Second Hand Marketplace</span>
         </footer>
+
+        <!--pass seller as variable to rate modal--> 
+        <script type="text/javascript">
+            $(document).on("click", "#link", function () {
+                var seller = $(this).data('seller');
+                $("#rate span").text(seller);
+                $('#rate').modal('show');
+            });
+        </script>
+      
      </body>
 </html>

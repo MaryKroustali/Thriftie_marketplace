@@ -377,7 +377,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4 justify-content-center d-flex ">
                                                         <input type="radio" class="btn-check" name="alt_pay" id="paypal" autocomplete="off">
-                                                        <label class="btn btn-secondary" for="paypal"><span class="fa fa-paypal"></span> PayPall</label>
+                                                        <label class="btn btn-secondary" for="paypal"><span class="fa fa-paypal"></span> PayPal</label>
                                                     </div>
                                                     <div class="col-md-4 justify-content-center d-flex ">
                                                         <input type="radio" class="btn-check" name="alt_pay" id="google" autocomplete="off">
