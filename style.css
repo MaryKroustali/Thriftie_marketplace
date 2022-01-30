@@ -255,6 +255,15 @@ button:hover, button:focus {
     width: 80%;
     margin-left: 30px;
 }
+.modal-body #ratings {
+    width: 80%;
+    margin-left: 30px;
+}
+.modal-body #ratings h4 {
+    margin-top: 20px;
+    color: #5c142c;
+    font-weight: bold;
+}
 .modal .modal-body .fa-heart { /*add to favorites icon*/
     position: absolute !important;
     top: 5;
@@ -269,6 +278,11 @@ button:hover, button:focus {
 .modal button {
     background: transparent; /*make button transparent*/
     border: none !important;
+}
+.modal #add_cart {
+    position: fixed;  /*do not move when on scroll*/
+    bottom: 40%;  /*fix absolute positioning*/
+    right: 3%;
 }
 /*about us page*/
 #about {
@@ -721,6 +735,10 @@ button:hover, button:focus {
 #sell .btn-block:hover { 
     color: #e9c1e2;
 }
+#msg {
+    font-size: 18px;
+    color: #5c142c;
+}
 /*user profile page*/
 #user {
     width: 60%;
@@ -914,9 +932,12 @@ button:hover, button:focus {
 }
 /*order and selling history*/
 #history {
-    width: 60%;
+    width: 77%;
     margin: 0 0 50px 10%;
     font-size: 15px;
+}
+#history .container {
+    width: 100%;
 }
 #history h1 {
     color:#5c142c;
@@ -973,7 +994,6 @@ button:hover, button:focus {
 }
 #history .row {
     display: table-row;
-  
 }
 #history .cell {
     display: table-cell;
@@ -982,6 +1002,46 @@ button:hover, button:focus {
 }
 #history .cell img {
     text-align: right;
+}
+#rate .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#rate .btn {
+    margin: 10px 0px !important;
+    background-color: #5c142c;
+    color: #e2d6da;
+    font-size: 18px;
+}
+#rate .rating {  /*on hover show stars*/
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+#rate .rating>input {  /*dont show radio buttons*/
+    display: none
+}
+#rate .rating>label { /*show stars*/
+    font-size: 30px;
+    font-weight: 300;
+    color: #5c142c;
+    cursor: pointer
+}
+#rate .rating>label::before { /*change star styling*/
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+#rate .rating>label:hover:before,  /*styling before hover*/
+#rate .rating>label:hover~label:before {
+    opacity: 1 !important
+}
+#rate .rating>input:checked~label:before { /*on click on star*/
+    opacity: 1
 }
 /*RESPONSIVE*/
 /*tablet view*/

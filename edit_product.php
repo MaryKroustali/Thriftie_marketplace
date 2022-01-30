@@ -1,10 +1,12 @@
 <?php //connect to db
 
-    require '../vendor/autoload.php';
     include 'config.php';
+    session_start();
+    if ($_SESSION['log'] == true) {
+        $user = $collection_users->findOne(["email" => $_SESSION['username']]);
+    }
 
     $product = $_GET['product'];  //get product name
-    $json = $_GET['user'];
 
     //find product in db
     $item = $collection_products->findOne(["name" => $product]);
@@ -77,7 +79,7 @@
                         <p>Before you sell a product at Thriftie, make sure you have read our <a href="help center.html">policies</a>.</p>
                     </div>
                     <!--fill form with values of product-->
-                    <form action="sell.php?action=update&name=<?php echo $item->name; ?>&user=<?php echo $json; ?>" method="POST" class="col-md-12">
+                    <form action="sell.php?action=update&name=<?php echo $item->name; ?>" method="POST" class="col-md-12">
                         <div class="col-lg-5 form-outline col-md-12">
                             <label for="files[]" class="form-label">Upload one or more images</label>
                             <input type="file" class="form-control" name="files[]" id="file" required multiple accept="image/.jpg"/>

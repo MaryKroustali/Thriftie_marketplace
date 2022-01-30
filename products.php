@@ -1,7 +1,7 @@
 <?php
 
-    require '../vendor/autoload.php';
     include 'config.php'; //connect to db
+    session_start();
 
     //get all products
     if ($_GET['action'] == 'all') {
@@ -14,7 +14,7 @@
     //sort products by criteria
     if ($_GET['action'] == 'sort') {
         if ($_GET['by'] == 'price_low') {
-            echo 'to do';
+          echo 'ok';
         }
     }
 
@@ -30,7 +30,7 @@
         <!--cart/user login signs-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="style.css?" type="text/css">
         <!--import JQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!--import JQuery pagination function-->
@@ -178,11 +178,20 @@
                                                 <?php //count rating stars and find average
                                                 $sum = 0;
                                                 $count = 0;
+                                                $total_rate = 0;
                                                 foreach($seller->rate as $rating) {  //get total price of order
                                                     $sum = $sum + (int)$rating->stars;
                                                     $count++;
                                                 }
-                                                $total_rate = $sum/$count;
+                                                if ($count != 0)
+                                                    $total_rate = $sum/$count;
+                                                else { ?>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php }
                                                 if ((int)$total_rate == 1) { ?>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star"></span>
@@ -216,8 +225,48 @@
                                                 <?php } ?>
                                                 <br> <!-- seller note-->
                                                 <span><?php echo $seller->description; ?></span>
+                                                <!--show ratings of seller-->
+                                                <div id="ratings">
+                                                    <?php foreach($seller->rate as $rating) {  ?>
+                                                    <h4><?php echo $rating->buyer; ?></h4>
+                                                    <hr>
+                                                    <?php if ($rating->stars == 1) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 2) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 3) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 4) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 5) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                        <?php } ?>
+                                                        <br>
+                                                        <span><?php echo nl2br($rating->comment); ?></span>
+                                                    <?php } ?>
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
+                                        <button id="add_cart" type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                                         </div>
                                     </div>
                                 </div>

@@ -1,7 +1,11 @@
 <?php
 
-    require '../vendor/autoload.php';
     include 'config.php';  //connect to db
+    session_start();
+
+    if ($_SESSION['log'] == true) {
+        $user = $collection_users->findOne(["email" => $_SESSION['username']]);
+    }
 
 ?>
 
@@ -40,7 +44,7 @@
                 <!--navigation bar, links-->
                 <ul class="nav justify-content-center"> <!--align items in center-->
                     <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
-                        <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
+                        <a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="products.php?action=all">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
@@ -88,28 +92,30 @@
                                     <div class="col-md-12">
                                         <table class="table table-borderedless">
                                          <?php $i=0;
-                                            foreach($json->cart as $item) { //for each item in cart
+                                            foreach($user->cart as $item) { //for each item in cart
                                             $item = $collection_products->findOne(["name" => $item]); //find product in db?>
                                             <tr>
                                                 <!--call modal for product details, pass product as parameter in modal-->
                                                 <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><img src="<?php echo $item->images->pic1 ?>.jpg"/></a></td>
                                                 <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><?php echo $item->name ?></a></td>
                                                 <td><?php echo $item->price ?></td>
-                                                <td><a href="cart.php?action=remove&item=<?php echo $item->name; ?>&user=<?php echo $json->email; ?>"><i class="fa fa-close"></i></a></td>
+                                                <td><a href="cart.php?action=remove&item=<?php echo $item->name; ?>&user=<?php echo $user->email; ?>"><i class="fa fa-close"></i></a></td>
                                             </tr>
-                                        <?php $i++; }
-                                        if (count((array)$json->cart) == 0) { //if no products on cart show mesg ?>
-                                            <p id="msg"><?php echo 'No items on cart yet...'; } ?> </p>
+                                        <?php $i++; } ?>
                                         </table>
+                                        <?php if (count((array)$user->cart) == 0) { //if no products on cart show message ?>
+                                            <p style="font-weight:normal"><?php echo 'Nothing here. Add some items to cart...'; ?> </p>
+                                        <?php } else { ?>
                                         <hr>
                                         <!--get total price of products-->
                                         <?php $sum=0;
-                                        foreach($json->cart as $item) {
+                                        foreach($user->cart as $item) {
                                         $item = $collection_products->findOne(["name" => $item]); //find products in db
                                             $sum = $sum + (float)$item->price;
                                         } ?>
                                         <p>Total <span>   <?php echo $sum; ?></span>$</p>
                                         <button class="btn btn-block"><a data-target="#checkout_modal" data-toggle="modal" href="#checkout_modal">Checkout</a></button>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <!--modal for product info-->
+            <!--TO DO modal for product info-->
             <div class="modal" id="product" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -174,13 +180,22 @@
                                 <span><?php echo $count ?> sales</span>
                                 <!--seller rating-->
                                 <?php //count rating stars and find average
-                                $sum = 0;
+                                $sum_rate = 0;
                                 $count = 0;
+                                $total_rate = 0;
                                 foreach($seller->rate as $rating) {  //get total price of order
-                                    $sum = $sum + (int)$rating->stars;
+                                    $sum_rate = $sum_rate + (int)$rating->stars;
                                     $count++;
                                 }
-                                $total_rate = $sum/$count;
+                                if ($count != 0)
+                                    $total_rate = $sum/$count;
+                                else { ?>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                <?php }
                                 if ((int)$total_rate == 1) { ?>
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star"></span>
@@ -214,6 +229,46 @@
                                 <?php } ?>
                                 <br> <!-- seller note-->
                                 <span><?php echo $seller->description; ?></span>
+                                <!--show ratings of seller-->
+                                <div id="ratings">
+                                    <?php foreach($seller->rate as $rating) {  ?>
+                                    <h4><?php echo $rating->buyer; ?></h4>
+                                    <hr>
+                                    <?php if ($rating->stars == 1) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 2) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 3) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 4) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 5) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        <?php } ?>
+                                        <br>
+                                        <span><?php echo nl2br($rating->comment); ?></span>
+                                    <?php } ?>
+                                </div>
                             </div>
                             <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                         </div>
@@ -234,24 +289,24 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="order.php?user=<?php echo $json->email; ?>" method="post">
+                                        <form action="order.php?user=<?php echo $user->email; ?>" method="post">
                                             <div class="form-outline">
                                                 <label class="form-label" for="card_num">Card Number</label>
-                                                <input type="text" class="form-control" id="card_num" required maxlength="19"/>
+                                                <input type="text" class="form-control" id="card_num" maxlength="19"/>
                                             </div>
                                             <div class="form-outline">
                                                 <label class="form-label" for="card_name">Cardholder Name</label>
-                                                <input type="text" class="form-control" id="card_name" required/>
+                                                <input type="text" class="form-control" id="card_name"/>
                                             </div>
                                             <div class="form-outline">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label class="form-label" for="card_expire">Expiry</label>
-                                                        <input type="text" class="form-control" id="card_expire" required>
+                                                        <input type="text" class="form-control" id="card_expire"/>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label" for="card_cvv">CVV</label>
-                                                        <input type="text" class="form-control" id="card_cvv" maxlength="3" required>
+                                                        <input type="text" class="form-control" id="card_cvv" maxlength="3"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -325,9 +380,9 @@
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <h2 class="card-title"><?php echo $json->name; ?></h2>
-                            <p class="card-text">Email: <span><?php echo $json->email; ?></span><a href="#email_update" data-target="#email_update" data-toggle="modal"><i class="fa fa-edit"></i></a></p>
-                            <p class="card-text">Location: <span><?php echo $json->location; ?></span><a href="#location_update" data-target="#location_update" data-toggle="modal"><i class="fa fa-edit"></i></a></p>
+                            <h2 class="card-title" id="user_name"><?php echo $user->name; ?></h2>
+                            <p class="card-text">Email: <span><?php echo $user->email; ?></span><a href="#email_update" data-target="#email_update" data-toggle="modal"><i class="fa fa-edit"></i></a></p>
+                            <p class="card-text">Location: <span><?php echo $user->location; ?></span><a href="#location_update" data-target="#location_update" data-toggle="modal"><i class="fa fa-edit"></i></a></p>
                             <p><a class="card-text" href="#pass_update" data-target="#pass_update" data-toggle="modal">Change my password</a></p>
                             <label style="font-weight:10" class="card-text">
                                 Describe yourself as a seller:
@@ -335,7 +390,7 @@
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </label>
-                            <textarea cols="40" rows="5" id="sign_descr" name="sign_descr" readonly><?php echo $json->description; ?></textarea>
+                            <textarea cols="40" rows="5" id="sign_descr" name="sign_descr" readonly><?php echo $user->description; ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -486,7 +541,7 @@
                                                 </div>
                                                 <div class="form-outline">
                                                     <label class="form-label" for="sign_descr">Describe yourself</label>
-                                                    <textarea class="form-control" cols="34" rows="5" id="sign_descr" name="sign_descr"><?php echo $json->description; ?></textarea>
+                                                    <textarea class="form-control" cols="34" rows="5" id="sign_descr" name="sign_descr"><?php echo $user->description; ?></textarea>
                                                 </div>
                                             </div>
                                             <button class="btn btn-block">Update</button>
@@ -507,14 +562,14 @@
                         <table class="table table-borderedless">
                         <?php
                         $i = 0;
-                        foreach ($json->favorites as $favorite) {
+                        foreach ($user->favorites as $favorite) {
                             $product = $collection_products->findOne(["name" => $favorite]); ?>
                             <tr>
                                 <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><img src="<?php echo $product->images->pic1; ?>.jpg"/></a></td>
                                 <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><?php echo $product->name; ?></a></td>
                                 <td><?php echo $product->price; ?></td>
-                                <td><button><a href="favorites.php?action=remove&item=<?php echo $product->name; ?>&user=<?php echo $json->email; ?>"><i class="fa fa-heart"></i></a></button></td>
-                                <td><button><a href="cart.php?action=add&item=<?php echo $product->name; ?>&user=<?php echo $json->email; ?>"><i class="fa fa-shopping-bag"></i></a></button></td>
+                                <td><button><a href="favorites.php?action=remove&item=<?php echo $product->name; ?>&user=<?php echo $user->email; ?>"><i class="fa fa-heart"></i></a></button></td>
+                                <td><button><a href="cart.php?action=add&item=<?php echo $product->name; ?>&user=<?php echo $user->email; ?>"><i class="fa fa-shopping-bag"></i></a></button></td>
                             </tr>
                             <!--modal for product info-->
                             <!--i variable uniquely identifies each modal-->
@@ -572,22 +627,105 @@
                                                     $count++;
                                                 } ?>
                                                 <span><?php echo $count ?> sales</span>
-                                                <span class="fa fa-star checked"></span> <!--seller rating-->
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
+                                                <?php //count rating stars and find average
+                                                $sum = 0;
+                                                $count = 0;
+                                                $total_rate = 0;
+                                                foreach($seller->rate as $rating) {  //get total price of order
+                                                    $sum = $sum + (int)$rating->stars;
+                                                    $count++;
+                                                }
+                                                if ($count != 0)
+                                                    $total_rate = $sum/$count;
+                                                else { ?>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php }
+                                                if ((int)$total_rate == 1) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 2) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 3) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 4) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 5) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                <?php } ?>
                                                 <br> <!-- seller note-->
                                                 <span><?php echo $seller->description; ?></span>
-                                            </div>
-                                            <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
+                                                <!--show ratings of seller-->
+                                                <div id="ratings">
+                                                <?php foreach($seller->rate as $rating) {  ?>
+                                                    <h4><?php echo $rating->buyer; ?></h4>
+                                                    <hr>
+                                                    <?php if ($rating->stars == 1) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 2) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 3) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 4) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 5) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                        <?php } ?>
+                                                        <br>
+                                                        <span><?php echo nl2br($rating->comment); ?></span>
+                                                    <?php } ?>
+                                                    </div>
+                                                </div>
+                                            <button id="add_cart" type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                     <?php $i++; }
-                    if (count((array)$json->favorites) == 0) { //if no products on cart show mesg ?>
-                            <p id="msg"><?php echo 'No items on favorites yet...'; } ?> </p>
+                    if (count((array)$user->favorites) == 0) { //if no products on cart show mesg ?>
+                            <p id="msg"><?php echo 'No items on favorites...'; } ?> </p>
                         </table>
                     </div>
                 </div>
@@ -601,7 +739,7 @@
                         <h2>Your Orders</h2>
                         <table id="1" class="table table-borderedless">
                             <?php $i=0;
-                            foreach ($json->orders as $order) {  //for each order
+                            foreach ($user->orders as $order) {  //for each order
                                 $item = $collection_products->findOne(["name" => $order[0]]); //find first item of each order ?>
                             <tr>
                                 <td><a href="#order<?php echo $i ?>" data-toggle="modal" data-target="#order<?php echo $i ?>"><img src="<?php echo $item->images->pic1; ?>.jpg" style="opacity: 0.5"/></a></td>
@@ -642,8 +780,8 @@
                             </div>
                         </div>
                         <?php $i++; }
-                        if (count((array)$json->orders) == 0) { //if no products on cart show mesg ?>
-                                <p id="msg" ><?php echo 'You have no orders yet.'; } ?>
+                        if (count((array)$user->orders) == 0) { //if no orders  show message ?>
+                                <p id="msg" ><?php echo 'No history yet.'; } ?>
                         </table>
                         <!--modal rate seller of product-->
                         <div class="modal" id="rate" role="dialog">
@@ -667,18 +805,11 @@
                                                         <label for="3">☆</label>
                                                         <input type="radio" name="rating" value="2" id="2">
                                                         <label for="2">☆</label>
-                                                        <input type="radio" name="rating" value="1" id="1">
+                                                        <input type="radio" name="rating" value="1" id="1" checked>
                                                         <label for="1">☆</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-outline">
-                                                    <!--script to pass seller name in rating page as parameter-->
-                                                    <script>
-                                                        function seller () {
-                                                        var seller = document.getElementById("seller").innerHTML;
-                                                        document.getElementById("form").action = 'rate_seller.php?user='+seller;
-                                                    }
-                                                    </script>
                                                     <textarea class="form-control" rows="3" id="rate" name="rate" placeholder="Describe your experience..."></textarea>
                                                 </div>
                                             </div>
@@ -690,7 +821,7 @@
                         </div>
                     </div>
                     <!--products sold by this user-->
-                    <?php $result=$collection_products->find(["seller" => $json->email]); //fond products sold by this user ?>
+                    <?php $result=$collection_products->find(["seller" => $user->email]); //fond products sold by this user ?>
                     <div class="col-md-6">
                         <h2>Products you sell</h2>
                         <table class="table table-borderedless">
@@ -699,8 +830,8 @@
                                 <td><img src="<?php echo $product->images->pic1; ?>.jpg"/></td>
                                 <td><?php echo $product->name; ?></td>
                                 <td><?php echo $product->price; ?></td>
-                                <td><a href="edit_product.php?product=<?php echo $product->name ?>&user=<?php echo $json->email ?>"><i class="fa fa-edit"></i></a></td>
-                                <td><a href="sell.php?action=delete&name=<?php echo $product->name ?>"><i class="fa fa-close"></i></a></td>
+                                <td><a href="edit_product.php?product=<?php echo $product->name ?>"><i class="fa fa-edit"></i></a></td>
+                                <td><a href="sell.php?action=delete&product=<?php echo $product->name ?>"><i class="fa fa-close"></i></a></td>
                             </tr>
                         <?php } ?>
                         </table>
@@ -716,8 +847,7 @@
             <button type="button" class="btn btn-outline-dark">Download the app</button>
             <span>&copy; 2021 Thriftie, Second Hand Marketplace</span>
         </footer>
-
-        <!--pass seller as variable to rate modal--> 
+        <!--pass seller as variable to rate modal-->
         <script type="text/javascript">
             $(document).on("click", "#link", function () {
                 var seller = $(this).data('seller');
@@ -725,6 +855,5 @@
                 $('#rate').modal('show');
             });
         </script>
-      
      </body>
 </html>

@@ -30,13 +30,19 @@
     if ($result == null) {
         $search = $collection->InsertOne($document); //create user and redirect
         $search = $collection->findOne($document);
+        session_start();
+        $_SESSION['log'] = true;
+        $_SESSION['username'] = $username;
         global $json; //define global to pass variables in other file
         $json = $search->JsonSerialize(); //get data in string format
         include 'user.php';
-        header("location: user.php");
+        echo '<script type="text/javascript">  //redirect to user profile
+            window.location("user.php");
+        </script>';
     } else { //if user already exists, notify user
         echo '
         <script type="text/javascript">
+        window.location("home.php");
         </script>
         ';
     }

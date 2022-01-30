@@ -1,14 +1,6 @@
 <?php
 
-    //start xampp/apache
-    //start mongo -> (adm) net start mongodb
-    //start mongo shell -> (adm) mongo
-    //access php files localhost/pr1/final/login.php
-    require '../vendor/autoload.php';
-
-    $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
-    $db = $m->Thriftie_DB; //database
-    $collection = $db->Users; //collection
+    include 'config.php';
 
     //get values from html input fields
     $username = $_POST['sign_email'];
@@ -50,19 +42,14 @@
     }
 
     //execute query
-    $result = $collection->findOneAndUpdate(["email" => $username, "password" => $password],['$set' => $document]);
-    //update user profile page
-    $new_result = $collection->findOne($document);
-    global $json; //define global to pass variables in other file
-    $json = $new_result->JsonSerialize(); //get data in string format
-    include 'user.php';
+    $result = $collection_users->findOneAndUpdate(["email" => $username, "password" => $password],['$set' => $document]);
 
-    //check if query got any results, execute js code to redirect
-    if ($result == null) {
-        header("location: user.php");
-    } else {
-        header("location: user.php");  //redirect to user profile
-    }
+    //execute js code to redirect
+    echo '
+    <script type="text/javascript">  //redirect to user profile
+        window.location.replace("user.php");
+    </script>
+    ';
 
 ?>
 
