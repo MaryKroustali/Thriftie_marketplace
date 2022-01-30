@@ -73,7 +73,6 @@
 - [ ] report part 6 (check)
 
 # Struggles
-- [ ] how to check if a user is signed in
 - [ ] login/signup modals overflow
 - [ ] change color in picture add image for product
 - [ ] check responsive again!
