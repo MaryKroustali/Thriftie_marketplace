@@ -2,7 +2,7 @@
 
 ## User
 ### front
-- [x] home page (newest)
+- [x] home page
 - [x] add pagination
 - [x] sign up (handle error)
 - [x] login (handle error)
@@ -58,7 +58,7 @@
 - [x] retrieve from db
 - [x] add order to history + total
 - [x] get sells of each seller
-- [ ] add to favorites only if signed in
+- [x] add to favorites only if signed in
 
 ## Admin
 - [ ] home page admin
