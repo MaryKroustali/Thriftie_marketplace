@@ -89,3 +89,4 @@
 - [ ] organize random functions (jquery)
 - [ ] add users and products
 - [ ] fix products
+- [ ] on serach add item redirect fails due to parameters
