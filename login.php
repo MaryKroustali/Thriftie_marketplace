@@ -23,6 +23,7 @@
         </script>
         ';
     } else {
+        //TO DO FIX
         header("location: home.html");
     }
 

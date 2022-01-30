@@ -1,13 +1,8 @@
 <?php
-    //start xampp/apache
-    //start mongo -> (adm) net start mongodb
-    //start mongo shell -> (adm) mongo
-    //access php files localhost/pr1/final/login.php
-    require '../vendor/autoload.php';
 
-    $m = new MongoDB\Client("mongodb://127.0.0.1/");  //connection
-    $db = $m->Thriftie_DB; //database
-    $collection = $db->Users; //collection
+    include 'config.php';
+    session_start();
+
     //get user data
     $name = $_POST["sign_name"];
     $username = $_POST["sign_email"];
@@ -25,26 +20,23 @@
             "rate" => []
         );
     //search if user already exists
-    $result = $collection->findOne($document);
+    $result = $collection_users->findOne($document);
 
     if ($result == null) {
-        $search = $collection->InsertOne($document); //create user and redirect
-        $search = $collection->findOne($document);
-        session_start();
-        $_SESSION['log'] = true;
+        $search = $collection_users->InsertOne($document); //create user and redirect
+        $search = $collection_users->findOne($document);
+
+        $_SESSION['log'] = true; //create session
         $_SESSION['username'] = $username;
-        global $json; //define global to pass variables in other file
-        $json = $search->JsonSerialize(); //get data in string format
-        include 'user.php';
+
         echo '<script type="text/javascript">  //redirect to user profile
-            window.location("user.php");
-        </script>';
+                window.location.replace("user.php");
+            </script>';
     } else { //if user already exists, notify user
-        echo '
-        <script type="text/javascript">
-        window.location("home.php");
-        </script>
-        ';
+        echo '<script type="text/javascript">
+        //TO DO FIX
+            window.location.replace("home.php");
+        </script>';
     }
 
 ?>

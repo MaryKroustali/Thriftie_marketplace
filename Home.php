@@ -1,4 +1,22 @@
+<?php
 
+    include 'config.php'; //connect to db
+
+    //get all products
+    session_start(); //check if user is logged in
+    if (isset($_SESSION['log']) && $_SESSION['log'] == true) {
+        $user = $collection_users->findOne(["email" => $_SESSION['username']]);
+    } else { //if no user logged in use an anonynous user
+        $user = $collection_users->findOne(["email" => "not_logged"]);
+    }
+    //get 8 random products and sho as recommended
+    $result = $collection_products->find([],
+        ['limit' => 8,
+        'skip' => rand(0,$collection_products->count())
+        ]
+    );
+
+?>
 
 <html>
     <head>
@@ -23,7 +41,7 @@
         <nav class="navbar">
             <!--navigation bar, header-->
             <div class="navbar-header">
-                <a href="Home.html"> <!--when click on logo/caption redirect to home-->
+                <a href="Home.php">
                     <img src="logo.png" id="logo"> <!--logo-->
                     <br>
                     <span>Next Generation of Thrifting</span> <!--caption-->
@@ -31,17 +49,17 @@
             </div>
             <div class="nav">
                 <!--navigation bar, links-->
-                <ul class="nav justify-content-center"> <!--align items in center-->
-                    <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
-                        <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">All products</a>
+                <ul class="nav justify-content-center">
+                    <li class=nav-item class="dropdown">
+                        <a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="Home.php">Shop<span class="caret"></span></a>
+                        <div class="dropdown-menu col-xs-12">
+                            <a class="dropdown-item" href="products.php?action=all">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
-                            <a class="dropdown-item" href="#">Clothes</a>
-                            <a class="dropdown-item" href="#">Shoes</a>
-                            <a class="dropdown-item" href="#">Accessories</a>
-                            <a class="dropdown-item" href="#">Bags</a>
-                            <a class="dropdown-item" href="#">Gifts</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=clothes">Clothes</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=shoes">Shoes</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=accessories">Accessories</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=bags">Bags</a>
+                            <a class="dropdown-item" href="products.php?action=category&by=gifts">Gifts</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -53,8 +71,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="Help Center.html">Help Center</a>
                     </li>
-                    <form  class="form-inline my-2" action="#">  <!--search bar-->
-                        <input type="text" class="form-control" placeholder="Search...">
+                    <form  class="form-inline" action="search.php" method="POST">  <!--search bar-->
+                        <input type="text" class="form-control" placeholder="Search..." name="search"/>
                         <button class="btn"><i class="fa fa-search"></i></button>
                     </form>
                 </ul>
@@ -64,558 +82,200 @@
             <p>Recommended for you</p>
             <div class="dropdown"> <!--shopping cart/ login butttons-->
                 <button class="btn" data-toggle="modal" data-target="#cart_modal"><i class="fa fa-shopping-bag"></i> Cart</button>
-                <?php
-                    if (!isset($_SESSION["id"])) {
-                        echo '<button class="btn"><i class="fa fa-user"></i> <a> href="user.php">Profile</a></button>';
-                    }
-                    else {
-                        echo '<button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i></button>';
-                    }
-                ?>
+                <?php if (isset($_SESSION['log']) && $_SESSION['log'] == true) { ?>
+                    <button class="btn"><a href="user.php"><i class="fa fa-user"></i> Your Profile</a></button>
+                <?php } else { ?>
+                    <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign In</button>
+                <?php } ?>
                 <br><br> <!--sort by dropdown list-->
-                <!--<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
                     Sort by:
                 </button> <!--sort by options-->
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Relevancy</a>
-                    <a class="dropdown-item" href="#">Most Recent</a>
-                    <a class="dropdown-item" href="#">Highest Price</a>
-                    <a class="dropdown-item" href="#">Lowest Price</a>
+                <a class="dropdown-item" href="products.php?action=sort&by=relevancy">Relevancy</a>
+                    <a class="dropdown-item" href="products.php?action=sort&by=recent">Most Recent</a>
+                    <a class="dropdown-item" href="products.php?action=sort&by=price_high">Highest Price</a>
+                    <a class="dropdown-item" href="products.php?action=sort&by=price_low">Lowest Price</a>
                 </div>
             </div>
         </section>
         <section>
             <div class="bg-1">
                 <div class="container">
-                    <!--first 4 products-->
-                    <div class="row">
-                        <div class="col-sm-3"> <!--first product, each product in card-->
-                            <div class="card">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product1"> <!--on click on card get modal-->
-                                    <img src="items/item2.jpg"> <!--product pic-->
-                                    <div class="card-body">
-                                        <p class="card-text">Leather Shoulder bag</p> <!-- product short description-->
-                                        <br><br>
-                                        <p class="text-right">23.00$</p> <!-- product price-->
+                    <?php
+                        $i = 0;  //counter to add row in each 4 products ?>
+                        <div class="row">
+                        <?php foreach ($result as $product) { ?>
+                            <div class="col-sm-3"> <!--card product-->
+                                <div class="card">
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#product<?php echo $i ?>"> <!--on click on card get modal-->
+                                        <img src="<?php echo $product->images->pic1; ?>.jpg">
+                                        <div class="card-body">
+                                            <p class="card-text"><?php echo $product->name; ?></p>
+                                            <br><br>
+                                            <p class="text-right"><?php echo $product->price; ?></p>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <!--modal for product info-->
+                            <!--i variable uniquely identifies each modal-->
+                            <div class="modal" id="product<?php echo $i ?>" role="dialog">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2><?php echo $product->name; ?></h2>
+                                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                                        </div>
+                                        <div class="modal-body">
+                                            <!--carousel, multiple product images-->
+                                            <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner" role="listbox">
+                                                    <!--show multiple images in carousel-->
+                                                    <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg"></div>
+                                                    <?php foreach ($product->images as $pic) {
+                                                    if ($pic == $product->images->pic1) { //skip first active pic
+                                                        continue; }?>
+                                                    <div class="item"><img src="<?php echo $pic; ?>.jpg"></div>
+                                                    <?php } ?>
+                                                </div>
+                                                <?php if (isset($_SESSION['log']) && in_array($product->name, (array)$user->favorites)) { ?>
+                                                    <button><a href="favorites.php?action=remove&item=<?php echo $product->name; ?>"><i class="fa fa-heart"></i></a></button>
+                                                <?php } else { ?>
+                                                    <button><a href="favorites.php?action=add&item=<?php echo $product->name; ?>"><i class="fa fa-heart-o"></i></a></button>
+                                                <?php } ?>
+                                                <!-- carousel navigation buttons-->
+                                                <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
+                                                <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                </a>
+                                                <?php } ?>
+                                            </div>
+                                            <div id="info"> <!--info text about product-->
+                                                <h3>Description:</h3>
+                                                <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
+                                                <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
+                                                <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
+                                                <!--get multiple material tags-->
+                                                <h3>Material:
+                                                <?php foreach ($product->materials as $material) { ?>
+                                                    <span class="badge badge-secondary"><?php echo $material; ?></span>
+                                                <?php } ?>
+                                                </h3>
+                                                <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
+                                            </div>
+                                            <div id="seller_info"> <!-- info text about seller-->
+                                                <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
+                                                <h2><?php echo $seller->name; ?></h2>
+                                                <hr>
+                                                <h4><?php echo $seller->location; ?></h4>
+                                                <?php $count=0;
+                                                $sales = $collection_products->find(["seller" => $seller->email]);  //count sales of each seller
+                                                foreach ($sales as $sale) {
+                                                    $count++;
+                                                } ?>
+                                                <span><?php echo $count ?> sales</span>
+                                                <!--seller rating-->
+                                                <?php //count rating stars and find average
+                                                $sum = 0;
+                                                $count = 0;
+                                                $total_rate = 0;
+                                                foreach($seller->rate as $rating) {  //get total price of order
+                                                    $sum = $sum + (int)$rating->stars;
+                                                    $count++;
+                                                }
+                                                if ($count != 0)
+                                                    $total_rate = $sum/$count;
+                                                else { ?>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php }
+                                                if ((int)$total_rate == 1) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 2) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 3) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 4) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                <?php } elseif ((int)$total_rate == 5) { ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                <?php } ?>
+                                                <br> <!-- seller note-->
+                                                <span><?php echo $seller->description; ?></span>
+                                                <!--show ratings of seller-->
+                                                <div id="ratings">
+                                                    <?php foreach($seller->rate as $rating) {  ?>
+                                                    <h4><?php echo $rating->buyer; ?></h4>
+                                                    <hr>
+                                                    <?php if ($rating->stars == 1) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 2) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 3) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 4) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        <?php } elseif ($rating->stars == 5) { ?>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                        <?php } ?>
+                                                        <br>
+                                                        <span><?php echo nl2br($rating->comment); ?></span>
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        <button id="add_cart" class="btn"><a href="cart.php?action=add&item=<?php echo $product->name; ?>">Add to Cart</a></button> <!--add to cart button-->
+                                        </div>
                                     </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-3"> <!-- second product-->
-                            <div class="card">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product2">
-                                    <img src="items/item1.jpg">
-                                    <div class="card-body">
-                                        <p class="card-text">Organic Handmade Striped Dress</p>
-                                        <br><br>
-                                        <p class="text-right">14.60$</p>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card"> <!-- third product-->
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product3">
-                                    <img src="items/item7.jpg">
-                                    <div class="card-body">
-                                        <p class="card-text">Beaded Silver Necklace</p>
-                                        <br><br>
-                                        <p class="text-right">13.00$</p>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-3"> <!-- fourth product-->
-                            <div class="card">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product4">
-                                    <img src="items/item9.jpg">
-                                    <div class="card-body">
-                                        <p class="card-text">Vintage 90s Unisex Long Sleeve Shirt</p>
-                                        <br><br>
-                                        <p class="text-right">23.50$</p>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--next four products-->
-                    <div class="row">
-                        <div class="col-sm-3"> <!-- fifth product-->
-                            <div class="card">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product5">
-                                    <img src="items/item8.jpg">
-                                    <div class="card-body">
-                                        <p class="card-text">Anime Unisex Sweater - anime is life</p>
-                                        <br><br>
-                                        <p class="text-right">17.80$</p>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-3"> <!-- sixth product-->
-                            <div class="card">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product6">
-                                    <img src="items/item6.jpg">
-                                    <div class="card-body">
-                                        <p class="card-text">Gold Carnelian necklace</p>
-                                        <br><br>
-                                        <p class="text-right">7.60$</p>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-3"> <!-- seventh product-->
-                            <div class="card">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product7">
-                                    <img src="items/item5.jpg">
-                                    <div class="card-body">
-                                        <p class="card-text">Leather minimalist Wallet</p>
-                                        <br><br>
-                                        <p class="text-right">5.00$</p>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-3"> <!-- eighth product-->
-                            <div class="card">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#product8">
-                                    <img src="items/item3.jpg">
-                                    <div class="card-body">
-                                        <p class="card-text">Plants are friends - Shirt Tee</p>
-                                        <br><br>
-                                        <p class="text-right">13.40$</p>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--modals-->
-                <div class="modal" id="product1" role="dialog"> <!--modal for product 1-->
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Leather Shoulder bag</h2> <!--modal header-->
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel, multiple product images-->
-                                <div id="carousel-one" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item2.jpg"></div>
-                                        <div class="item"><img src="items/item2a.jpg"></div>
-                                        <div class="item"><img src="items/item2b.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                    <!-- carousel navigation buttons-->
-                                    <a class="left carousel-control" href="#carousel-one" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-one" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    </a>
                                 </div>
-                                <div id="info"> <!--info text about product-->
-                                    <h3>Description:</h3>
-                                    <span>The leather bag is ideal for school, university, work or just to go shopping. You can put a DIN A4 folder in it.<br>
-                                        Size of the leather bag:<br>
-                                        Width top: 15.8"<br>
-                                        Width bottom: 13"<br>
-                                        Height: 13.78"<br>
-                                        Depth: 5.12"<br>
-                                        Shoulder straps: 25,60 inch<br>
-                                        Crossbody strap: 33,46 - 41,34 inch adjustable<br>
-                                        Frontpockets: width: 5,51 inch, height: 6,69 inch</span>
-                                    <h3>Size:<span class="badge badge-secondary">One size</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
-                                    <h3>Material:<span class="badge badge-secondary">Leather</span></h3>
-                                    <h3>Price:<span><strong>23.00$</strong></span></h3>
-                                </div>
-                                <div id="seller_info"> <!-- info text about seller-->
-                                    <h2>Athina Tsilikou</h2>
-                                    <hr>
-                                    <h4>Athens, Greece</h4>
-                                    <span>54 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--seller rating-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <br> <!-- seller note-->
-                                    <span>If you are not satisfied with the product, it is no problem! You easily send it back to my address and after receiving the product in a good condition you will immediately get your money back!</span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="product2" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Organic Handmade Striped Dress</h2>
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel-->
-                                <div id="carousel-two" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item1.jpg"></div>
-                                        <div class="item"><img src="items/item1a.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                    <a class="left carousel-control" href="#carousel-two" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-two" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <div id="info">
-                                    <h3>Description:</h3>
-                                    <span>Handmade striped linen dress. Dress with short folded sleeves and buttons opening at the front
-                                        side of the dress is perfect as a maternity dress too and friendly for breastfeeding.
-                                        Made from locally manufactured pre-washed linen fabric and is perfect for all seasons.<br>
-                                        ----------------------------------------------<br>
-                                        - loose fit bodice<br>
-                                        - with buttons opening at the front side<br>
-                                        - short sleeves<br>
-                                        - hidden pockets in side seams of the skirt<br>
-                                        - body length 39,3"/100 cm</span>
-                                    <h3>Size:<span class="badge badge-secondary">Small</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">Skinny</span></h3>
-                                    <h3>Material:<span class="badge badge-secondary">Linen</span></h3>
-                                    <h3>Price:<span><strong>14.60$</strong></span></h3>
-                                </div>
-                                <div id="seller_info">
-                                    <h2>Tyler Scott</h2>
-                                    <hr>
-                                    <h4>Harrisburg, Pennsylvania</h4>
-                                    <span>101 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--rate seller-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <br>
-                                    <span>WE TRY TO OFFER OUR TAILORS AS BEST WORKING CONDITIONS AS POSSIBLE.</span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="product3" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Beaded Silver Necklace</h2>
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel-->
-                                <div id="carousel-three" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item7.jpg"></div>
-                                        <div class="item"><img src="items/item7a.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                    <a class="left carousel-control" href="#carousel-three" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-three" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <div id="info">
-                                    <h3>Description:</h3>
-                                    <span>Pretty faceted and iridescent opalite drop feature design.<br>
-                                        ~ Dainty, silver plated beaded chain, approx 15" shortest length.<br>
-                                        ~ Lobster clasp and 2" extender to close.<br>
-                                        ~ Perfect for layering with both chokers and long pendants.<br></span>
-                                    <h3>Size:<span class="badge badge-secondary">One Size</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
-                                    <h3>Material:<span class="badge badge-secondary">Silver</span><span> </span><span class="badge badge-secondary">Opalite</span></h3>
-                                    <h3>Price:<span><strong>13.00$</strong></span></h3>
-                                </div>
-                                <div id="seller_info">
-                                    <h2>Philippa Harman</h2>
-                                    <hr>
-                                    <h4>England, United Kingdom</h4>
-                                    <span>191 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--rate seller-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <br>
-                                    <span> Due to the ever changing situation amidst the COVID-19 pandemic, I kindly ask all customers to expect orders to take longer than usual to arrive. Estimated, but not guaranteed delivery times for standard shipping are as follows<br>
-                                        UK orders - Approx 2-4 working days after dispatch.<br>
-                                        INTERNATIONAL orders - 2-6 weeks after dispatch.<br></span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="product4" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Vintage 90's Unisex Long Sleeve Shirt</h2>
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel-->
-                                <div id="carousel-four" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item9.jpg"></div>
-                                        <div class="item"><img src="items/item9a.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                    <a class="left carousel-control" href="#carousel-four" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-four" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <div id="info">
-                                    <h3>Description:</h3>
-                                    <span>Material: 100% Linen.<br>
-                                        Style: AnSanLinen<br>
-                                        Sample Color: Natural, Black</span>
-                                    <h3>Size:<span class="badge badge-secondary">Large</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">Oversized</span></h3>
-                                    <h3>Material:<span class="badge badge-secondary">Linen</span></h3>
-                                    <h3>Price:<span><strong>23.50$</strong></span></h3>
-                                </div>
-                                <div id="seller_info">
-                                    <h2>Andris and Sandor Strelnieki</h2>
-                                    <hr>
-                                    <h4>Riga, Latvia</h4>
-                                    <span>17 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--rate seller-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <br>
-                                    <span>Suitable for people with sensitive skin. 
-                                        Linen can be used in all life situations, sports, leisure and official events.
-                                         You can always get advice or size adjustments by contacting me. <br>
-                                         Thank you, Andris and Sandor.
-                                    </span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="product5" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Anime Unisex Sweater - anime is life</h2>
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel-->
-                                <div id="carousel-five" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item8.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                </div>
-                                <div id="info">
-                                    <h3>Description:</h3>
-                                    <span>A classic styled unisex sweater with a crew neckline. <br>
-                                        Soft & smooth inside fabric for the ultimate comfort feel. <br>
-                                        Machine Wash (30°- 40°max Inside out).</span>
-                                    <h3>Size:<span class="badge badge-secondary">X Large</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">Oversized</span></h3>
-                                    <h3>Material:<span class="badge badge-secondary">Cotton</span><span> </span><span class="badge badge-secondary">Polyester</span></h3>
-                                    <h3>Price:<span><strong>17.80$</strong></span></h3>
-                                </div>
-                                <div id="seller_info">
-                                    <h2>Fergie Warya</h2>
-                                    <hr>
-                                    <h4>London, United Kingdom</h4>
-                                    <span>32 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--rate seller-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <br>
-                                    <span>Providing Unisex t-shirts for birthday gifts and casual wear. The shirts are High Premium Quality 100% Cotton.</span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="product6" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Gold Carnelian Necklace</h2>
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel-->
-                                <div id="carousel-six" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item6.jpg"></div>
-                                        <div class="item"><img src="items/item6a.jpg"></div>
-                                        <div class="item"><img src="items/item6b.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                    <a class="left carousel-control" href="#carousel-six" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-six" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <div id="info">
-                                    <h3>Description:</h3>
-                                    <span>This Necklace is crafted with a genuine Carnelian stone.<br>
-                                        * Gift for her/gift for him/gift for mom<br>
-                                        * Perfect for daily use or for any occasions<br>
-                                        * Perfect match with other necklaces</span>
-                                    <h3>Size:<span class="badge badge-secondary">One Size</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
-                                    <h3>Material:<span>Not Available</span></h3>
-                                    <h3>Price:<span><strong>17.80$</strong></span></h3>
-                                </div>
-                                <div id="seller_info">
-                                    <h2>Matt Hoop</h2>
-                                    <hr>
-                                    <h4>Toronto, Canada</h4>
-                                    <span>197 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--rate seller-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <br>
-                                    <span></span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="product7" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Leather minimalist Wallet</h2>
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel-->
-                                <div id="carousel-seven" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item5.jpg"></div>
-                                        <div class="item"><img src="items/item5a.jpg"></div>
-                                        <div class="item"><img src="items/item5b.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                    <a class="left carousel-control" href="#carousel-seven" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-seven" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <div id="info">
-                                    <h3>Description:</h3>
-                                    <span>• Fits up to 16 credit cards.<br>
-                                        • 2 inner pockets for cards plus a money pocket.<br>
-                                        • Its designed to hold US bills or other currencies with similar bill dimensions. <br>
-                                        • Practical elastic band.<br>
-                                        The wallet measures folded (approx): 4 "(W) x3"(H) 10,5 cm(W) x 7,5 cm(H)</span>
-                                    <h3>Size:<span class="badge badge-secondary">One Size</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">-</span></h3>
-                                    <h3>Material:<span class="badge badge-secondary">Leather</span></h3>
-                                    <h3>Price:<span><strong>5.00$</strong></span></h3>
-                                </div>
-                                <div id="seller_info">
-                                    <h2>Mimoun Karl</h2>
-                                    <hr>
-                                    <h4>Málaga, Spain</h4>
-                                    <span>102 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--rate seller-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star ckecked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <br>
-                                    <span>Welcome! Here you will find leather accessories.<br>
-                                        Thanks for visiting.</span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="product8" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Plants are friends - Shirt Tee</h2>
-                                <!--exit button-->
-                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--carousel-->
-                                <div id="carousel-eight" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active"><img src="items/item3.jpg"></div>
-                                        <div class="item"><img src="items/item3a.jpg"></div>
-                                    </div>
-                                    <button><i class="fa fa-heart"></i></button>
-                                    <a class="left carousel-control" href="#carousel-eight" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-eight" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <div id="info">
-                                    <h3>Description:</h3>
-                                    <span>PROFESSIONALLY PRINTED USING ECO FRIENDLY WATER BASED INKS FOR A SUPERIOR RETAIL QUALITY FINISH onto a VERY HIGH QUALITY SWEATSHIRT</span>
-                                    <h3>Size:<span class="badge badge-secondary">Medium</span></h3>
-                                    <h3>Fit:<span class="badge badge-secondary">Oversized</span></h3>
-                                    <h3>Material:<span class="badge badge-secondary">Cotton</span><span> </span><span class="badge badge-secondary">Fleece</span></spam></span></h3>
-                                    <h3>Price:<span><strong>13.40$</strong></span></h3>
-                                </div>
-                                <div id="seller_info">
-                                    <h2>James Fryer</h2>
-                                    <hr>
-                                    <h4>Paignton, United Kingdom</h4>
-                                    <span>2 sales</span>
-                                    <span class="fa fa-star checked"></span> <!--rate seller-->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <br>
-                                    <span>I am that confident you will be happy with your purchase that I offer all of mine customers a full **30 DAY MONEY BACK GUARANTEE.**
-                                        Thank you for looking at my products!</span>
-                                </div>
-                                <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button>
-                            </div>
-                        </div>
+                        <?php $i++; } ?>
                     </div>
                 </div>
             </div>
@@ -708,9 +368,7 @@
             </div>
         </section>
         <!--cart-->
-        <!--TO DO fix cart to be adjustable-->
-        <!--TO DO fix buttons to remove item from cart-->
-        <section>
+        <section id="cart">
             <div class="modal" id="cart_modal" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -723,32 +381,186 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <table class="table table-borderedless">
+                                         <?php $i=0;
+                                            foreach($user->cart as $item) { //for each item in cart
+                                            $item = $collection_products->findOne(["name" => $item]); //find product in db?>
                                             <tr>
-                                                <td><img src="items/item1.jpg"/></td>
-                                                <td>Organic Handmade Striped Dress</td>
-                                                <td>14.60$</td>
-                                                <td><button><i class="fa fa-close"></i></button></td>
+                                                <!--call modal for product details, pass product as parameter in modal-->
+                                                <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><img src="<?php echo $item->images->pic1 ?>.jpg"/></a></td>
+                                                <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><?php echo $item->name ?></a></td>
+                                                <td><?php echo $item->price ?></td>
+                                                <td><a href="cart.php?action=remove&item=<?php echo $item->name; ?>"><i class="fa fa-close"></i></a></td>
                                             </tr>
-                                            <tr>
-                                                <td><img src="items/item7.jpg"/></td>
-                                                <td>Beaded Silver Necklace</td>
-                                                <td>13.00$</td>
-                                                <td><button><i class="fa fa-close"></i></button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="items/item8.jpg"/></td>
-                                                <td>Leather Shoulder bag</td>
-                                                <td>23.00$</td>
-                                                <td><button><i class="fa fa-close"></i></button></td>
-                                            </tr>
+                                        <?php $i++; } ?>
                                         </table>
+                                        <?php if (count((array)$user->cart) == 0) { //if no products on cart show message ?>
+                                            <p style="font-weight:normal"><?php echo 'Nothing here. Add some items to cart...'; ?> </p>
+                                        <?php } else { ?>
                                         <hr>
-                                        <!--TO DO fix total with js-->
-                                        <p>Total <span>   10</span>$</p>
+                                        <!--get total price of products-->
+                                        <?php $sum=0;
+                                        foreach($user->cart as $item) {
+                                        $item = $collection_products->findOne(["name" => $item]); //find products in db
+                                            $sum = $sum + (float)$item->price;
+                                        } ?>
+                                        <p>Total <span>   <?php echo $sum; ?></span>$</p>
                                         <button class="btn btn-block"><a data-target="#checkout_modal" data-toggle="modal" href="#checkout_modal">Checkout</a></button>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--TO DO modal for product info-->
+            <div class="modal" id="product" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="uni"></h2>
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                        </div>
+                        <div class="modal-body">
+                            <!--carousel, multiple product images-->
+                            <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner" role="listbox">
+                                    <!--show multiple images in carousel-->
+                                    <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg" style="width:400px;"></div>
+                                    <?php foreach ($product->images as $pic) {
+                                    if ($pic == $product->images->pic1) { //skip first active pic
+                                        continue; }?>
+                                    <div class="item"><img src="<?php echo $pic; ?>.jpg" style="width:400px;"></div>
+                                    <?php } ?>
+                                </div>
+                                <button><i class="fa fa-heart"></i></button>
+                                <!-- carousel navigation buttons-->
+                                <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
+                                <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                </a>
+                                <?php } ?>
+                            </div>
+                            <div id="info"> <!--info text about product-->
+                                <h3>Description:</h3>
+                                <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
+                                <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
+                                <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
+                                <!--get multiple material tags-->
+                                <h3>Material:
+                                <?php foreach ($product->materials as $material) { ?>
+                                    <span class="badge badge-secondary"><?php echo $material; ?></span>
+                                <?php } ?>
+                                </h3>
+                                <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
+                            </div>
+                            <div id="seller_info"> <!-- info text about seller-->
+                                <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
+                                <h2><?php echo $seller->name; ?></h2>
+                                <hr>
+                                <h4><?php echo $seller->location; ?></h4>
+                                <?php $count=0;
+                                $sales = $collection_products->find(["seller" => $seller->email]);  //count sales of each seller
+                                foreach ($sales as $sale) {
+                                    $count++;
+                                } ?>
+                                <span><?php echo $count ?> sales</span>
+                                <!--seller rating-->
+                                <?php //count rating stars and find average
+                                $sum_rate = 0;
+                                $count = 0;
+                                $total_rate = 0;
+                                foreach($seller->rate as $rating) {  //get total price of order
+                                    $sum_rate = $sum_rate + (int)$rating->stars;
+                                    $count++;
+                                }
+                                if ($count != 0)
+                                    $total_rate = $sum/$count;
+                                else { ?>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                <?php }
+                                if ((int)$total_rate == 1) { ?>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                <?php } elseif ((int)$total_rate == 2) { ?>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                <?php } elseif ((int)$total_rate == 3) { ?>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                <?php } elseif ((int)$total_rate == 4) { ?>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                <?php } elseif ((int)$total_rate == 5) { ?>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                <?php } ?>
+                                <br> <!-- seller note-->
+                                <span><?php echo $seller->description; ?></span>
+                                <!--show ratings of seller-->
+                                <div id="ratings">
+                                    <?php foreach($seller->rate as $rating) {  ?>
+                                    <h4><?php echo $rating->buyer; ?></h4>
+                                    <hr>
+                                    <?php if ($rating->stars == 1) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 2) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 3) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 4) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                        <?php } elseif ($rating->stars == 5) { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        <?php } ?>
+                                        <br>
+                                        <span><?php echo nl2br($rating->comment); ?></span>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            <button class="btn"><a href="cart.php?action=add&item=<?php echo $product->name; ?>">Add to Cart</a></button> <!--add to cart button-->
                         </div>
                     </div>
                 </div>
@@ -771,7 +583,7 @@
                                         <form action="#" method="post">
                                             <div class="form-outline">
                                                 <label class="form-label" for="card_num">Card Number</label>
-                                                <input type="text" class="form-control" id="card_num" required maxlength="19"/>
+                                                <input type="text" class="form-control" id="card_num" required maxlength="19" type="tel" pattern="\d*"/>
                                             </div>
                                             <div class="form-outline">
                                                 <label class="form-label" for="card_name">Cardholder Name</label>
@@ -781,7 +593,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label class="form-label" for="card_expire">Expiry</label>
-                                                        <input type="text" class="form-control" id="card_expire" required>
+                                                        <input type="text" class="form-control" id="card_expire" required/>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label" for="card_cvv">CVV</label>
@@ -827,9 +639,9 @@
                                                             <input class="form-control state" type="text" placeholder="State" required>
                                                         </div>
                                                     </div>
+                                                </div>
                                             </div>
-                                            <!--TO DO get total from js-->
-                                            <button class="btn btn-block">Purchase <span>35.80</span> <span>$</span></button>
+                                            <button class="btn btn-block">Purchase <span><?php echo $sum; ?></span> <span>$</span></button>
                                         </form>
                                     </div>
                                 </div>
@@ -839,14 +651,6 @@
                 </div>
             </div>
         </section>
-        <!--Pagination
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li> 
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>-->
         <!--sell a product, promotion button-->
         <button type="button" class="btn" id="promo"><a href="sell.html">+ Sell a Product</a></button>
         <!--footer-->

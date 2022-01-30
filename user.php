@@ -1,8 +1,8 @@
 <?php
 
     include 'config.php';  //connect to db
-    session_start();
 
+    session_start();
     if ($_SESSION['log'] == true) {
         $user = $collection_users->findOne(["email" => $_SESSION['username']]);
     }
@@ -34,7 +34,7 @@
         <nav class="navbar">
             <!--navigation bar, header-->
             <div class="navbar-header">
-                <a href="Home.html"> <!--when click on logo/caption redirect to home-->
+                <a href="Home.php"> <!--when click on logo/caption redirect to home-->
                     <img src="logo.png" id="logo"> <!--logo-->
                     <br>
                     <span>Next Generation of Thrifting</span> <!--caption-->
@@ -44,8 +44,8 @@
                 <!--navigation bar, links-->
                 <ul class="nav justify-content-center"> <!--align items in center-->
                     <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
-                        <a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
-                        <div class="dropdown-menu">
+                        <a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="Home.php">Shop<span class="caret"></span></a>
+                        <div class="dropdown-menu col-xs-12">
                             <a class="dropdown-item" href="products.php?action=all">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
                             <a class="dropdown-item" href="products.php?action=category&by=clothes">Clothes</a>
@@ -99,7 +99,7 @@
                                                 <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><img src="<?php echo $item->images->pic1 ?>.jpg"/></a></td>
                                                 <td><a id="item" href="" data-toggle="modal" data-product="<?php echo $item->name; ?>"><?php echo $item->name ?></a></td>
                                                 <td><?php echo $item->price ?></td>
-                                                <td><a href="cart.php?action=remove&item=<?php echo $item->name; ?>&user=<?php echo $user->email; ?>"><i class="fa fa-close"></i></a></td>
+                                                <td><a href="cart.php?action=remove&item=<?php echo $item->name; ?>"><i class="fa fa-close"></i></a></td>
                                             </tr>
                                         <?php $i++; } ?>
                                         </table>
@@ -289,7 +289,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="order.php?user=<?php echo $user->email; ?>" method="post">
+                                        <form action="order.php" method="post">
                                             <div class="form-outline">
                                                 <label class="form-label" for="card_num">Card Number</label>
                                                 <input type="text" class="form-control" id="card_num" maxlength="19"/>
@@ -568,8 +568,8 @@
                                 <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><img src="<?php echo $product->images->pic1; ?>.jpg"/></a></td>
                                 <td><a href="#product<?php echo $i ?>" data-target="#product<?php echo $i ?>" data-toggle="modal"><?php echo $product->name; ?></a></td>
                                 <td><?php echo $product->price; ?></td>
-                                <td><button><a href="favorites.php?action=remove&item=<?php echo $product->name; ?>&user=<?php echo $user->email; ?>"><i class="fa fa-heart"></i></a></button></td>
-                                <td><button><a href="cart.php?action=add&item=<?php echo $product->name; ?>&user=<?php echo $user->email; ?>"><i class="fa fa-shopping-bag"></i></a></button></td>
+                                <td><button><a href="favorites.php?action=remove&item=<?php echo $product->name; ?>"><i class="fa fa-heart"></i></a></button></td>
+                                <td><button><a href="cart.php?action=add&item=<?php echo $product->name; ?>"><i class="fa fa-shopping-bag"></i></a></button></td>
                             </tr>
                             <!--modal for product info-->
                             <!--i variable uniquely identifies each modal-->
@@ -718,7 +718,7 @@
                                                     <?php } ?>
                                                     </div>
                                                 </div>
-                                            <button id="add_cart" type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
+                                            <button id="add_cart" class="btn"><a href="cart.php?action=add&item=<?php echo $product->name; ?>">Add to Cart</a></button> <!--add to cart button-->
                                         </div>
                                     </div>
                                 </div>

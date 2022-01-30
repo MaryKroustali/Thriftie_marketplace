@@ -1,6 +1,6 @@
 <?php //connect to db
 
-    include 'config.php';
+    include 'config.php'; //check logged in user
     session_start();
     if ($_SESSION['log'] == true) {
         $user = $collection_users->findOne(["email" => $_SESSION['username']]);
@@ -34,7 +34,7 @@
         <nav class="navbar">
             <!--navigation bar, header-->
             <div class="navbar-header">
-                <a href="Home.html"> <!--when click on logo/caption redirect to home-->
+                <a href="Home.php"> <!--when click on logo/caption redirect to home-->
                     <img src="logo.png" id="logo"> <!--logo-->
                     <br>
                     <span>Next Generation of Thrifting</span> <!--caption-->
@@ -44,8 +44,8 @@
                 <!--navigation bar, links-->
                 <ul class="nav justify-content-center"> <!--align items in center-->
                     <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
-                        <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.html">Shop<span class="caret"></span></a>
-                        <div class="dropdown-menu">
+                        <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.php">Shop<span class="caret"></span></a>
+                        <div class="dropdown-menu col-xs-12">
                             <a class="dropdown-item" href="products.php?action=all">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
                             <a class="dropdown-item" href="products.php?action=category&by=clothes">Clothes</a>

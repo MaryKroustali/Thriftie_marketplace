@@ -212,6 +212,12 @@ button:hover, button:focus {
     margin: 20px;
     font-size: 18px;
 }
+.modal .btn a {
+    color: #e2d6da;
+}
+.modal .btn a:hover {
+    text-decoration: none;
+}
 .modal .btn:hover {
     color: #e9c1e2;
 }
@@ -264,16 +270,13 @@ button:hover, button:focus {
     color: #5c142c;
     font-weight: bold;
 }
-.modal .modal-body .fa-heart { /*add to favorites icon*/
+.modal .modal-body .fa-heart, .modal .modal-body .fa-heart-o  { /*add to favorites icon*/
     position: absolute !important;
     top: 5;
-    font-size: 25px;
+    font-size: 30px;
     color: #5c142c;
     z-index: 10;
     padding: 5px;
-}
-.modal .modal-body .fa-heart:hover {
-    background-color: #e9c1e2;
 }
 .modal button {
     background: transparent; /*make button transparent*/
@@ -283,6 +286,9 @@ button:hover, button:focus {
     position: fixed;  /*do not move when on scroll*/
     bottom: 40%;  /*fix absolute positioning*/
     right: 3%;
+}
+.modal #add_cart a {
+    color: #e2d6da;
 }
 /*about us page*/
 #about {
