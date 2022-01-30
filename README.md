@@ -23,6 +23,8 @@
 - [ ] cart (no detailed view)
 - [x] contact from about us (no back)
 - [x] rate us + pop up (no back)
+- [ ] login/logout all pages
+
 
 ### back
 - [x] sign up (session)
