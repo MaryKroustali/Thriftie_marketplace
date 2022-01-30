@@ -33,7 +33,7 @@
 - [ ] add product to favorites
 - [x] load favorites from db
 - [x] remove product from cart user (confirmation)
-- [ ] remove product from cart genetral
+- [x] remove product from cart genetral
 - [x] add to cart user
 - [ ] add to cart general
 - [x] load cart from db
