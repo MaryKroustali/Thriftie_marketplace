@@ -17,7 +17,7 @@
 - [x] fav products
 - [x] sell product form
 - [ ] favorites change icon
-- [ ] change sig up button to user profle if user signed in 
+- [x] change sig up button to user profle if user signed in 
 - [x] products sold history
 - [x] order history
 - [ ] cart (no detailed view)
