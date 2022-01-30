@@ -35,7 +35,7 @@
 - [x] remove product from cart user (confirmation)
 - [x] remove product from cart genetral
 - [x] add to cart user
-- [ ] add to cart general
+- [x] add to cart general
 - [x] load cart from db
 - [x] get cart total automatically
 - [x] products sold history (edit product no images)
