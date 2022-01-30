@@ -12,7 +12,7 @@
 - [x] user review
 - [x] user review on product modal
 - [x] about us
-- [x] checkout Cart (php)
+- [x] checkout Cart
 - [x] checkout payment form
 - [x] fav products
 - [x] sell product form
@@ -25,29 +25,29 @@
 
 ### back
 - [x] sign up (session)
-- [x] login (session)
-- [x] logout (session check)
-- [x] remove product from favorites user profile (redirect)
+- [x] login
+- [x] logout
+- [x] remove product from favorites user profile
 - [ ] remove product from favorites general 
 - [ ] add product to favorites
 - [x] load favorites from db
-- [x] remove product from cart user (confirmation/redirect)
+- [x] remove product from cart user (confirmation)
 - [ ] remove product from cart genetral
-- [x] add to cart user (redirect)
+- [x] add to cart user
 - [ ] add to cart general
 - [x] load cart from db
 - [x] get cart total automatically
-- [x] products sold history (edit product no images/delete no confirm)
-- [x] edit sold product (no images/redirect)
-- [x] delete product sold (confirmation/redirect)
+- [x] products sold history (edit product no images)
+- [x] edit sold product (no images)
+- [x] delete product sold (confirmation)
 - [x] view order history details + total
-- [x] sell product to db (no seller passed/redirect)
+- [x] sell product to db
 - [x] seller review
 - [x] retrieve seller review from db
 - [x] search products
 - [x] add user info
 - [x] get by category (remove gift category)
-- [x] product descr modal (sales + rating hardcoded)
+- [x] product descr modal
 - [x] checkout remove products from cart
 - [ ] remove products from cart after 24h
 - [x] retrieve from db
@@ -80,7 +80,7 @@
 - [ ] add images to db as jpg
 - [ ] checkout form validiity + customization
 - [ ] delete account
-- [ ] sort products by (js)
-- [ ] organize random functions
+- [ ] sort products by
+- [ ] organize random functions (jquery)
 - [ ] add users and products
 - [ ] fix products
