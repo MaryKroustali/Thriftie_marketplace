@@ -53,9 +53,11 @@
 - [x] product descr modal
 - [x] checkout remove products from cart
 - [ ] remove products from cart after 24h
+- [ ] cancel order 24h later
 - [x] retrieve from db
 - [x] add order to history + total
 - [x] get sells of each seller
+- [ ] add to favorites only if signed in
 
 ## Admin
 - [ ] home page admin
