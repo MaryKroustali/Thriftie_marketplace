@@ -30,7 +30,7 @@
 - [x] logout
 - [x] remove product from favorites user profile
 - [x] remove product from favorites general 
-- [ ] add product to favorites
+- [x] add product to favorites
 - [x] load favorites from db
 - [x] remove product from cart user (confirmation)
 - [x] remove product from cart genetral
