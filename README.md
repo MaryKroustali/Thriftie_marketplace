@@ -16,7 +16,7 @@
 - [x] checkout payment form
 - [x] fav products
 - [x] sell product form
-- [ ] favorites change icon
+- [x] favorites change icon
 - [x] change sig up button to user profle if user signed in 
 - [x] products sold history
 - [x] order history
