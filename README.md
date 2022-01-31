@@ -39,6 +39,9 @@
 - [ ] home page admin
 - [ ] login/logout admin
 - [ ] users table admin
+- [ ] edit user data
+- [ ] delete user
+- [ ] view user sessions
 - [ ] product table admin
 - [ ] order table admin
 
