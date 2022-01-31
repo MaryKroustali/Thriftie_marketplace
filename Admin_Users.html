@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <title>Thriftie Marketplace Administration</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--favicon-->
+		<link rel="shortcut icon" href="favicon.png"/>
+        <!--cart/user login signs-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--import css file-->
+        <link rel="stylesheet" href="style.css?" type="text/css">
+        <!--import bootstrap file-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <!--navigation bar, header-->
+            <div class="navbar-header">
+                <a href="Admin_Home.html">
+                    <img src="logo.png" id="logo"> <!--logo-->
+                    <br>
+                    <span>Next Generation of Thrifting</span> <!--caption-->
+                </a>
+            </div>
+            <div class="nav">
+                <!--navigation bar, links-->
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Admin_Users.html">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Admin_Products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Admin_Orders.html">Orders</a>
+                    </li>
+                    <form  class="form-inline" action="search.php" method="POST">  <!--search bar-->
+                        <input type="text" class="form-control" placeholder="Search..." name="search"/>
+                        <button class="btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+        <section id="presection">
+            <p>Users</p>
+            <div class="dropdown text-right"> <!--shopping cart/ login butttons-->
+                <button class="btn"><a href="logout.php">Log out</a></button>
+                <br><br>
+            </div>
+        </section>
+        <section id="admin_user">
+            <p>Total Users: 12</p>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <table id="1" class="table table-borderedless">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Session history</th>
+                        </tr>
+                        <tr>
+                            <td><a href="#user" data-toggle="modal" data-target="#admin_user_update">ID</a></td>
+                            <td><a href="#user" data-toggle="modal" data-target="#admin_user_update">email</a></td>
+                            <td><a href="#user" data-toggle="modal" data-target="#admin_user_update">name surname</a></td>
+                            <td><a href="#user" data-toggle="modal" data-target="#session_history">sessions</a></td>
+                            <td><a href="#user" data-toggle="modal" data-target="#admin_user_update"><i class="fa fa-close"></i></a></td>
+                        </tr>
+                    </table>
+                    <div class="modal" id="admin_user_update" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-10">
+                                            <div class="card-body text-center">
+                                                <h3>Edit user data</h3>
+                                                <form method="POST" action="update_user.php?action=email">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="admin_id">ID</label>
+                                                        <input type="text" class="form-control" id="admin_id" name="admin_id" disabled/>
+                                                    </div>
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="admin_email">Email</label>
+                                                        <input type="email" class="form-control" id="admin_email" name="admin_email" disabled/>
+                                                    </div>
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="admin_password">Password</label>
+                                                        <input type="password" class="form-control" id="admin_password" name="admin_password" disabled/>
+                                                    </div>
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="admin_name">Name</label>
+                                                        <input type="text" class="form-control" id="admin_name" name="admin_name"/>
+                                                    </div>
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="admin_location">Location</label>
+                                                        <input type="text" class="form-control" id="admin_location" name="admin_location"/>
+                                                    </div>
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="admin_description">Description</label>
+                                                        <textarea class="form-control" cols="34" rows="3" id="sign_description" name="admin_description"></textarea>
+                                                    </div>
+                                                    <button class="btn btn-block">Edit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--footer-->
+        <footer class="text-right"> <!--align text to the right-->
+            <br><br>
+            <span>&copy; 2021 Thriftie, Second Hand Marketplace Admins</span>
+        </footer>
+    </body>
+</html>

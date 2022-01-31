@@ -283,9 +283,9 @@ button:hover, button:focus {
     border: none !important;
 }
 .modal #add_cart {
-    position: fixed;  /*do not move when on scroll*/
-    bottom: 40%;  /*fix absolute positioning*/
-    right: 3%;
+    position: absolute;
+    top: 300;
+    right: 0;
 }
 .modal #add_cart a {
     color: #e2d6da;
@@ -1055,6 +1055,62 @@ button:hover, button:focus {
 #rate .rating>input:checked~label:before { /*on click on star*/
     opacity: 1
 }
+/*ADMIN PAGES*/
+#admin_user {
+    clear: both;
+    width: 100%;
+    margin: 0 0 50px 0%;
+    font-size: 15px;
+}
+#admin_user h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 90%;
+}
+#admin_user table {
+    width: 50%;
+}
+#admin_user > p {
+    margin-top: 50px;
+    margin-left: 250px;;
+    font-size: 17px;
+    color: #5c142c;
+}
+#admin_user a, td, th {
+    color: #5c142c;
+    font-size: 16px;
+}
+#admin_user a:hover {
+    text-decoration: none;
+}
+#admin_user .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#admin_user .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#admin_user .modal-body .form-label {
+    font-size: 14px;
+}
+#admin_user .modal-body .form-control {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#admin_user .btn {
+    margin: 10px 0px !important;
+}
 /*RESPONSIVE*/
 /*tablet view*/
 @media (max-width: 1023px) and (min-width: 767px) {
@@ -1088,9 +1144,6 @@ button:hover, button:focus {
     .carousel-inner, .slide { /*carousel width*/
         width: 340px !important;
         height: 300px !important;
-    }
-    .modal-body #info {
-        width: 40%;
     }
     #about .col {
         width: 95%;
@@ -1153,7 +1206,7 @@ button:hover, button:focus {
     }
     #user > p { /*link for contact form*/
         margin-top: 200px;
-        margin-left: 0px;;
+        margin-left: 0px;
     }
     #history {
         width: 100%;
@@ -1217,6 +1270,40 @@ button:hover, button:focus {
     }
     footer span {  /*style text*/
         font-size: 12px;
+    }
+    .modal-body #info {
+        width: 100%;
+    }
+    .modal-body #seller_info{
+        width: 90%;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+    .modal-body #ratings {
+        width: 80%;
+        margin-left: 30px;
+    }
+    .modal-body #ratings h4 {
+        margin-top: 20px;
+        color: #5c142c;
+        font-weight: bold;
+    }
+    .modal .modal-body .fa-heart, .modal .modal-body .fa-heart-o  { /*add to favorites icon*/
+        position: absolute !important;
+        top: 5;
+        font-size: 30px;
+        color: #5c142c;
+        z-index: 10;
+        padding: 5px;
+    }
+    .modal button {
+        background: transparent; /*make button transparent*/
+        border: none !important;
+    }
+    .modal #add_cart {
+        position: absolute;
+        top: 300;
+        right: 0;
     }
     #about .col {
         width: 95%;

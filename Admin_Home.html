@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Thriftie Marketplace Administration</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--favicon-->
+		<link rel="shortcut icon" href="favicon.png"/>
+        <!--cart/user login signs-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--import css file-->
+        <link rel="stylesheet" href="style.css?" type="text/css">
+        <!--import JavaScript functions-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <!--navigation bar, header-->
+            <div class="navbar-header">
+                <a href="Admin_Home.html">
+                    <img src="logo.png" id="logo"> <!--logo-->
+                    <br>
+                    <span>Next Generation of Thrifting</span> <!--caption-->
+                </a>
+            </div>
+            <div class="nav">
+                <!--navigation bar, links-->
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Admin_Users.html">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Admin_Products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Admin_Orders.html">Orders</a>
+                    </li>
+                    <form  class="form-inline" action="search.php" method="POST">  <!--search bar-->
+                        <input type="text" class="form-control" placeholder="Search..." name="search"/>
+                        <button class="btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+        <section id="presection">
+            <p>Menu</p>
+            <div class="dropdown  text-right"> <!--shopping cart/ login butttons-->
+                <button class="btn"><a href="logout.php">Log out</a></button>
+                <br><br>
+            </div>
+        </section>
+        <!--footer-->
+        <footer class="text-right"> <!--align text to the right-->
+            <br><br>
+            <span>&copy; 2021 Thriftie, Second Hand Marketplace Admins</span>
+        </footer>
+    </body>
+</html>
