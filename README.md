@@ -80,5 +80,4 @@
 # Struggles
 - [ ] notification in signup/login errors
 - [ ] checkout form validiity + customization
-- [ ] sort products by
 - [ ] on search redirect fails due to parameters
