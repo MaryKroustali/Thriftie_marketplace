@@ -78,15 +78,8 @@
 - [ ] report part 6 (check)
 
 # Struggles
-- [ ] login/signup modals overflow
-- [ ] change color in picture add image for product
 - [ ] check responsive again!
 - [ ] notification in signup/login errors
-- [ ] add images to db as jpg
 - [ ] checkout form validiity + customization
-- [ ] delete account
 - [ ] sort products by
-- [ ] organize random functions (jquery)
-- [ ] add users and products
-- [ ] fix products
 - [ ] on search redirect fails due to parameters
