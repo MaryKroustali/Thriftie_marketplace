@@ -35,15 +35,31 @@
 - [ ] remove products from cart after 24h
 - [ ] cancel order 24h later
 
-## Admin general
-- [ ] home page admin
-- [ ] login/logout admin
-- [ ] users table admin
-- [ ] edit user data
-- [ ] delete user
+## Admin 
+### front end
+- [ ] home page admin (empty) 
+- [x] users table admin
+- [x] edit user data
+- [x] delete user
 - [ ] view user sessions
 - [ ] product table admin
+- [ ] view product info
 - [ ] order table admin
+- [ ] view order info
+
+### back end
+- [ ] logout
+- [ ] login from home
+- [ ] get user data
+- [ ] get total users
+- [ ] edit user data
+- [ ] delete user
+- [ ] get sessions
+- [ ] get product
+- [ ] delete product
+- [ ] get orders 
+- [ ] get total orders
+- [ ] cancel order
 
 ## Report/General
 - [ ] 3 taseis
