@@ -69,17 +69,16 @@
                             <a class="dropdown-item" href="products.php?action=category&by=shoes">Shoes</a>
                             <a class="dropdown-item" href="products.php?action=category&by=accessories">Accessories</a>
                             <a class="dropdown-item" href="products.php?action=category&by=bags">Bags</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=gifts">Gifts</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Sell.html">Sell</a>
+                        <a class="nav-link" href="Sell_page.php">Sell</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="About Us.html">About Us</a>
+                        <a class="nav-link" href="About Us.php">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Help Center.html">Help Center</a>
+                        <a class="nav-link" href="Help Center.php">Help Center</a>
                     </li>
                     <form  class="form-inline" action="search.php" method="POST">  <!--search bar-->
                         <input type="text" class="form-control" placeholder="Search..." name="search"/>
@@ -90,24 +89,16 @@
         </nav>
         <section id="presection">
             <p>Products</p>
-            <div class="dropdown"> <!--shopping cart/ login buttons-->
+            <div class="dropdown text-right"> <!--shopping cart/ login buttons-->
                 <button class="btn" data-toggle="modal" data-target="#cart_modal"><i class="fa fa-shopping-bag"></i> Cart</button>
                 <!--if user logged in show button user profile, else show sign in button-->
                 <?php if (isset($_SESSION['log']) && $_SESSION['log'] == true) { ?>
-                    <button class="btn"><a href="user.php"><i class="fa fa-user"></i> Your Profile</a></button>
+                    <button class="btn"><a href="user.php"><i class="fa fa-user"></i> Profile</a></button>
+                    <button class="btn"><a href="logout.php">Log out</a></button>
                 <?php } else { ?>
                     <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign In</button>
                 <?php } ?>
-                <br><br><!--sort by dropdown list-->
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                    Sort by:
-                </button> <!--sort by options-->
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="products.php?action=sort&by=relevancy">Relevancy</a>
-                    <a class="dropdown-item" href="products.php?action=sort&by=recent">Most Recent</a>
-                    <a class="dropdown-item" href="products.php?action=sort&by=price_high">Highest Price</a>
-                    <a class="dropdown-item" href="products.php?action=sort&by=price_low">Lowest Price</a>
-                </div>
+                <br><br>
             </div>
         </section>
         <section>
@@ -643,6 +634,17 @@
                                             <div class="form-outline">
                                                 <br>
                                                 <label class="form-label" for="sign_pass">Billing Address</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <input class="form-control zip" type="text" placeholder="Number" required>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input class="form-control state" type="text" placeholder="Street" required>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input class="form-control zip" type="text" placeholder="City" required>
+                                                    </div>
+                                                </div>
                                                 <div class="address">
                                                     <select class="form-select">
                                                         <option value="4" selected>United States</option>
@@ -674,7 +676,7 @@
             </div>
         </section>
         <!--sell a product, promotion button-->
-        <button type="button" class="btn" id="promo"><a href="sell.html">+ Sell a Product</a></button>
+        <button type="button" class="btn" id="promo"><a href="sell_page.php">+ Sell a Product</a></button>
         <!--footer-->
         <footer class="text-right"> <!--align text to the right-->
             <br><br>

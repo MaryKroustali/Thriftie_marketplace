@@ -21,6 +21,6 @@
 
     $collection_users->UpdateOne(["email" => $user->email], [ '$set' => ['cart' => [] ]]); //empty user cart
 
-    echo '<script>window.location.replace("user.php");</script>';
+    echo '<script>window.history.back();</script>';
 
 ?>

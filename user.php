@@ -19,7 +19,7 @@
         <!--cart/user login signs-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
-        <link rel="stylesheet" href="style.css?v=1" type="text/css">
+        <link rel="stylesheet" href="style.css?" type="text/css">
         <!--import JavaScript functions-->
         <script src="functions.js" type="text/javascript"></script>
         <!--import JQuery-->
@@ -52,17 +52,16 @@
                             <a class="dropdown-item" href="products.php?action=category&by=shoes">Shoes</a>
                             <a class="dropdown-item" href="products.php?action=category&by=accessories">Accessories</a>
                             <a class="dropdown-item" href="products.php?action=category&by=bags">Bags</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=gifts">Gifts</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Sell.html">Sell</a>
+                        <a class="nav-link" href="Sell_page.php">Sell</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="About Us.html">About Us</a>
+                        <a class="nav-link" href="About Us.php">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Help Center.html">Help Center</a>
+                        <a class="nav-link" href="Help Center.php">Help Center</a>
                     </li>
                     <form  class="form-inline" action="search.php" method="POST">  <!--search bar-->
                         <input type="text" class="form-control" placeholder="Search..." name="search"/>
@@ -119,158 +118,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--TO DO modal for product info-->
-            <div class="modal" id="product" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 id="uni"></h2>
-                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
-                        </div>
-                        <div class="modal-body">
-                            <!--carousel, multiple product images-->
-                            <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner" role="listbox">
-                                    <!--show multiple images in carousel-->
-                                    <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg" style="width:400px;"></div>
-                                    <?php foreach ($product->images as $pic) {
-                                    if ($pic == $product->images->pic1) { //skip first active pic
-                                        continue; }?>
-                                    <div class="item"><img src="<?php echo $pic; ?>.jpg" style="width:400px;"></div>
-                                    <?php } ?>
-                                </div>
-                                <button><i class="fa fa-heart"></i></button>
-                                <!-- carousel navigation buttons-->
-                                <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
-                                <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                </a>
-                                <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                </a>
-                                <?php } ?>
-                            </div>
-                            <div id="info"> <!--info text about product-->
-                                <h3>Description:</h3>
-                                <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
-                                <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
-                                <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
-                                <!--get multiple material tags-->
-                                <h3>Material:
-                                <?php foreach ($product->materials as $material) { ?>
-                                    <span class="badge badge-secondary"><?php echo $material; ?></span>
-                                <?php } ?>
-                                </h3>
-                                <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
-                            </div>
-                            <div id="seller_info"> <!-- info text about seller-->
-                                <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
-                                <h2><?php echo $seller->name; ?></h2>
-                                <hr>
-                                <h4><?php echo $seller->location; ?></h4>
-                                <?php $count=0;
-                                $sales = $collection_products->find(["seller" => $seller->email]);  //count sales of each seller
-                                foreach ($sales as $sale) {
-                                    $count++;
-                                } ?>
-                                <span><?php echo $count ?> sales</span>
-                                <!--seller rating-->
-                                <?php //count rating stars and find average
-                                $sum_rate = 0;
-                                $count = 0;
-                                $total_rate = 0;
-                                foreach($seller->rate as $rating) {  //get total price of order
-                                    $sum_rate = $sum_rate + (int)$rating->stars;
-                                    $count++;
-                                }
-                                if ($count != 0)
-                                    $total_rate = $sum/$count;
-                                else { ?>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                <?php }
-                                if ((int)$total_rate == 1) { ?>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                <?php } elseif ((int)$total_rate == 2) { ?>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                <?php } elseif ((int)$total_rate == 3) { ?>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                <?php } elseif ((int)$total_rate == 4) { ?>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                <?php } elseif ((int)$total_rate == 5) { ?>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                <?php } ?>
-                                <br> <!-- seller note-->
-                                <span><?php echo $seller->description; ?></span>
-                                <!--show ratings of seller-->
-                                <div id="ratings">
-                                    <?php foreach($seller->rate as $rating) {  ?>
-                                    <h4><?php echo $rating->buyer; ?></h4>
-                                    <hr>
-                                    <?php if ($rating->stars == 1) { ?>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                        <?php } elseif ($rating->stars == 2) { ?>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                        <?php } elseif ($rating->stars == 3) { ?>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                        <?php } elseif ($rating->stars == 4) { ?>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                        <?php } elseif ($rating->stars == 5) { ?>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                        <?php } ?>
-                                        <br>
-                                        <span><?php echo nl2br($rating->comment); ?></span>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn" data-dismiss="modal">Add to Cart</button> <!--add to cart button-->
                         </div>
                     </div>
                 </div>
@@ -374,7 +221,7 @@
         <section id="user">
             <h1>Your Profile</h1>
             <div class="card border-0">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-md-2">
                         <img src="favicon.png" class="card-img">
                     </div>
@@ -556,7 +403,7 @@
         </section>
         <section id="favorites">
             <h1>Favorites</h1>
-            <div class="container">
+            <div class="container justify-content-center">
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-borderedless">
@@ -734,7 +581,7 @@
         <section id="history">
             <h1>History</h1>
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-md-6">
                         <h2>Your Orders</h2>
                         <table id="1" class="table table-borderedless">
@@ -840,7 +687,7 @@
             </div>
         </section>
         <!--sell a product, promotion button-->
-        <button type="button" class="btn" id="promo"><a href="sell.html">+ Sell a Product</a></button>
+        <button type="button" class="btn" id="promo"><a href="sell_page.php">+ Sell a Product</a></button>
         <!--footer-->
         <footer class="text-right"> <!--align text to the right-->
             <br><br>

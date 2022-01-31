@@ -117,7 +117,7 @@ footer .btn {
     width: 40%;
 }
 #presection .dropdown { /*buttons + sort by*/
-    width: 20%;
+    width: 40%;
     float: right;
 }
 #presection .btn { /*login/cart buttons*/
@@ -326,7 +326,8 @@ button:hover, button:focus {
     background-color: #e2d6da;
 }
 #feedback {
-    width: 89%;
+    clear: both;
+    width: 80%;
     margin: 0 0 50px 10%;
 }
 #feedback h1 {
@@ -341,6 +342,7 @@ button:hover, button:focus {
 }
 #feedback p {
     width: 82%;
+    position: relative;
     font-size: 17px;
     font-weight: bold;
 }
@@ -404,6 +406,7 @@ button:hover, button:focus {
     float: left;
 }
 #contact {
+    clear: both;
     width: 89%;
     margin: 0 0 50px 10%;
 }
@@ -677,6 +680,7 @@ button:hover, button:focus {
     margin-left: 10px;
 }
 #sell {
+    clear: both;
     width: 89%;
     margin: 0 0 50px 10%;
     font-size: 15px;
@@ -747,12 +751,13 @@ button:hover, button:focus {
 }
 /*user profile page*/
 #user {
-    width: 60%;
-    margin: 0 0 50px 10%;
+    width: 100%;
+    margin: 0 0 50px 0%;
     font-size: 15px;
 }
 #user .row {
-    margin-left: 300px;;
+    margin-left: auto;
+    margin-right: auto;
 }
 #user h1 {
     color:#5c142c;
@@ -771,7 +776,7 @@ button:hover, button:focus {
     font-weight: bold;
 }
 #user .card-body {
-    margin-left: 130px;
+    margin-left: 100px;
 }
 #user .card-text {
     font-size: 17px;
@@ -792,6 +797,7 @@ button:hover, button:focus {
 }
 #user textarea {
     border-color: #e9c1e2;
+    display: block;
 }
 #user textarea:focus {
     outline: none;
@@ -938,8 +944,8 @@ button:hover, button:focus {
 }
 /*order and selling history*/
 #history {
-    width: 77%;
-    margin: 0 0 50px 10%;
+    width: 100%;
+    margin: 0 0 50px 0%;
     font-size: 15px;
 }
 #history .container {
@@ -967,7 +973,7 @@ button:hover, button:focus {
     width: 100px;
 }
 #history table {
-    margin-left: 100px;
+    margin-left: 50%;
 }
 #history a,td,span {
     color: #5c142c;
@@ -1090,6 +1096,9 @@ button:hover, button:focus {
         width: 95%;
         margin-top: 10px;
     }
+    #feedback {
+        margin: 0 0 50px 0%;
+    }
     #newsletter .btn {
        width: 100px;
     }
@@ -1138,6 +1147,31 @@ button:hover, button:focus {
     }
     #checkout_modal .row {
         margin: 0;
+    }
+    #user img {
+        width: 200px;
+    }
+    #user > p { /*link for contact form*/
+        margin-top: 200px;
+        margin-left: 0px;;
+    }
+    #history {
+        width: 100%;
+        margin: 0 0 50px 0%;
+        font-size: 15px;
+    }
+    #history .container, #history .row {
+        display: block;
+        width: 100%;
+    }
+    /*user profile favorite product section*/
+    #favorites {
+        width: 95%;
+        overflow-x: hidden;
+        margin: 0 0 50px 0%;
+    }
+    #favorites table {
+        margin-left: 0px;
     }
 }
 /*mobile view*/
@@ -1188,6 +1222,16 @@ button:hover, button:focus {
         width: 95%;
         margin-top: 10px;
     }
+    #feedback {
+        width: 70%;
+        margin: 0 0 50px 0%;
+    }
+    #feedback p {
+        width: 70%;
+    }
+    #feedback .form {
+        width: 300px;
+    }
     #newsletter .btn {
         width: 100px;
     }
@@ -1227,5 +1271,45 @@ button:hover, button:focus {
     }
     #checkout_modal .col-md-4 {
         width: 130px;
+    }
+    #user {
+        width: 100%;
+        margin: 0 0 50px 0%;
+        overflow-x: hidden;
+    }
+    #user .row {
+        margin-left: 30px;
+    }
+    #user img {
+        width: 80px;
+    }
+    #user .card-body {
+        margin-left: 0px;
+    }
+    #user > p { /*link for contact form*/
+        margin-top: 200px;
+        margin-left: 0px;;
+        font-size: 17px;
+    }
+    /*user profile favorite product section*/
+    #favorites {
+        width: 95%;
+        overflow-x: hidden;
+        margin: 0 0 50px 0%;
+    }
+    #favorites table {
+        margin-left: 10px;
+    }
+    /*order and selling history*/
+    #history {
+        overflow-x: hidden;
+        width: 95%;
+        margin: 0 0 50px 0%;
+    }
+    #history .container {
+        width: 100%;
+    }
+    #history table {
+        margin-left: 10px;
     }
 }

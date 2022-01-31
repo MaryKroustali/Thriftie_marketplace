@@ -1,0 +1,301 @@
+[{
+  "_id": {
+    "$oid": "61ec3e99ec3100006a004445"
+  },
+  "email": "tyler.scott@mail.com",
+  "password": "itstyler",
+  "name": "Tyler Scott",
+  "description": "WE TRY TO OFFER OUR TAILORS AS BEST WORKING CONDITIONS AS POSSIBLE.",
+  "cart": [
+    "Leather Shoulder bag"
+  ],
+  "favorites": [],
+  "orders": [],
+  "rate": [
+    {
+      "stars": "5",
+      "comment": "",
+      "buyer": "Philippa Harman"
+    },
+    {
+      "stars": "3",
+      "comment": "I bought a scarf previous week. Good quality but arrived 1 month late",
+      "buyer": "Athina Tsilikou"
+    },
+    {
+      "stars": "1",
+      "comment": "",
+      "buyer": "Athina Tsilikou"
+    },
+    {
+      "stars": "1",
+      "comment": "test",
+      "buyer": "Tyler Scott"
+    },
+    {
+      "stars": "1",
+      "comment": "test",
+      "buyer": "Athina Tsilikou"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61ec55f1ec3100006a00444a"
+  },
+  "name": "Philippa Harman",
+  "email": "philippa.harman@mail.com",
+  "password": "PassW0rd",
+  "cart": [],
+  "description": "Due to the ever changing situation amidst the COVID-19 pandemic, I kindly ask all customers to expect orders to take longer than usual to arrive. Estimated, but not guaranteed delivery times for standard shipping are as follows\r\n1. UK orders - Approx 2-4 working days after dispatch.\r\n2. INTERNATIONAL orders - 2-6 weeks after dispatch.",
+  "favorites": [
+    "Organic Handmade Striped Dress"
+  ],
+  "orders": [],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61ec56adec3100006a00444d"
+  },
+  "name": "Andris and Sandor Strelnieki",
+  "email": "the.strelnieki@mail.com",
+  "password": "the.strelnieki",
+  "description": " Suitable for people with sensitive skin. Linen can be used in all life situations, sports, leisure and official events.\r\nYou can always get advice or size adjustments by contacting us.\r\nThank you, Andris and Sandor.",
+  "cart": [],
+  "favorites": [],
+  "orders": [],
+  "rate": [
+    {
+      "stars": "5",
+      "comment": "",
+      "buyer": "Athina Tsilikou"
+    },
+    {
+      "stars": "1",
+      "comment": "test",
+      "buyer": "Athina Tsilikou"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61ec5b88ec3100006a00444e"
+  },
+  "name": "Athina Tsilikou",
+  "email": "athina.tsilikou@mail.com",
+  "password": "athina",
+  "description": "If you are not satisfied with the product, it is no problem! \r\n\r\nYou easily send it back to my address and after receiving the product in a good condition you will immediately get your money back!",
+  "favorites": {
+    "1": "Organic Handmade Striped Dress",
+    "2": "Vintage 90's Unisex Long Sleeve Shirt",
+    "3": "Anime Unisex Sweater - anime is life",
+    "4": "Plants are friends - Shirt Tee",
+    "5": "Leather Shoulder bag"
+  },
+  "cart": {
+    "1": "Leather Shoulder bag",
+    "2": "Organic Handmade Striped Dress",
+    "4": "Vintage 90's Unisex Long Sleeve Shirt",
+    "5": "Necessar Bag"
+  },
+  "orders": [
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      "Leather Shoulder bag",
+      {
+        "total": 46.5
+      }
+    ],
+    [
+      "Leather Shoulder bag",
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 46.5
+      }
+    ],
+    [
+      "Organic Handmade Striped Dress",
+      {
+        "total": 14.6
+      }
+    ],
+    [
+      "Leather Shoulder bag",
+      {
+        "total": 23
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ],
+    [
+      "Vintage 90's Unisex Long Sleeve Shirt",
+      {
+        "total": 23.5
+      }
+    ]
+  ],
+  "rate": [
+    {
+      "stars": "5",
+      "comment": "Thank you",
+      "buyer": "Philippa Harman"
+    },
+    {
+      "stars": "5",
+      "comment": "Thank you for an adorable tote! The bag was delivered very quickly and my niece packed all her gifts into the bag and off she went!! ",
+      "buyer": "Fergie Warya"
+    },
+    {
+      "stars": "1",
+      "comment": "cool",
+      "buyer": "Athina Tsilikou"
+    },
+    {
+      "stars": "1",
+      "comment": "test",
+      "buyer": "Athina Tsilikou"
+    },
+    {
+      "stars": "1",
+      "comment": "test",
+      "buyer": "Athina Tsilikou"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61eed8192f0d00007b007d33"
+  },
+  "name": "Fergie Warya",
+  "email": "fergie.warya@mail.com",
+  "password": "fergie",
+  "description": "Providing Unisex t-shirts for birthday gifts and casual wear. The shirts are High Premium Quality 100% Cotton.",
+  "cart": [],
+  "orders": [],
+  "favorites": [
+    "Leather Shoulder bag",
+    "Vintage 90's Unisex Long Sleeve Shirt"
+  ],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61f57d203150000004000244"
+  },
+  "name": "Maria Kr",
+  "email": "maria.kr@mail.com",
+  "password": "mariakr",
+  "description": "",
+  "cart": [],
+  "orders": [],
+  "favorites": [],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61f58adc3150000004000246"
+  },
+  "name": "new",
+  "email": "new@mail.com",
+  "password": "123098",
+  "description": "",
+  "cart": [],
+  "orders": [],
+  "favorites": [],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61f66976ff50000080007ac3"
+  },
+  "name": "test user",
+  "email": "test@user.mail",
+  "password": "testtest",
+  "description": "",
+  "cart": [],
+  "orders": [],
+  "favorites": [],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61f6de29f9aa1c5d19aef597"
+  },
+  "email": "not_logged",
+  "password": "",
+  "name": "",
+  "description": "",
+  "cart": [],
+  "favorites": [],
+  "orders": [],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61f7afafb45e0000e9007325"
+  },
+  "name": "Matt Hoop",
+  "email": "matt.hoop@mail.com",
+  "password": "matthoop",
+  "description": "",
+  "cart": [],
+  "orders": [],
+  "favorites": [],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61f7b0f6b45e0000e9007326"
+  },
+  "name": "Mimoum Karl",
+  "email": "mimoun.karl@mail.com",
+  "password": "mimoum",
+  "description": "Welcome! Here you will find leather accessories.\r\nThanks for visiting.",
+  "cart": [],
+  "orders": [],
+  "favorites": [],
+  "rate": []
+},{
+  "_id": {
+    "$oid": "61f7b654b45e0000e9007327"
+  },
+  "name": "james fryer",
+  "email": "james.fryer@mail.com",
+  "password": "james01",
+  "description": "I am that confident you will be happy with your purchase that I offer all of mine customers a full **30 DAY MONEY BACK GUARANTEE.**\r\n\r\nThank you for looking at my products!",
+  "cart": [],
+  "orders": [],
+  "favorites": [],
+  "rate": []
+}]

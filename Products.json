@@ -1,0 +1,166 @@
+[{
+  "_id": {
+    "$oid": "61ec6de8ec3100006a00444f"
+  },
+  "name": "Leather Shoulder bag",
+  "description": "The leather bag is ideal for school, university, work or just to go shopping. You can put a DIN A4 folder in it.\r\n            Size of the leather bag:\r\n            Width top: 15.8\"\r\n            Width bottom: 13\"\r\n            Height: 13.78\"\r\n            Depth: 5.12\"\r\n            Shoulder straps: 25,60 inch\r\n            Crossbody strap: 33,46 - 41,34 inch adjustable\r\n            Frontpockets: width: 5,51 inch, height: 6,69 inch",
+  "price": "10.00$",
+  "size": "One Size",
+  "fit": "Not Available",
+  "seller": "athina.tsilikou@mail.com",
+  "images": {
+    "pic1": "items/item2",
+    "pic2": "items/item2a",
+    "pic3": "items/item2b"
+  },
+  "category": "bags",
+  "materials": [
+    "Leather"
+  ]
+},{
+  "_id": {
+    "$oid": "61ec6ed9ec3100006a004451"
+  },
+  "name": "Organic Handmade Striped Dress",
+  "description": "Handmade striped linen dress. Dress with short folded sleeves and buttons opening at the front side of the dress is perfect as a maternity dress too and friendly for breastfeeding. Made from locally manufactured pre-washed linen fabric and is perfect for all seasons.\r\n            ----------------------------------------------\r\n            - loose fit bodice\r\n            - with buttons opening at the front side\r\n            - short sleeves\r\n            - hidden pockets in side seams of the skirt\r\n            - body length 39,3\"/100 cm",
+  "price": "6.60$",
+  "size": "Small",
+  "fit": "Skinny",
+  "seller": "tyler.scott@mail.com",
+  "images": {
+    "pic1": "items/item1",
+    "pic2": "items/item1a"
+  },
+  "category": "clothes",
+  "materials": [
+    "Linen"
+  ]
+},{
+  "_id": {
+    "$oid": "61ec708fec3100006a004452"
+  },
+  "name": "Beaded Silver Necklace",
+  "description": "Pretty faceted and iridescent opalite drop feature design. \\n\r\n            ~ Dainty, silver plated beaded chain, approx 15\" shortest length.\\n\r\n            ~ Lobster clasp and 2\" extender to close.\\n\r\n            ~ Perfect for layering with both chokers and long pendants.",
+  "price": "3.00$",
+  "size": "One Size",
+  "fit": "-",
+  "seller": "philippa.harman@mail.com",
+  "images": {
+    "pic1": "items/item7",
+    "pic2": "items/item7a"
+  },
+  "category": "accessories",
+  "materials": [
+    "Silver"
+  ]
+},{
+  "_id": {
+    "$oid": "61ec710fec3100006a004453"
+  },
+  "name": "Vintage 90's Unisex Long Sleeve Shirt",
+  "description": "Material: 100% Linen.\r\n            Style: AnSanLinen\r\n            Sample Color: Natural, Black",
+  "price": "10.50$",
+  "size": "Large",
+  "fit": "Oversized",
+  "seller": "the.strelnieki@mail.com",
+  "images": {
+    "pic1": "items/item9",
+    "pic2": "items/item9a"
+  },
+  "category": "clothes",
+  "materials": [
+    "Linen"
+  ]
+},{
+  "_id": {
+    "$oid": "61ec7178ec3100006a004454"
+  },
+  "name": "Anime Unisex Sweater - anime is life",
+  "description": "A classic styled unisex sweater with a crew neckline.\r\n            Soft & smooth inside fabric for the ultimate comfort feel.\r\n            Machine Wash (30°- 40°max Inside out).",
+  "price": "10.80$",
+  "size": "X Large",
+  "fit": "Oversized",
+  "seller": "fergie.warya@mail.com",
+  "images": {
+    "pic1": "items/item8"
+  },
+  "category": "clothes",
+  "materials": [
+    "Cotton",
+    "Polyester"
+  ]
+},{
+  "_id": {
+    "$oid": "61ec71bcec3100006a004455"
+  },
+  "name": "Gold Carnelian Necklace",
+  "description": "This Necklace is crafted with a genuine Carnelian stone.\r\n            * Gift for her/gift for him/gift for mom\r\n            * Perfect for daily use or for any occasions\r\n            * Perfect match with other necklaces",
+  "price": "5.60$",
+  "size": "One Size",
+  "fit": "Not Available",
+  "seller": "matt.hoop@mail.com",
+  "images": {
+    "pic1": "items/item6",
+    "pic2": "items/item6a",
+    "pic3": "items/item6b"
+  },
+  "category": "accessories",
+  "materials": [
+    "Not Available"
+  ]
+},{
+  "_id": {
+    "$oid": "61ec721aec3100006a004456"
+  },
+  "name": "Leather minimalist Wallet",
+  "description": "• Fits up to 16 credit cards.\r\n            • 2 inner pockets for cards plus a money pocket.\r\n            • Its designed to hold US bills or other currencies with similar bill dimensions.\r\n            • Practical elastic band.\r\n            The wallet measures folded (approx): 4 \"(W) x3\"(H) 10,5 cm(W) x 7,5 cm(H)",
+  "price": "5.00$",
+  "size": "One Size",
+  "fit": "Not Available",
+  "seller": "mimoun.karl@mail.com",
+  "images": {
+    "pic1": "items/item5",
+    "pic2": "items/item5a",
+    "pic3": "items/item5b"
+  },
+  "category": "accessories",
+  "materials": [
+    "Leather"
+  ]
+},{
+  "_id": {
+    "$oid": "61ec7272ec3100006a004457"
+  },
+  "name": "Plants are friends - Shirt Tee",
+  "description": "PROFESSIONALLY PRINTED USING ECO FRIENDLY WATER BASED INKS FOR A SUPERIOR RETAIL QUALITY FINISH onto a VERY HIGH QUALITY SWEATSHIRT",
+  "price": "7.40$",
+  "size": "Medium",
+  "fit": "Oversized",
+  "seller": "james.fryer@mail.com",
+  "images": {
+    "pic1": "items/item3",
+    "pic2": "items/item3a"
+  },
+  "category": "clothes",
+  "materials": [
+    "Cotton",
+    "Fleece"
+  ]
+},{
+  "_id": {
+    "$oid": "61eff466f55800005f005864"
+  },
+  "images": {
+    "pic1": "items/item4"
+  },
+  "name": "Necessar Bag",
+  "description": "6.0 oz., 100% cotton\r\n20\" self-fabric handles\r\n9\" handle drop\r\nBottom gusset\r\n15\"W x 16\"H x 3\"D",
+  "price": "6.00",
+  "size": "One Size",
+  "fit": "",
+  "materials": [
+    "Cotton"
+  ],
+  "category": "",
+  "seller": "athina.tsilikou@mail.com"
+}]

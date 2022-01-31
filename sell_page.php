@@ -9,12 +9,6 @@
     } else { //if no user logged in use an anonynous user
         $user = $collection_users->findOne(["email" => "not_logged"]);
     }
-    //get 8 random products and sho as recommended
-    $result = $collection_products->find([],
-        ['limit' => 4,
-        'skip' => rand(0,8)
-        ]
-    );
 
 ?>
 
@@ -28,9 +22,7 @@
         <!--cart/user login signs-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
-        <link rel="stylesheet" href="style.css?v=1" type="text/css">
-        <!--import JavaScript functions-->
-        <script src="functions.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="style.css?" type="text/css">
         <!--import bootstrap file-->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -41,7 +33,7 @@
         <nav class="navbar">
             <!--navigation bar, header-->
             <div class="navbar-header">
-                <a href="Home.php">
+                <a href="Home.php"> <!--when click on logo/caption redirect to home-->
                     <img src="logo.png" id="logo"> <!--logo-->
                     <br>
                     <span>Next Generation of Thrifting</span> <!--caption-->
@@ -49,9 +41,9 @@
             </div>
             <div class="nav">
                 <!--navigation bar, links-->
-                <ul class="nav justify-content-center">
-                    <li class=nav-item class="dropdown">
-                        <a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="Home.php">Shop<span class="caret"></span></a>
+                <ul class="nav justify-content-center"> <!--align items in center-->
+                    <li class=nav-item class="dropdown"> <!--on click on link get dropdown list with categories-->
+                        <a class="nav-link" class="dropdown-toogle" data-toggle="dropdown" href="Home.php">Shop<span class="caret"></span></a>
                         <div class="dropdown-menu col-xs-12">
                             <a class="dropdown-item" href="products.php?action=all">All products</a>
                             <a class="dropdown-header">Shop by category...</a>
@@ -70,7 +62,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="Help Center.php">Help Center</a>
                     </li>
-                    <form  class="form-inline" action="search.php" method="POST">  <!--search bar-->
+                    <form  class="form-inline" role="search" action="search.php" method="POST">  <!--search bar-->
                         <input type="text" class="form-control" placeholder="Search..." name="search"/>
                         <button class="btn"><i class="fa fa-search"></i></button>
                     </form>
@@ -78,7 +70,7 @@
             </div>
         </nav>
         <section id="presection">
-            <p>Recommended for you</p>
+            <p>Sell a product</p>
             <div class="dropdown  text-right"> <!--shopping cart/ login butttons-->
                 <button class="btn" data-toggle="modal" data-target="#cart_modal"><i class="fa fa-shopping-bag"></i> Cart</button>
                 <?php if (isset($_SESSION['log']) && $_SESSION['log'] == true) { ?>
@@ -87,188 +79,6 @@
                 <?php } else { ?>
                     <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign In</button>
                 <?php } ?>
-                <br><br>
-            </div>
-        </section>
-        <section>
-            <div class="bg-1">
-                <div class="container">
-                    <?php
-                        $i = 0;  //counter to add row in each 4 products ?>
-                        <div class="row">
-                        <?php foreach ($result as $product) { ?>
-                            <div class="col-sm-3"> <!--card product-->
-                                <div class="card">
-                                    <button type="button" class="btn" data-toggle="modal" data-target="#product<?php echo $i ?>"> <!--on click on card get modal-->
-                                        <img src="<?php echo $product->images->pic1; ?>.jpg">
-                                        <div class="card-body">
-                                            <p class="card-text"><?php echo $product->name; ?></p>
-                                            <br><br>
-                                            <p class="text-right"><?php echo $product->price; ?></p>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                            <!--modal for product info-->
-                            <!--i variable uniquely identifies each modal-->
-                            <div class="modal" id="product<?php echo $i ?>" role="dialog">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h2><?php echo $product->name; ?></h2>
-                                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
-                                        </div>
-                                        <div class="modal-body">
-                                            <!--carousel, multiple product images-->
-                                            <div id="carousel-<?php echo $i ?>" role="dialog" class="carousel slide" data-ride="carousel">
-                                                <div class="carousel-inner" role="listbox">
-                                                    <!--show multiple images in carousel-->
-                                                    <div class="item active"><img src="<?php echo $product->images->pic1; ?>.jpg"></div>
-                                                    <?php foreach ($product->images as $pic) {
-                                                    if ($pic == $product->images->pic1) { //skip first active pic
-                                                        continue; }?>
-                                                    <div class="item"><img src="<?php echo $pic; ?>.jpg"></div>
-                                                    <?php } ?>
-                                                </div>
-                                                <?php if (isset($_SESSION['log']) && in_array($product->name, (array)$user->favorites)) { ?>
-                                                    <button><a href="favorites.php?action=remove&item=<?php echo $product->name; ?>"><i class="fa fa-heart"></i></a></button>
-                                                <?php } else { ?>
-                                                    <button><a href="favorites.php?action=add&item=<?php echo $product->name; ?>"><i class="fa fa-heart-o"></i></a></button>
-                                                <?php } ?>
-                                                <!-- carousel navigation buttons-->
-                                                <?php if (count($product->images) > 1) { //if product has multiple pics show navigation buttons ?>
-                                                <a class="left carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="prev">
-                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                </a>
-                                                <a class="right carousel-control" href="#carousel-<?php echo $i ?>" role="button" data-slide="next">
-                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                </a>
-                                                <?php } ?>
-                                            </div>
-                                            <div id="info"> <!--info text about product-->
-                                                <h3>Description:</h3>
-                                                <span><?php echo nl2br($product->description); ?></span> <!--use escape characters-->
-                                                <h3>Size:<span class="badge badge-secondary"><?php echo $product->size; ?></span></h3>
-                                                <h3>Fit:<span class="badge badge-secondary"><?php echo $product->fit; ?></span></h3>
-                                                <!--get multiple material tags-->
-                                                <h3>Material:
-                                                <?php foreach ($product->materials as $material) { ?>
-                                                    <span class="badge badge-secondary"><?php echo $material; ?></span>
-                                                <?php } ?>
-                                                </h3>
-                                                <h3>Price:<span><strong><?php echo $product->price; ?></strong></span></h3>
-                                            </div>
-                                            <div id="seller_info"> <!-- info text about seller-->
-                                                <?php $seller = $collection_users->findOne(["email" => $product->seller]); ?>
-                                                <h2><?php echo $seller->name; ?></h2>
-                                                <hr>
-                                                <h4><?php echo $seller->location; ?></h4>
-                                                <?php $count=0;
-                                                $sales = $collection_products->find(["seller" => $seller->email]);  //count sales of each seller
-                                                foreach ($sales as $sale) {
-                                                    $count++;
-                                                } ?>
-                                                <span><?php echo $count ?> sales</span>
-                                                <!--seller rating-->
-                                                <?php //count rating stars and find average
-                                                $sum = 0;
-                                                $count = 0;
-                                                $total_rate = 0;
-                                                foreach($seller->rate as $rating) {  //get total price of order
-                                                    $sum = $sum + (int)$rating->stars;
-                                                    $count++;
-                                                }
-                                                if ($count != 0)
-                                                    $total_rate = $sum/$count;
-                                                else { ?>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                <?php }
-                                                if ((int)$total_rate == 1) { ?>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                <?php } elseif ((int)$total_rate == 2) { ?>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                <?php } elseif ((int)$total_rate == 3) { ?>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                <?php } elseif ((int)$total_rate == 4) { ?>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                <?php } elseif ((int)$total_rate == 5) { ?>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                <?php } ?>
-                                                <br> <!-- seller note-->
-                                                <span><?php echo $seller->description; ?></span>
-                                                <!--show ratings of seller-->
-                                                <div id="ratings">
-                                                    <?php foreach($seller->rate as $rating) {  ?>
-                                                    <h4><?php echo $rating->buyer; ?></h4>
-                                                    <hr>
-                                                    <?php if ($rating->stars == 1) { ?>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        <?php } elseif ($rating->stars == 2) { ?>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        <?php } elseif ($rating->stars == 3) { ?>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        <?php } elseif ($rating->stars == 4) { ?>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        <?php } elseif ($rating->stars == 5) { ?>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                        <?php } ?>
-                                                        <br>
-                                                        <span><?php echo nl2br($rating->comment); ?></span>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-                                        <button id="add_cart" class="btn"><a href="cart.php?action=add&item=<?php echo $product->name; ?>">Add to Cart</a></button> <!--add to cart button-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php $i++; } ?>
-                    </div>
-                </div>
             </div>
         </section>
         <section>
@@ -422,7 +232,7 @@
                                         <form action="order.php" method="post">
                                             <div class="form-outline">
                                                 <label class="form-label" for="card_num">Card Number</label>
-                                                <input type="text" class="form-control" id="card_num" maxlength="19" type="tel" pattern="\d*"/>
+                                                <input type="text" class="form-control" id="card_num" maxlength="19"/>
                                             </div>
                                             <div class="form-outline">
                                                 <label class="form-label" for="card_name">Cardholder Name</label>
@@ -432,7 +242,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label class="form-label" for="card_expire">Expiry</label>
-                                                        <input type="text" class="form-control" id="card_expire"/>
+                                                        <input type="text" class="form-control" id="card_expire">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label" for="card_cvv">CVV</label>
@@ -445,7 +255,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4 justify-content-center d-flex ">
                                                         <input type="radio" class="btn-check" name="alt_pay" id="paypal" autocomplete="off">
-                                                        <label class="btn btn-secondary" for="paypal"><span class="fa fa-paypal"></span> PayPall</label>
+                                                        <label class="btn btn-secondary" for="paypal"><span class="fa fa-paypal"></span> PayPal</label>
                                                     </div>
                                                     <div class="col-md-4 justify-content-center d-flex ">
                                                         <input type="radio" class="btn-check" name="alt_pay" id="google" autocomplete="off">
@@ -501,8 +311,90 @@
                 </div>
             </div>
         </section>
-        <!--sell a product, promotion button-->
-        <button type="button" class="btn" id="promo"><a href="sell_page.php">+ Sell a Product</a></button>
+        <section id="sell">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Before you sell a product at Thriftie, make sure you have read our <a href="help center.html">policies</a>.</p>
+                    </div>
+                    <form action="sell.php" method="POST" class="col-md-12">
+                        <div class="col-lg-5 form-outline col-md-12">
+                            <label for="files[]" class="form-label">Upload one or more images</label>
+                            <input type="file" class="form-control" name="files[]" id="file" required multiple accept="image/*"/>
+                        </div>
+                        <div class="col-lg-7 col-md-12">
+                            <div class="form-outline">
+                                <label for="name" class="form-label">Name your product</label>
+                                <input class="form-control" type="text" name="name" id="name" required/>
+                            </div>
+                            <div class="form-outline">
+                                <label for="descr" class="form-label">Add a description</label>
+                                <textarea class="form-control" id="descr" name="descr" rows="7" required></textarea>
+                            </div>
+                            <div class="form-outline">
+                                <label for="price" class="form-label">Define your price</label>
+                                <input class="form-control" type="number" name="price" id="price" step="0.1" required/>
+                            </div>
+                            <div>
+                                <label for="size" class="form-label">Select size</label>
+                                <fieldset>
+                                    <input type="radio" class="btn-check" name="size" id="xs" value="X Small" autocomplete="off">
+                                    <label class="btn btn-secondary" for="xs">X Small</label>
+                                    <input type="radio" class="btn-check" name="size" id="s" value="Small" autocomplete="off">
+                                    <label class="btn btn-secondary" for="s">Small</label>
+                                    <input type="radio" class="btn-check" name="size" id="m" value="Medium" autocomplete="off">
+                                    <label class="btn btn-secondary" for="m">Medium</label>
+                                    <input type="radio" class="btn-check" name="size" id="l" value="Large" autocomplete="off">
+                                    <label class="btn btn-secondary" for="l">Large</label>
+                                    <input type="radio" class="btn-check" name="size" id="xl" value="X Large" autocomplete="off">
+                                    <label class="btn btn-secondary" for="xl">X Large</label>
+                                    <input type="radio" class="btn-check" name="size" id="xxl" value="XX Large" autocomplete="off">
+                                    <label class="btn btn-secondary" for="xxl">XX Large</label>
+                                    <input type="radio" class="btn-check" name="size" id="one" value="One Size" autocomplete="off">
+                                    <label class="btn btn-secondary" for="one">One Size</label>
+                                </fieldset>
+                            </div>
+                            <div>
+                                <label for="fit" class="form-label">Describe Fit</label>
+                                <fieldset>
+                                    <input type="radio" class="btn-check" name="fit" id="over" value="Oversized" autocomplete="off">
+                                    <label class="btn btn-secondary" for="over">Oversized</label>
+                                    <input type="radio" class="btn-check" name="fit" id="skin" value="Skinny" autocomplete="off">
+                                    <label class="btn btn-secondary" for="skin">Skinny</label>
+                                    <input type="radio" class="btn-check" name="fit" id="slim" value="Slim" autocomplete="off">
+                                    <label class="btn btn-secondary" for="slim">Slim</label>
+                                    <input type="radio" class="btn-check" name="fit" id="regular" value="Regular" autocomplete="off">
+                                    <label class="btn btn-secondary" for="regular">Regular</label>
+                                </fieldset>
+                            </div>
+                            <div>
+                                <label for="materials[]" class="form-label">Material</label>
+                                <fieldset>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="linen" value="Linen" autocomplete="off">
+                                    <label class="btn btn-secondary" for="linen">Linen</label>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="cotton" value="Cotton" autocomplete="off">
+                                    <label class="btn btn-secondary" for="cotton">Cotton</label>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="leather" value="Leather" autocomplete="off">
+                                    <label class="btn btn-secondary" for="leather">Leather</label>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="poly" value="Polyester" autocomplete="off">
+                                    <label class="btn btn-secondary" for="poly">Polyester</label>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="fleece" value="Fleece" autocomplete="off">
+                                    <label class="btn btn-secondary" for="fleece">Fleece</label>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="plastic" value="Plastic" autocomplete="off">
+                                    <label class="btn btn-secondary" for="plastic">Plastic</label>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="silver" value="Silver" autocomplete="off">
+                                    <label class="btn btn-secondary" for="silver">Silver</label>
+                                    <input type="checkbox" class="btn-check" name="materials[]" id="gold" value="Gold" autocomplete="off">
+                                    <label class="btn btn-secondary" for="gold">Gold</label>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-block">Sell it!</button>
+                    </form>
+                </div>
+            </div>
+
+       </section>
         <!--footer-->
         <footer class="text-right"> <!--align text to the right-->
             <br><br>

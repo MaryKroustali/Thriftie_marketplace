@@ -52,17 +52,16 @@
                             <a class="dropdown-item" href="products.php?action=category&by=shoes">Shoes</a>
                             <a class="dropdown-item" href="products.php?action=category&by=accessories">Accessories</a>
                             <a class="dropdown-item" href="products.php?action=category&by=bags">Bags</a>
-                            <a class="dropdown-item" href="products.php?action=category&by=gifts">Gifts</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Sell.html">Sell</a>
+                        <a class="nav-link" href="Sell_page.php">Sell</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="About Us.html">About Us</a>
+                        <a class="nav-link" href="About Us.php">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Help Center.html">Help Center</a>
+                        <a class="nav-link" href="Help Center.php">Help Center</a>
                     </li>
                     <form  class="form-inline" role="search" action="search.php" method="POST">  <!--search bar-->
                         <input type="text" class="form-control" placeholder="Search..." name="search"/>

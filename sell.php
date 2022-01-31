@@ -2,8 +2,11 @@
 
     include 'config.php';  //connect to db
     session_start();
-    if ($_SESSION['log'] == true) {
+    if (isset($_SESSION['log']) && $_SESSION['log'] == true) {
         $user = $collection_users->findOne(["email" => $_SESSION['username']]);
+    } else {
+        echo '<script>window.location.replace("sell.html");</script>';
+        exit();
     }
 
     //call to delete product
@@ -74,6 +77,6 @@
         $search = $collection_products->InsertOne($document);
     }
 
-    echo '<script>window.location.replace("user.php");</script>';
+    echo '<script>window.history.back();</script>';
 
 ?>
