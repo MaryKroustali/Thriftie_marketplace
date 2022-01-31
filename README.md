@@ -24,7 +24,7 @@
 - [x] contact from about us (no back)
 - [x] rate us + pop up (no back)
 - [ ] fix add to cart button position
-- [ ] responsive
+- [x] responsive
 
 
 ### back
