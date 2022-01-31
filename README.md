@@ -23,7 +23,6 @@
 - [ ] cart (no detailed view)
 - [x] contact from about us (no back)
 - [x] rate us + pop up (no back)
-- [ ] login/logout all pages
 - [ ] fix add to cart button position
 
 
