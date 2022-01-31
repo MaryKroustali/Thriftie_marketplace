@@ -53,6 +53,5 @@
 - [x] report part 6 (check)
 
 # Struggles
-- [ ] fix add to cart button position
 - [ ] notification in signup/login errors
 - [ ] checkout form validiity + customization
