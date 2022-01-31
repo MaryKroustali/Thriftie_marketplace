@@ -71,5 +71,7 @@
 - [x] report part 5 (check)
 - [x] report part 6 (check)
 
-# Struggles
+# Extras
 - [ ] checkout form validiity + customization
+- [ ] modals overflow
+- [ ] pop ups to confirm
