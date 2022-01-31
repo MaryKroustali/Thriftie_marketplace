@@ -24,6 +24,7 @@
 - [x] contact from about us (no back)
 - [x] rate us + pop up (no back)
 - [ ] fix add to cart button position
+- [ ] responsive
 
 
 ### back
@@ -77,7 +78,6 @@
 - [ ] report part 6 (check)
 
 # Struggles
-- [ ] check responsive again!
 - [ ] notification in signup/login errors
 - [ ] checkout form validiity + customization
 - [ ] sort products by
