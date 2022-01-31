@@ -53,5 +53,4 @@
 - [x] report part 6 (check)
 
 # Struggles
-- [ ] notification in signup/login errors
 - [ ] checkout form validiity + customization
