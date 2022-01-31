@@ -1,66 +1,41 @@
 # Thriftie_marketplace
 
-## User
-### front
+## Simple User
+### front end
 - [x] home page
-- [x] add pagination
-- [x] sign up (handle error)
-- [x] login (handle error)
-- [x] logout (ask user)
+- [x] sign up/login (!handle error)
+- [x] logout (!ask user)
 - [x] user profile
-- [x] product page
+- [x] product page by category
+- [x] product info
+- [x] search products (page/bar)
 - [x] user review
-- [x] user review on product modal
 - [x] about us
-- [x] checkout Cart
+- [x] cart
 - [x] checkout payment form
 - [x] fav products
-- [x] sell product form
-- [x] favorites change icon
-- [x] change sig up button to user profle if user signed in 
-- [x] products sold history
-- [x] order history
-- [ ] cart (no detailed view)
-- [x] contact from about us (no back)
-- [x] rate us + pop up (no back)
-- [ ] fix add to cart button position
+- [x] sell product
+- [x] order history/sold history
+- [x] eshop review
 - [x] responsive
 
-
-### back
+### back end
 - [x] sign up 
 - [x] login
 - [x] logout
-- [x] remove product from favorites user profile
-- [x] remove product from favorites general 
-- [x] add product to favorites
-- [x] load favorites from db
-- [x] remove product from cart user (confirmation)
-- [x] remove product from cart genetral
-- [x] add to cart user
-- [x] add to cart general
-- [x] load cart from db
-- [x] get cart total automatically
-- [x] products sold history (edit product no images)
-- [x] edit sold product (no images)
-- [x] delete product sold (confirmation)
-- [x] view order history details + total
-- [x] sell product to db
-- [x] seller review
-- [x] retrieve seller review from db
+- [x] favorites (add/remove/get in user profile/remove from user profile/add to cart from fav)
+- [x] cart user (add/delete/total/checkout)
+- [x] checkout (empty cart/add order)
+- [x] history products sold (edit/delete)
+- [x] order history (list/total/review)
+- [x] seller review (add/show on product info)
+- [x] sell product form
 - [x] search products
-- [x] add user info
-- [x] get by category (remove gift category)
-- [x] product descr modal
-- [x] checkout remove products from cart
+- [x] user (edit info/fav/history)
 - [ ] remove products from cart after 24h
 - [ ] cancel order 24h later
-- [x] retrieve from db
-- [x] add order to history + total
-- [x] get sells of each seller
-- [x] add to favorites only if signed in
 
-## Admin
+## Admin general
 - [ ] home page admin
 - [ ] login/logout admin
 - [ ] users table admin
@@ -69,15 +44,15 @@
 
 ## Report/General
 - [ ] 3 taseis
-- [x] review eshop (no back)
+- [x] review eshop ?
 - [x] report part 1 (check)
 - [x] report part 2 (check)
 - [x] report part 3 (check)
 - [x] report part 4 (check)
 - [x] report part 5 (check)
-- [ ] report part 6 (check)
+- [x] report part 6 (check)
 
 # Struggles
+- [ ] fix add to cart button position
 - [ ] notification in signup/login errors
 - [ ] checkout form validiity + customization
-- [ ] on search redirect fails due to parameters
