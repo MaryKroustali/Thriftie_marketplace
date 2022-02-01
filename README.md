@@ -18,6 +18,7 @@
 - [x] order history/sold history
 - [x] eshop review
 - [x] responsive
+- [ ] logout modal
 
 ### back end
 - [x] sign up 
