@@ -42,8 +42,8 @@
 - [x] edit user data
 - [x] delete user
 - [ ] view user sessions
-- [ ] product table admin
-- [ ] view product info
+- [x] product table admin
+- [x] view product info
 - [ ] order table admin
 - [ ] view order info
 
