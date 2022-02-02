@@ -43,8 +43,8 @@
 - [x] delete user
 - [x] product table admin
 - [x] view product info
-- [ ] order table admin
-- [ ] view order info
+- [x] order table admin
+- [x] view order info
 - [ ] view user sessions
 
 ### back end
