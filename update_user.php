@@ -2,6 +2,24 @@
 
     include 'config.php';
 
+    if ($_GET['action'] == 'admin') { //admin updating user data
+        $document = array(
+            "email" => $_POST['admin_email'],
+            "password" => $_POST['admin_password'],
+            "name" => $_POST['admin_name'],
+            "location" => $_POST['admin_location'],
+            "description" => $_POST['admin_description']
+        );
+        //execute query
+        $result = $collection_users->findOneAndUpdate(["email" => $_POST['admin_email']], ['$set' => $document]);
+        //execute js code to redirect
+    echo '
+        <script type="text/javascript">  //redirect back and refresh
+            window.location=document.referrer;
+        </script>';
+    exit();
+    }
+
     //get values from html input fields
     $username = $_POST['sign_email'];
     $password = $_POST['sign_pass'];
@@ -52,4 +70,3 @@
     ';
 
 ?>
-

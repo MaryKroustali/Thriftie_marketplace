@@ -242,8 +242,12 @@ button:hover, button:focus {
     color: #5c142c;
     margin-top: 10px;
 }
+.modal .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
 .modal-body .badge { /*badges*/
     background-color:#e9c1e2;
+    width: auto;
 }
 .modal-body #seller_info h2 {
     margin-top: 400px;
@@ -262,8 +266,12 @@ button:hover, button:focus {
     margin-left: 30px;
 }
 .modal-body #ratings {
+    display: block;
     width: 80%;
     margin-left: 30px;
+}
+.modal #ratings .fa, .modal #seller_info .fa {
+    display: contents;
 }
 .modal-body #ratings h4 {
     margin-top: 20px;
@@ -289,6 +297,11 @@ button:hover, button:focus {
 }
 .modal #add_cart a {
     color: #e2d6da;
+}
+#logout_modal .btn {
+    width: 50px;
+    text-align: center;
+    margin: 10px;
 }
 /*about us page*/
 #about {
@@ -616,9 +629,6 @@ button:hover, button:focus {
     font-size: 18px;
     color: #5c142c;
 }
-#cart .modal   {
-    font-size: blue;
-}
 /*checkout form modal*/
 #checkout_modal .modal-body h3 {
     padding: 0px 0 20px 0;
@@ -658,6 +668,7 @@ button:hover, button:focus {
 #checkout_modal span {
     color: white;
     font-size: 16px;
+    display: contents;
 }
 #checkout_modal .btn:hover {
     color: white;
@@ -973,11 +984,16 @@ button:hover, button:focus {
     width: 100px;
 }
 #history table {
-    margin-left: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#history td {
+    width: 400px;
 }
 #history a,td,span {
     color: #5c142c;
     font-size: 16px;
+    width: 300px;
 }
 #history a:hover {
     text-decoration: none;
@@ -1022,6 +1038,17 @@ button:hover, button:focus {
     border-bottom: 2px solid !important;
     outline: none !important;
     box-shadow: none !important;
+}
+#history #delete_product_modal .modal-header {
+    height: 10px;
+    margin-bottom: 50px;
+}
+#history #delete_product_modal .btn{
+    margin: 10px;
+}
+#history #delete_product_modal a {
+    color: #e2d6da;
+    font-size: 18px;
 }
 #rate .btn {
     margin: 10px 0px !important;
@@ -1072,7 +1099,7 @@ button:hover, button:focus {
     width: 90%;
 }
 #admin_user table {
-    width: 50%;
+    width: 80%;
 }
 #admin_user > p {
     margin-top: 50px;
@@ -1110,6 +1137,149 @@ button:hover, button:focus {
 }
 #admin_user .btn {
     margin: 10px 0px !important;
+}
+#admin_user .btn > a {
+    color: #e2d6da;
+    font-size: 16px;
+}
+#admin_user #delete_user_modal p {
+    color: #5c142c;
+    font-size: 16px;
+}
+#admin_product {
+    clear: both;
+    width: 100%;
+    margin: 0 0 50px 0%;
+    font-size: 15px;
+}
+#admin_product h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 90%;
+}
+#admin_product table {
+    width: 80%;
+}
+#admin_product > p {
+    margin-top: 50px;
+    margin-left: 250px;;
+    font-size: 17px;
+    color: #5c142c;
+}
+#admin_product a, td, th {
+    color: #5c142c;
+    font-size: 16px;
+}
+#admin_product a:hover {
+    text-decoration: none;
+}
+#admin_product .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#admin_product .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#admin_product .modal-body .form-label {
+    font-size: 14px;
+}
+#admin_product .modal-body .form-control, #admin_product .modal-body .form-select {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 100%;
+}
+#admin_product .btn {
+    margin: 10px 0px !important;
+}
+#admin_product .btn > a {
+    color: #e2d6da;
+    font-size: 16px;
+}
+#admin_product p {
+    color: #5c142c;
+    font-size: 16px;
+}
+/*#admin_product .badge {
+    width: 100px;
+}*/
+#admin_home {
+    clear: both;
+    width: 100%;
+    margin: 0 0 50px 0%;
+    font-size: 15px;
+}
+#admin_home h1 {
+    color:#5c142c;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 90%;
+}
+#admin_home table {
+    width: 80%;
+}
+#admin_home > p {
+    margin-top: 50px;
+    margin-left: 250px;;
+    font-size: 17px;
+    color: #5c142c;
+}
+#admin_home a, td, th {
+    color: #5c142c;
+    font-size: 16px;
+    width: auto;
+}
+#admin_home a:hover {
+    text-decoration: none;
+}
+#admin_home .modal-header {
+    border-bottom: 0 none; /*remove bottom line*/
+}
+#admin_home .modal-body h3 {
+    font-weight: bold;
+    padding: 0px 0 20px 0;
+    font-size: 25px;
+    color: #5c142c;
+}
+#admin_home .modal-body .form-label {
+    font-size: 14px;
+}
+#admin_home .modal-body .form-control, #admin_home .modal-body .form-select {
+    font-size: 15px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 100%;
+}
+#admin_home .btn {
+    margin: 10px 0px !important;
+}
+#admin_home .btn > a {
+    color: #e2d6da;
+    font-size: 16px;
+}
+#admin_home p {
+    color: #5c142c;
+    font-size: 16px;
+}
+#admin_home .badge {
+    width: 100px;
 }
 /*RESPONSIVE*/
 /*tablet view*/
@@ -1208,14 +1378,12 @@ button:hover, button:focus {
         margin-top: 200px;
         margin-left: 0px;
     }
-    #history {
-        width: 100%;
-        margin: 0 0 50px 0%;
-        font-size: 15px;
+    #history td {
+        width: 700px;
     }
-    #history .container, #history .row {
-        display: block;
-        width: 100%;
+    #history table{
+        margin-right: auto;
+        margin-left: auto;
     }
     /*user profile favorite product section*/
     #favorites {

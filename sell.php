@@ -12,7 +12,15 @@
     //call to delete product
     if ($_GET['action'] == 'delete') {
         $delete = $collection_products->DeleteOne(["name" => $_GET['product']]);
-        echo '<script>window.location.replace("user.php");</script>';
+        echo '<script>window.location=document.referrer;</script>';
+        exit();
+    }
+
+    //call when admin updates category {
+    if ($_GET['action'] == 'admin') {
+        $product = $collection_products->findOne(["name" => $_POST['admin_name']]);
+        $collection_products->UpdateOne(["name" => $_POST['admin_name']], ['$set' => ['category' => $_POST['admin_category']]]);
+        echo '<script>window.location=document.referrer;</script>';
         exit();
     }
 
@@ -77,6 +85,6 @@
         $search = $collection_products->InsertOne($document);
     }
 
-    echo '<script>window.history.back();</script>';
+    echo '<script>window.history.go(-1);</script>';
 
 ?>

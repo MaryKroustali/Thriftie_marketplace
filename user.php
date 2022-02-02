@@ -19,7 +19,7 @@
         <!--cart/user login signs-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
-        <link rel="stylesheet" href="style.css?" type="text/css">
+        <link rel="stylesheet" href="style.css?v=1" type="text/css">
         <!--import JavaScript functions-->
         <script src="functions.js" type="text/javascript"></script>
         <!--import JQuery-->
@@ -71,15 +71,31 @@
             </div>
         </nav>
         <section id="presection">
-            <div class="dropdown"> <!--shopping cart/ login butttons-->
+            <div class="dropdown text-right"> <!--shopping cart/ login butttons-->
                 <button class="btn" data-toggle="modal" data-target="#cart_modal"><i class="fa fa-shopping-bag"></i> Cart</button>
-                <button class="btn"><i class="fa fa-user"></i> <a href="logout.php">Log out</a></button>
+                <button class="btn" data-toggle="modal" data-target="#logout_modal">Logout</button>
+            </div>
+            <!--confirmation logout modal-->
+            <div class="modal" id="logout_modal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Logout</h2>
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                        </div>
+                        <div class="modal-body text-center">
+                            <h3>Are you sure you want to logout?</h3>
+                            <button class="btn"><a href="logout.php">Yes</a></button>
+                            <button class="btn" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!--cart-->
         <section id="cart">
             <div class="modal" id="cart_modal" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
@@ -242,7 +258,7 @@
                     </div>
                 </div>
             </div>
-            <p class="text-center">For further help, please <a href="help center.html#contact">contact us here</a>.</p>
+            <p class="text-center">For further help, please <a href="help center.php#contact">contact us here</a>.</p>
         </section>
         <!--update email modal-->
         <section>
@@ -614,7 +630,8 @@
                                                             <div class="cell"><?php echo $product->price ?></div>
                                                             <!--pass seller name to modal via Jquery-->
                                                             <?php $seller = $collection_users->findOne(["email" => $product->seller]) ?>
-                                                            <div class="cell"><a id="link" href="" data-toggle="modal" data-seller="<?php echo $seller->name; ?>"><i class="fa fa-star"></i></a></div>                                                        </div>
+                                                            <div class="cell"><a id="link" href="" data-toggle="modal" data-seller="<?php echo $seller->name; ?>"><i class="fa fa-star"></i></a></div>
+                                                        </div>
                                                         <hr>
                                                     <?php }  } ?>
                                                 </div>
@@ -668,7 +685,7 @@
                         </div>
                     </div>
                     <!--products sold by this user-->
-                    <?php $result=$collection_products->find(["seller" => $user->email]); //fond products sold by this user ?>
+                    <?php $result=$collection_products->find(["seller" => $user->email]); //find products sold by this user ?>
                     <div class="col-md-6">
                         <h2>Products you sell</h2>
                         <table class="table table-borderedless">
@@ -678,10 +695,26 @@
                                 <td><?php echo $product->name; ?></td>
                                 <td><?php echo $product->price; ?></td>
                                 <td><a href="edit_product.php?product=<?php echo $product->name ?>"><i class="fa fa-edit"></i></a></td>
-                                <td><a href="sell.php?action=delete&product=<?php echo $product->name ?>"><i class="fa fa-close"></i></a></td>
+                                <td><a href="#delete_product_modal" data-toggle="modal" data-target="#delete_product_modal"><i class="fa fa-close"></i></a></td>
                             </tr>
                         <?php } ?>
                         </table>
+                        <!--confirmation deletion of product modal-->
+                        <div class="modal" id="delete_product_modal" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2>Delete Product</h2>
+                                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <p>Are you sure you want to delete "<?php echo $product->name; ?>"?</p>
+                                        <button class="btn"><a href="sell.php?action=delete&product=<?php echo $product->name ?>">Yes</a></button>
+                                        <button class="btn" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

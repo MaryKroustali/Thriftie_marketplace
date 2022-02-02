@@ -30,7 +30,7 @@
         <!--cart/user login signs-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--import css file-->
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="style.css?v=1" type="text/css">
         <!--import JQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!--import JQuery pagination function-->
@@ -88,11 +88,27 @@
                 <!--if user logged in show button user profile, else show sign in button-->
                 <?php if (isset($_SESSION['log']) && $_SESSION['log'] == true) { ?>
                     <button class="btn"><a href="user.php"><i class="fa fa-user"></i> Profile</a></button>
-                    <button class="btn"><a href="logout.php">Log out</a></button>
+                    <button class="btn" data-toggle="modal" data-target="#logout_modal">Logout</button>
                 <?php } else { ?>
                     <button class="btn" data-toggle="modal" data-target="#login_modal"><i class="fa fa-user"></i> Sign In</button>
                 <?php } ?>
                 <br><br>
+            </div>
+            <!--confirmation logout modal-->
+            <div class="modal" id="logout_modal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Logout</h2>
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>  <!--exit button-->
+                        </div>
+                        <div class="modal-body text-center">
+                            <h3>Are you sure you want to logout?</h3>
+                            <button class="btn"><a href="logout.php">Yes</a></button>
+                            <button class="btn" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section>
@@ -185,7 +201,7 @@
         <!--cart-->
         <section id="cart">
             <div class="modal" id="cart_modal" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
