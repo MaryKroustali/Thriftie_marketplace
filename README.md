@@ -3,8 +3,8 @@
 ## Simple User
 ### front end
 - [x] home page
-- [x] sign up/login (!handle error)
-- [x] logout (!ask user)
+- [x] sign up/login + pages to handle errors
+- [x] logout + modal confim
 - [x] user profile
 - [x] product page by category
 - [x] product info
@@ -18,8 +18,6 @@
 - [x] order history/sold history
 - [x] eshop review
 - [x] responsive
-- [ ] logout confirmation modal
-- [ ] delete product confirmation
 
 ### back end
 - [x] sign up 
@@ -46,6 +44,7 @@
 - [ ] view user sessions
 - [x] product table admin
 - [x] view product info
+- [ ] add category to product
 - [ ] order table admin
 - [ ] view order info
 
@@ -58,6 +57,7 @@
 - [ ] delete user
 - [ ] get sessions
 - [ ] get product
+- [ ] - [ ] add category to product
 - [ ] delete product
 - [ ] get orders 
 - [ ] get total orders
@@ -76,4 +76,3 @@
 # Extras
 - [ ] checkout form validiity + customization
 - [ ] modals overflow
-- [ ] pop ups to confirm
