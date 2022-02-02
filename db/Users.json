@@ -1,45 +1,5 @@
 [{
   "_id": {
-    "$oid": "61ec3e99ec3100006a004445"
-  },
-  "email": "tyler.scott@mail.com",
-  "password": "itstyler",
-  "name": "Tyler Scott",
-  "description": "WE TRY TO OFFER OUR TAILORS AS BEST WORKING CONDITIONS AS POSSIBLE.",
-  "cart": [
-    "Leather Shoulder bag"
-  ],
-  "favorites": [],
-  "orders": [],
-  "rate": [
-    {
-      "stars": "5",
-      "comment": "",
-      "buyer": "Philippa Harman"
-    },
-    {
-      "stars": "3",
-      "comment": "I bought a scarf previous week. Good quality but arrived 1 month late",
-      "buyer": "Athina Tsilikou"
-    },
-    {
-      "stars": "1",
-      "comment": "",
-      "buyer": "Athina Tsilikou"
-    },
-    {
-      "stars": "1",
-      "comment": "test",
-      "buyer": "Tyler Scott"
-    },
-    {
-      "stars": "1",
-      "comment": "test",
-      "buyer": "Athina Tsilikou"
-    }
-  ]
-},{
-  "_id": {
     "$oid": "61ec55f1ec3100006a00444a"
   },
   "name": "Philippa Harman",
@@ -50,6 +10,7 @@
   "favorites": [
     "Organic Handmade Striped Dress"
   ],
+  "location": "United Kingdom",
   "orders": [],
   "rate": []
 },{
@@ -60,6 +21,7 @@
   "email": "the.strelnieki@mail.com",
   "password": "the.strelnieki",
   "description": " Suitable for people with sensitive skin. Linen can be used in all life situations, sports, leisure and official events.\r\nYou can always get advice or size adjustments by contacting us.\r\nThank you, Andris and Sandor.",
+  "location": " ",
   "cart": [],
   "favorites": [],
   "orders": [],
@@ -67,11 +29,6 @@
     {
       "stars": "5",
       "comment": "",
-      "buyer": "Athina Tsilikou"
-    },
-    {
-      "stars": "1",
-      "comment": "test",
       "buyer": "Athina Tsilikou"
     }
   ]
@@ -82,6 +39,7 @@
   "name": "Athina Tsilikou",
   "email": "athina.tsilikou@mail.com",
   "password": "athina",
+  "location": "Thessaloniki, Greece",
   "description": "If you are not satisfied with the product, it is no problem! \r\n\r\nYou easily send it back to my address and after receiving the product in a good condition you will immediately get your money back!",
   "favorites": {
     "1": "Organic Handmade Striped Dress",
@@ -182,21 +140,6 @@
       "stars": "5",
       "comment": "Thank you for an adorable tote! The bag was delivered very quickly and my niece packed all her gifts into the bag and off she went!! ",
       "buyer": "Fergie Warya"
-    },
-    {
-      "stars": "1",
-      "comment": "cool",
-      "buyer": "Athina Tsilikou"
-    },
-    {
-      "stars": "1",
-      "comment": "test",
-      "buyer": "Athina Tsilikou"
-    },
-    {
-      "stars": "1",
-      "comment": "test",
-      "buyer": "Athina Tsilikou"
     }
   ]
 },{
@@ -206,14 +149,34 @@
   "name": "Fergie Warya",
   "email": "fergie.warya@mail.com",
   "password": "fergie",
+  "location": "London, United Kingdom",
   "description": "Providing Unisex t-shirts for birthday gifts and casual wear. The shirts are High Premium Quality 100% Cotton.",
   "cart": [],
-  "orders": [],
+  "orders": [
+    [
+      "Gold Carnelian Necklace",
+      {
+        "total": 5.6
+      }
+    ]
+  ],
   "favorites": [
     "Leather Shoulder bag",
-    "Vintage 90's Unisex Long Sleeve Shirt"
+    "Vintage 90's Unisex Long Sleeve Shirt",
+    "All Sizes Boho - Hippie Vintage Shoes"
   ],
-  "rate": []
+  "rate": [
+    {
+      "stars": "5",
+      "comment": "BOUGHT 2 PRODUCTS! REALLY NICE QUALITY. SHIPPED IN 4 DAYS. THANK YOU",
+      "buyer": "Maria Kr"
+    },
+    {
+      "stars": "4",
+      "comment": "",
+      "buyer": "Philippa Harman"
+    }
+  ]
 },{
   "_id": {
     "$oid": "61f57d203150000004000244"
@@ -221,34 +184,34 @@
   "name": "Maria Kr",
   "email": "maria.kr@mail.com",
   "password": "mariakr",
+  "location": "",
   "description": "",
   "cart": [],
-  "orders": [],
-  "favorites": [],
-  "rate": []
-},{
-  "_id": {
-    "$oid": "61f58adc3150000004000246"
-  },
-  "name": "new",
-  "email": "new@mail.com",
-  "password": "123098",
-  "description": "",
-  "cart": [],
-  "orders": [],
-  "favorites": [],
-  "rate": []
-},{
-  "_id": {
-    "$oid": "61f66976ff50000080007ac3"
-  },
-  "name": "test user",
-  "email": "test@user.mail",
-  "password": "testtest",
-  "description": "",
-  "cart": [],
-  "orders": [],
-  "favorites": [],
+  "orders": [
+    [
+      "Jordan 1 Mid Smoke Unisex Shoes",
+      "Anime Unisex Sweater - anime is life",
+      {
+        "total": 31.3
+      }
+    ],
+    [
+      "Leather minimalist Wallet",
+      {
+        "total": 5
+      }
+    ],
+    [
+      "Plants are friends - Shirt Tee",
+      {
+        "total": 7.4
+      }
+    ]
+  ],
+  "favorites": [
+    "Jordan 1 Mid Smoke Unisex Shoes",
+    "Anime Unisex Sweater - anime is life"
+  ],
   "rate": []
 },{
   "_id": {
@@ -257,6 +220,7 @@
   "email": "not_logged",
   "password": "",
   "name": "",
+  "location": "",
   "description": "",
   "cart": [],
   "favorites": [],
@@ -269,11 +233,18 @@
   "name": "Matt Hoop",
   "email": "matt.hoop@mail.com",
   "password": "matthoop",
+  "location": "Toronto, Canada",
   "description": "",
   "cart": [],
   "orders": [],
   "favorites": [],
-  "rate": []
+  "rate": [
+    {
+      "stars": "3",
+      "comment": "Bought a necklace, definetely not gold as it described, but cute.",
+      "buyer": "Fergie Warya"
+    }
+  ]
 },{
   "_id": {
     "$oid": "61f7b0f6b45e0000e9007326"
@@ -281,11 +252,18 @@
   "name": "Mimoum Karl",
   "email": "mimoun.karl@mail.com",
   "password": "mimoum",
+  "location": "Málaga, Spain",
   "description": "Welcome! Here you will find leather accessories.\r\nThanks for visiting.",
   "cart": [],
   "orders": [],
   "favorites": [],
-  "rate": []
+  "rate": [
+    {
+      "stars": "5",
+      "comment": "nice and cheap",
+      "buyer": "Maria Kr"
+    }
+  ]
 },{
   "_id": {
     "$oid": "61f7b654b45e0000e9007327"
@@ -293,9 +271,57 @@
   "name": "james fryer",
   "email": "james.fryer@mail.com",
   "password": "james01",
+  "location": "Paignton, United Kingdom",
   "description": "I am that confident you will be happy with your purchase that I offer all of mine customers a full **30 DAY MONEY BACK GUARANTEE.**\r\n\r\nThank you for looking at my products!",
   "cart": [],
   "orders": [],
   "favorites": [],
-  "rate": []
+  "rate": [
+    {
+      "stars": "5",
+      "comment": "",
+      "buyer": "Maria Kr"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61fa64e9f423d38e8344ad29"
+  },
+  "email": "admin@thriftie.com",
+  "password": "PassW0rd"
+},{
+  "_id": {
+    "$oid": "61fa86b1f423d38e8344ad2a"
+  },
+  "email": "test"
+},{
+  "_id": {
+    "$oid": "61fa8942f423d38e8344ad2c"
+  },
+  "email": "tyler.scott@mail.com",
+  "password": "itstyler",
+  "name": "Tyler Scott",
+  "description": "WE TRY TO OFFER OUR TAILORS AS BEST WORKING CONDITIONS AS POSSIBLE.",
+  "cart": [
+    "Leather Shoulder bag"
+  ],
+  "favorites": [],
+  "orders": [],
+  "rate": [
+    {
+      "stars": "5",
+      "comment": "",
+      "buyer": "Philippa Harman"
+    },
+    {
+      "stars": "3",
+      "comment": "I bought a scarf previous week. Good quality but arrived 1 month late",
+      "buyer": "Athina Tsilikou"
+    },
+    {
+      "stars": "5",
+      "comment": "test",
+      "buyer": "Maria Kr"
+    }
+  ]
 }]
