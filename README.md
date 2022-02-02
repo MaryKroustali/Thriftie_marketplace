@@ -53,11 +53,11 @@
 - [ ] login from home
 - [x] get user data
 - [x] get total users
-- [ ] edit user data
+- [x] edit user data
 - [x] delete user
 - [ ] get sessions
 - [ ] get product
-- [ ] - [ ] add category to product
+- [ ] add category to product
 - [ ] delete product
 - [ ] get orders 
 - [ ] get total orders
