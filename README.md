@@ -52,7 +52,7 @@
 - [x] orders - admin (cancel/update total
 
 ## Report/General
-- [ ] 3 taseis
+- [x] 3 taseis (mobile, payment, customization, green)
 - [x] review eshop
 - [ ] report part 1 (check)
 - [ ] report part 2 (check)
