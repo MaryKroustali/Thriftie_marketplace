@@ -56,7 +56,7 @@
 - [x] delete user
 - [ ] get sessions
 - [x] get product
-- [ ] add category to product
+- [x] add category to product
 - [x] delete product
 - [ ] get orders
 - [ ] get total orders
