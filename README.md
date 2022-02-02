@@ -49,7 +49,7 @@
 
 ### back end
 - [x] logout
-- [ ] login from home
+- [x] login from home
 - [x] get user data
 - [x] get total users
 - [x] edit user data
