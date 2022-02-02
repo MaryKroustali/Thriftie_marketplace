@@ -54,7 +54,7 @@
 - [x] get user data
 - [x] get total users
 - [ ] edit user data
-- [ ] delete user
+- [x] delete user
 - [ ] get sessions
 - [ ] get product
 - [ ] - [ ] add category to product
