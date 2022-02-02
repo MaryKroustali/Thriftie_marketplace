@@ -51,8 +51,8 @@
 ### back end
 - [ ] logout
 - [ ] login from home
-- [ ] get user data
-- [ ] get total users
+- [x] get user data
+- [x] get total users
 - [ ] edit user data
 - [ ] delete user
 - [ ] get sessions
