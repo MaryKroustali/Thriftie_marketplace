@@ -60,7 +60,9 @@
 - [x] delete product
 - [x] get orders
 - [x] get total orders
-- [ ] cancel order
+- [x] cancel order
+- [ ] update total cost
+- [ ] delete when empty
 
 ## Report/General
 - [ ] 3 taseis
