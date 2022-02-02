@@ -68,13 +68,12 @@
 ## Report/General
 - [ ] 3 taseis
 - [x] review eshop ?
-- [x] report part 1 (check)
-- [x] report part 2 (check)
-- [x] report part 3 (check)
-- [x] report part 4 (check)
-- [x] report part 5 (check)
-- [x] report part 6 (check)
+- [ ] report part 1 (check)
+- [ ] report part 2 (check)
+- [ ] report part 3 (check)
+- [ ] report part 4 (check)
+- [ ] report part 5 (check)
+- [ ] report part 6 (check)
 
 # Extras
 - [ ] checkout form validiity + customization
-- [ ] modals overflow
