@@ -41,11 +41,11 @@
 - [x] users table admin
 - [x] edit user data
 - [x] delete user
-- [ ] view user sessions
 - [x] product table admin
 - [x] view product info
 - [ ] order table admin
 - [ ] view order info
+- [ ] view user sessions
 
 ### back end
 - [x] logout
