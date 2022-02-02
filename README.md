@@ -19,7 +19,7 @@
 - [x] eshop review
 - [x] responsive
 - [ ] logout confirmation modal
-- [ ] delete product confirmation product
+- [ ] delete product confirmation
 
 ### back end
 - [x] sign up 
