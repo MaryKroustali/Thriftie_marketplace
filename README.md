@@ -48,7 +48,7 @@
 - [ ] view order info
 
 ### back end
-- [ ] logout
+- [x] logout
 - [ ] login from home
 - [x] get user data
 - [x] get total users
