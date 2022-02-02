@@ -37,7 +37,7 @@
 
 ## Admin 
 ### front end
-- [ ] home page admin (empty) 
+- [x] home page admin
 - [x] users table admin
 - [x] edit user data
 - [x] delete user
@@ -61,8 +61,8 @@
 - [x] get orders
 - [x] get total orders
 - [x] cancel order
-- [ ] update total cost
-- [ ] delete when empty
+- [x] update total cost of order
+- [x] delete order when empty
 
 ## Report/General
 - [ ] 3 taseis
