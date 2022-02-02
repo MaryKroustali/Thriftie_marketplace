@@ -38,36 +38,22 @@
 ## Admin 
 ### front end
 - [x] home page admin
-- [x] users table admin
-- [x] edit user data
-- [x] delete user
-- [x] product table admin
-- [x] view product info
-- [x] order table admin
-- [x] view order info
+- [x] users table - admin
+- [x] products table - admin
+- [x] orders table - admin
 - [ ] view user sessions
 - [ ] responsive
 
 ### back end
 - [x] logout
 - [x] login from home
-- [x] get user data
-- [x] get total users
-- [x] edit user data
-- [x] delete user
-- [ ] get sessions
-- [x] get product
-- [x] add category to product
-- [x] delete product
-- [x] get orders
-- [x] get total orders
-- [x] cancel order
-- [x] update total cost of order
-- [x] delete order when empty
+- [x] users - admin (edit/remove)
+- [x] products - admin (edit/remove)
+- [x] orders - admin (cancel/update total
 
 ## Report/General
 - [ ] 3 taseis
-- [x] review eshop ?
+- [x] review eshop
 - [ ] report part 1 (check)
 - [ ] report part 2 (check)
 - [ ] report part 3 (check)
