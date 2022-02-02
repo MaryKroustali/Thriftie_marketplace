@@ -46,6 +46,7 @@
 - [x] order table admin
 - [x] view order info
 - [ ] view user sessions
+- [ ] responsive
 
 ### back end
 - [x] logout
