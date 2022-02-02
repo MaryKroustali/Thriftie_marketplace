@@ -18,7 +18,8 @@
 - [x] order history/sold history
 - [x] eshop review
 - [x] responsive
-- [ ] logout modal
+- [ ] logout confirmation modal
+- [ ] delete product confirmation product
 
 ### back end
 - [x] sign up 
