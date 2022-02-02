@@ -44,7 +44,6 @@
 - [ ] view user sessions
 - [x] product table admin
 - [x] view product info
-- [ ] add category to product
 - [ ] order table admin
 - [ ] view order info
 
@@ -56,10 +55,10 @@
 - [x] edit user data
 - [x] delete user
 - [ ] get sessions
-- [ ] get product
+- [x] get product
 - [ ] add category to product
-- [ ] delete product
-- [ ] get orders 
+- [x] delete product
+- [ ] get orders
 - [ ] get total orders
 - [ ] cancel order
 
