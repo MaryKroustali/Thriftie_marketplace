@@ -58,8 +58,8 @@
 - [x] get product
 - [x] add category to product
 - [x] delete product
-- [ ] get orders
-- [ ] get total orders
+- [x] get orders
+- [x] get total orders
 - [ ] cancel order
 
 ## Report/General
