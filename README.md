@@ -54,12 +54,12 @@
 ## Report/General
 - [x] 3 taseis (mobile, payment, customization, green)
 - [x] review eshop
-- [ ] report part 1 (check)
-- [ ] report part 2 (check)
-- [ ] report part 3 (check)
-- [ ] report part 4 (check)
-- [ ] report part 5 (check)
-- [ ] report part 6 (check)
+- [x] report part 1
+- [x] report part 2
+- [x] report part 3 
+- [x] report part 4 
+- [x] report part 5 
+- [ ] report part 6
 
 # Extras
 - [ ] checkout form validiity + customization
