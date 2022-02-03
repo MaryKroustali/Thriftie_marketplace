@@ -42,7 +42,7 @@
 - [x] products table - admin
 - [x] orders table - admin
 - [ ] view user sessions
-- [ ] responsive
+- [x] responsive
 
 ### back end
 - [x] logout
