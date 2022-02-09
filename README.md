@@ -59,10 +59,9 @@
 - [x] report part 3 
 - [x] report part 4 
 - [x] report part 5 
-- [ ] report part 6
+- [x] report part 6
 
 # Extras
 - [ ] checkout form validiity + customization
 - [ ] save ratings to db
 - [ ] save messages to db
-- [ ] admin photos
