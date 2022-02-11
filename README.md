@@ -65,3 +65,4 @@
 - [ ] checkout form validiity + customization
 - [ ] save ratings to db
 - [ ] save messages to db
+- [ ] add vendor to repo
