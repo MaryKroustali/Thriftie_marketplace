@@ -1,6 +1,6 @@
 # Thriftie_marketplace
 
-Eshop marketplace where users can sell and buy products. 
+Eshop project created for university course "eCommerce".
 
 
 Users can:
