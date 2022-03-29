@@ -7,13 +7,13 @@ Users can:
 - visit home page
 - ceate account
 - login/logout 
-- visit their profile and edit their info
-- view list products by category
+- access user profile and edit their info
+- view list of products by category
 - view more info about each product
 - search for products
 - review a seller
 - add/remove products from cart
-- checkout and complete payment form
+- checkout and payment
 - add products to their favorites list
 - sell a product
 - view order history/sold history
@@ -25,14 +25,15 @@ Admins can:
 - view/edit users table
 - view/edit products table
 - view/edit orders table
-- view new products
+- add category to new products
 
-## Report/General
-- [x] 3 taseis (mobile, payment, customization, green)
-- [x] review eshop
-- [x] report part 1
-- [x] report part 2
-- [x] report part 3 
-- [x] report part 4 
-- [x] report part 5 
-- [x] report part 6
+
+Full description with print screens can be found in Report.pdf Unit 6.
+
+## Report
+- Unit 1: eCommerce Idea
+- Unit 2: Business Model 
+- Unit 3: Validate and Register eCommerce Idea
+- Unit 4: eCommerce Trends
+- Unit 5: Website Requirements
+- Unit 6: User Manual
